@@ -17,7 +17,34 @@
 <style>
 html.landing-route-pending{background:#fdf1f1!important;}
 html.landing-route-pending body{visibility:hidden!important;background:#fdf1f1!important;}
+html.landing-route-pending::before{content:"LUXIA";position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#fdf1f1;color:#b52f4b;font-family:Georgia,serif;font-size:28px;letter-spacing:.18em;animation:lpBootFade .8s ease-in-out infinite alternate;}
+@keyframes lpBootFade{from{opacity:.45}to{opacity:1}}
 </style>
+<script>
+/* Start the public landing request as early as possible, while the HTML is still parsing.
+   This removes the DOMContentLoaded/network waterfall on landing links. */
+(function(){
+  try{
+    var path=location.pathname.replace(/\/+$/,'');
+    var q=new URLSearchParams(location.search);
+    var slug=q.get('landing');
+    if(!slug && path==='/offre') slug='offre';
+    if(!slug && path==='/pyjamastyle') slug='pyjamastyle';
+    if(!slug && path.indexOf('/p/')===0) slug=decodeURIComponent(path.slice(3));
+    if(!slug || slug==='preview') return;
+    var key='lunea_public_landing_cache_v2_'+slug;
+    try{
+      var cached=localStorage.getItem(key);
+      if(cached) window.__luneaEarlyLandingCache=JSON.parse(cached);
+    }catch(e){}
+    var url='https://uqzphhqjsxcyorwbxdli.supabase.co/rest/v1/landing_pages?slug=eq.'+encodeURIComponent(slug)+'&status=eq.published&select=*';
+    window.__luneaEarlyLandingPromise=fetch(url,{headers:{'apikey':'sb_publishable_Hnjx1oNHnBDb9wCT61QaeQ_RBaDOUu7','Authorization':'Bearer sb_publishable_Hnjx1oNHnBDb9wCT61QaeQ_RBaDOUu7'}})
+      .then(function(r){if(!r.ok) throw new Error('Landing request failed'); return r.json();})
+      .then(function(rows){return Array.isArray(rows)&&rows.length?rows[0]:null;})
+      .catch(function(){return null;});
+  }catch(e){}
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
@@ -620,6 +647,8 @@ body.lp-pyjama-active .lp-cart-close{color:#3a2530;}
 body.lp-pyjama-active .lp-cart-remove{color:#a82f49;font-weight:700;}
 body.lp-pyjama-active #lp-cart-checkout{background:linear-gradient(135deg,#d6536b,#b83d56) !important;color:#fff !important;}body.lp-pyjama-active .lp-attention-signal{animation:lpAttentionPulse 0.75s ease-in-out 0s 3;box-shadow:0 0 0 5px rgba(214,83,107,.20),0 0 28px rgba(214,83,107,.42) !important;position:relative;z-index:3;}
 body.lp-pyjama-active .lp-attention-signal::after{content:'👇';position:absolute;inset-inline-end:12px;top:-18px;font-size:25px;line-height:1;animation:lpAttentionBounce .75s ease-in-out 0s 3;pointer-events:none;}
+body.lp-pyjama-active .lp-cart-panel.lp-cart-vibrate{animation:lpCartVibrate .18s ease-in-out 0s 6;}
+@keyframes lpCartVibrate{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 @keyframes lpAttentionPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
 @keyframes lpAttentionBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
@@ -3865,24 +3894,32 @@ document.getElementById('lp-cart-fab')?.addEventListener('click',()=>{const d=do
       e.preventDefault();
       const cartItemsCount=mainCartItems.length+(p2Added?1:0);
       const cart=document.getElementById('lp-cart-drawer');
+      const signalElement=(el)=>{
+        if(!el)return;
+        el.classList.remove('lp-attention-signal');
+        void el.offsetWidth;
+        el.classList.add('lp-attention-signal');
+        setTimeout(()=>el.classList.remove('lp-attention-signal'),2600);
+      };
       const pickerSignal=()=>{
         setTimeout(()=>{
           const picker=document.getElementById('lp-main-picker');
-          if(!picker)return;
-          picker.classList.remove('lp-attention-signal');
-          void picker.offsetWidth;
-          picker.classList.add('lp-attention-signal');
-          setTimeout(()=>picker.classList.remove('lp-attention-signal'),2600);
+          const addBtn=document.getElementById('lp-main-add');
+          signalElement(picker);
+          if(addBtn && !addBtn.disabled) signalElement(addBtn);
         },120);
       };
       const cartSignal=()=>{
         setTimeout(()=>{
-          const target=document.getElementById('lp-cart-checkout')||cart;
-          if(!target)return;
-          target.classList.remove('lp-attention-signal');
-          void target.offsetWidth;
-          target.classList.add('lp-attention-signal');
-          setTimeout(()=>target.classList.remove('lp-attention-signal'),2600);
+          const panel=cart?.querySelector('.lp-cart-panel');
+          const target=document.getElementById('lp-cart-checkout');
+          if(panel){
+            panel.classList.remove('lp-cart-vibrate');
+            void panel.offsetWidth;
+            panel.classList.add('lp-cart-vibrate');
+            setTimeout(()=>panel.classList.remove('lp-cart-vibrate'),1200);
+          }
+          signalElement(target||cart);
         },120);
       };
       if(cartItemsCount>0){
@@ -3982,11 +4019,39 @@ async function bootLandingRoute(){
   if(!slug && path.startsWith('/p/')) slug=decodeURIComponent(path.slice(3));
   if(!slug){ document.documentElement.classList.remove('landing-route-pending'); return false; }
   if(slug==='preview'){try{const p=JSON.parse(localStorage.getItem('lunea_lp_preview')||'null');if(p){localStorage.removeItem('lunea_lp_preview');renderLandingPublic(p,true);document.documentElement.classList.remove('landing-route-pending');return true;}}catch(e){}}
+
+  /* Render the last published landing immediately from local cache when available.
+     The fresh Supabase copy is fetched in the background and replaces it afterwards.
+     This removes the blank network wait on repeat visits without blocking the UI. */
+  const cacheKey=`lunea_public_landing_cache_v2_${slug}`;
+  let cachedLanding=window.__luneaEarlyLandingCache || null;
+  if(!cachedLanding){try{cachedLanding=JSON.parse(localStorage.getItem(cacheKey)||'null');}catch(e){}}
+  let renderedCached=false;
+  if(cachedLanding){
+    try{
+      renderLandingPublic(cachedLanding);
+      renderedCached=true;
+      document.documentElement.classList.remove('landing-route-pending');
+    }catch(e){ console.warn('Cached landing render failed',e); }
+  }
+
   let fetchError=null;
   try{
-    const p=await getPublicLanding(slug, debug?onDiag:undefined);
-    if(p){localStorage.removeItem('lunea_lp_preview');renderLandingPublic(p);document.documentElement.classList.remove('landing-route-pending');return true;}
+    let p=null;
+    if(window.__luneaEarlyLandingPromise){
+      const earlyRow=await window.__luneaEarlyLandingPromise;
+      if(earlyRow) p=landingNormalize(earlyRow);
+    }
+    if(!p) p=await getPublicLanding(slug, debug?onDiag:undefined);
+    if(p){
+      try{localStorage.setItem(cacheKey,JSON.stringify(p));}catch(e){}
+      localStorage.removeItem('lunea_lp_preview');
+      renderLandingPublic(p);
+      document.documentElement.classList.remove('landing-route-pending');
+      return true;
+    }
   }catch(e){ console.error(e); fetchError=e; if(debug) diagLines.push(`ERROR: ${e?.message||e}`); }
+  if(renderedCached) return true;
   const diagHTML=debug?`<pre style="text-align:left;direction:ltr;max-width:640px;margin:20px auto 0;background:#00000066;border:1px solid #ffffff33;padding:14px;border-radius:10px;font-size:calc(11px * var(--font-scale));line-height:1.6;overflow:auto;white-space:pre-wrap;word-break:break-all;color:#c9ffb0;font-family:monospace">slug: ${slug}
 path: ${path}
 ${diagLines.join('\n')}</pre>`:`<p style="margin-top:14px"><a href="?${path.startsWith('/p/')?'':'landing='+encodeURIComponent(slug)+'&'}debug=1" style="color:#e0c690">Voir le diagnostic</a></p>`;
@@ -4566,12 +4631,19 @@ const luneaInitPromise = (async function initLunea(){
   updateCartBadge();
   applySiteBackground();
 })();
-/* bootLandingRoute() renders a landing page by replacing document.body.
-   It must wait for initLunea() to finish loading products/variants first,
-   otherwise a landing page opened right after a product's colors/sizes
-   were added in admin can render before that data has arrived, showing
-   the product with quantity only and no color/size picker. */
-window.addEventListener("DOMContentLoaded",()=>{ luneaInitPromise.then(()=> bootLandingRoute()).catch(()=>{ document.documentElement.classList.remove('landing-route-pending'); }); });
+/* Landing routes fetch/render independently; product initialization continues in parallel. */
+window.addEventListener("DOMContentLoaded",()=>{
+  const path=location.pathname.replace(/\/+$/,'');
+  const q=new URLSearchParams(location.search);
+  const isLanding=!!q.get('landing') || path==='/offre' || path==='/pyjamastyle' || path.indexOf('/p/')===0;
+  if(isLanding){
+    /* Do not wait for the full product/settings initialization before fetching
+       and rendering the landing page. This removes the blank ~2s startup gap. */
+    bootLandingRoute();
+  }else{
+    luneaInitPromise.catch(()=>{});
+  }
+});
 </script>
 
 <script>
