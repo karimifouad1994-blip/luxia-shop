@@ -3906,22 +3906,37 @@ document.getElementById('lp-cart-fab')?.addEventListener('click',()=>{const d=do
           const picker=document.getElementById('lp-main-picker');
           const addBtn=document.getElementById('lp-main-add');
           signalElement(picker);
-          if(addBtn && !addBtn.disabled) signalElement(addBtn);
-        },120);
+          signalElement(addBtn);
+        },180);
       };
       const cartSignal=()=>{
         setTimeout(()=>{
           const panel=cart?.querySelector('.lp-cart-panel');
           const target=document.getElementById('lp-cart-checkout');
-          if(panel){
-            panel.classList.remove('lp-cart-vibrate');
-            void panel.offsetWidth;
-            panel.classList.add('lp-cart-vibrate');
-            setTimeout(()=>panel.classList.remove('lp-cart-vibrate'),1600);
-           if(cart){ cart.classList.remove('lp-cart-vibrate'); void cart.offsetWidth; cart.classList.add('lp-cart-vibrate'); setTimeout(()=>cart.classList.remove('lp-cart-vibrate'),1600); }
-          }
-          signalElement(target||cart);
-        },120);
+          const fab=document.getElementById('lp-cart-fab');
+          const shake=(el)=>{
+            if(!el) return;
+            el.classList.remove('lp-cart-vibrate');
+            void el.offsetWidth;
+            el.classList.add('lp-cart-vibrate');
+            if(el.animate){
+              try{el.animate([
+                {transform:'translate3d(0,0,0)'},
+                {transform:'translate3d(-8px,0,0)'},
+                {transform:'translate3d(8px,0,0)'},
+                {transform:'translate3d(-7px,0,0)'},
+                {transform:'translate3d(7px,0,0)'},
+                {transform:'translate3d(-4px,0,0)'},
+                {transform:'translate3d(4px,0,0)'},
+                {transform:'translate3d(0,0,0)'}
+              ],{duration:650,iterations:1,easing:'ease-in-out'}); }catch(e){}
+            }
+            setTimeout(()=>el.classList.remove('lp-cart-vibrate'),900);
+          };
+          shake(panel);
+          shake(fab);
+          signalElement(target||panel);
+        },80);
       };
       if(cartItemsCount>0){
         if(cart){
@@ -3935,8 +3950,11 @@ document.getElementById('lp-cart-fab')?.addEventListener('click',()=>{const d=do
       mainOpen=true;
       showForm=false;
       paint();
-      setTimeout(()=>{ document.getElementById('lp-main-product')?.scrollIntoView({behavior:'smooth',block:'start'}); },50);
-      pickerSignal();
+      setTimeout(()=>{
+        const picker=document.getElementById('lp-main-picker');
+        (picker || document.getElementById('lp-main-toggle'))?.scrollIntoView({behavior:'smooth',block:'center'});
+        pickerSignal();
+      },80);
     });
     document.querySelector('.lp-hero .lp-cta')?.addEventListener('click',(e)=>{
       e.preventDefault();
