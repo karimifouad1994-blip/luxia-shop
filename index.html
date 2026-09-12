@@ -553,6 +553,32 @@ body.has-lunea-custom-bg .hero{background-image:linear-gradient(180deg,rgba(24,1
 .lp-theme-pyjama .lp-wa-float{position:fixed;left:16px;bottom:86px;z-index:901;width:52px;height:52px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 10px 22px rgba(0,0,0,.25);}
 html[dir="rtl"] .lp-theme-pyjama .lp-wa-float{left:auto;right:16px;}
 @media(max-width:420px){.lp-theme-pyjama .lp-feature-chip{width:72px;font-size:calc(10.5px * var(--font-scale));}}
+.lp-pyjama-header{position:fixed;top:0;left:0;right:0;z-index:890;height:56px;display:flex;align-items:center;justify-content:center;background:#fffdfdcc;backdrop-filter:blur(8px);border-bottom:1px solid #f3d3d8;}
+.lp-pyjama-logo{font-family:'Cormorant Garamond','Amiri',serif;font-size:calc(24px * var(--font-scale));font-weight:600;color:#3a2530;letter-spacing:.03em;}
+.lp-theme-pyjama .lp-hero{padding-top:76px;}
+.lp-color-showcase{padding:34px 20px 10px;}
+.lp-color-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;}
+.lp-color-item{text-align:center;}
+.lp-color-item img{width:100%;aspect-ratio:1/1.15;object-fit:cover;border-radius:18px;box-shadow:var(--shadow);margin-bottom:8px;}
+.lp-color-item-label{font-size:calc(13px * var(--font-scale));color:var(--ivory);font-weight:500;}
+.lp-pack-banner-section{padding:10px 20px 0;}
+.lp-pack-banner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;background:linear-gradient(135deg,#fff,#fdecef);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:16px 20px;position:relative;text-decoration:none;}
+.lp-pack-badge{position:absolute;top:-11px;inset-inline-start:20px;background:var(--gold-soft);color:#fff;font-size:calc(11px * var(--font-scale));font-weight:700;padding:4px 12px;border-radius:999px;}
+.lp-pack-label{font-family:var(--font-display);font-size:calc(19px * var(--font-scale));color:var(--ivory);font-weight:500;max-width:420px;}
+.lp-pack-price-block{text-align:center;flex:none;}
+.lp-pack-price{font-family:var(--font-display);font-size:calc(24px * var(--font-scale));color:var(--gold-soft);font-weight:700;}
+.lp-pack-oldprice{text-decoration:line-through;opacity:.6;color:var(--ivory-dim);font-size:calc(13px * var(--font-scale));}
+.lp-theme-pyjama .lp-review{padding:18px;display:flex;flex-direction:column;gap:8px;}
+.lp-review-meta{display:flex;align-items:center;gap:10px;}
+.lp-review-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#eda3b3,var(--gold-soft));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:calc(14px * var(--font-scale));flex:none;}
+.lp-review-name{font-size:calc(13.5px * var(--font-scale));font-weight:600;color:var(--ivory);}
+.lp-review-city{font-size:calc(11.5px * var(--font-scale));color:var(--ivory-dim);}
+.lp-review-stars{color:var(--gold-soft);font-size:calc(13px * var(--font-scale));letter-spacing:2px;}
+.lp-review-text{font-size:calc(13.5px * var(--font-scale));color:var(--ivory-dim);line-height:1.6;}
+.lp-theme-pyjama .lp-sizes-section{text-align:center;}
+.lp-theme-pyjama .lp-sizes-section .lp-size-row{justify-content:center;}
+.lp-theme-pyjama .lp-size-chip{width:44px;height:44px;font-weight:600;}
+.lp-theme-pyjama .lp-reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
 </style>
 
 <style id="luxia-home-gallery-final">
@@ -2718,6 +2744,10 @@ function landingDefaults(){ return {
   gallery:[], showOrderForm:true,
   showReviews:true, showFaq:true, showGallery:true, showBenefits:true, showWhatsapp:true,
   product2Id:"", product2Price:"", product2Image:"", product2Gallery:[],
+  /* Pyjama theme only — purely additive/optional. Each is hidden on the
+     public page unless the admin actually fills it in, per product spec:
+     "ida ma zadch shi haja, ma tbanach l zbouna". */
+  colorShowcase:[], packEnabled:false, packBadge:"", packLabel:"", packPrice:"", packOldPrice:"",
   /* Bilingual content: each field below is stored twice (Fr/Ar) so the public
      page can offer a language switcher regardless of which language the admin
      picks as the default. */
@@ -2829,6 +2859,28 @@ function landingEditorHTML(p){
         <input type="hidden" id="lp-product2-id" value="${escAttr(p.product2Id||'')}">
       </div>
     </div>
+    <div class="admin-card" id="lp-pyjama-fields" style="${p.type==='pyjama'?'':'display:none;'}">
+      <h3 style="margin-bottom:4px">🎀 Pyjama Style — عناصر خاصة</h3>
+      <small>هاد الحقول كتبان غير فصفحة type "Pyjama Style". إلا خليتيها خاوية، القسم المرتبط بيها ما يبانش عند الزبونة.</small>
+      <div class="lp-admin-grid" style="margin-top:14px">
+        <div class="full">
+          <label>ألوان المنتج (صورة لكل لون) — سطر لكل لون: اسم اللون | رابط الصورة</label>
+          <textarea id="lp-color-showcase" rows="4" placeholder="وردي | https://...jpg
+كريمي | https://...jpg
+بنفسجي | https://...jpg" style="direction:ltr;text-align:left;">${escHtml((p.colorShowcase||[]).join('\n'))}</textarea>
+          <small>إلا بغيتي تزيدي صورة، رفعيها من قسم "الصور" تحت وبعد لصقي الرابط ديالها هنا.</small>
+        </div>
+      </div>
+      <div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line);">
+        <label style="display:flex;align-items:center;gap:8px;color:var(--ivory);margin-bottom:12px"><input type="checkbox" id="lp-pack-enabled" ${p.packEnabled?'checked':''} style="width:auto"> فعّلي بانر "Pack / عرض خاص"</label>
+        <div class="lp-admin-grid">
+          <div><label>باج البانر (مثلا: "عرض خاص")</label><input id="lp-pack-badge" value="${escAttr(p.packBadge||'')}"></div>
+          <div><label>نص العرض (مثلا: "إشتري 2 بيجاما و إستفيدي من تخفيض مميز")</label><input id="lp-pack-label" value="${escAttr(p.packLabel||'')}"></div>
+          <div><label>ثمن الـ Pack</label><input id="lp-pack-price" value="${escAttr(p.packPrice||'')}"></div>
+          <div><label>الثمن القديم ديال الـ Pack</label><input id="lp-pack-oldprice" value="${escAttr(p.packOldPrice||'')}"></div>
+        </div>
+      </div>
+    </div>
     <div class="admin-card"><h3 style="margin-bottom:16px">${t("lp.mainContentTitle")}</h3><div class="lp-admin-grid">
       <div><label>${t("lp.slugLabel")}</label><input id="lp-slug" value="${escAttr(p.slug)}" placeholder="produit-x"></div>
       <div><label>${t("lp.statusLabel")}</label><select id="lp-status"><option value="draft" ${p.status==='draft'?'selected':''}>Draft</option><option value="published" ${p.status==='published'?'selected':''}>Published</option></select></div>
@@ -2910,6 +2962,12 @@ function collectLandingForm(){
   /* Persist the complete gallery of a ready-made second LUXIA product, not only its primary image. */
   p.product2Gallery = p.product2Id ? (PRODUCT_IMAGE_GALLERY[p.product2Id]||[]).filter(Boolean).slice() : [];
   [['showOrderForm','lp-show-form'],['showWhatsapp','lp-show-wa'],['showGallery','lp-show-gallery'],['showBenefits','lp-show-benefits'],['showReviews','lp-show-reviews'],['showFaq','lp-show-faq']].forEach(([k,id])=>p[k]=document.getElementById(id).checked);
+  p.colorShowcase=parseLines(document.getElementById('lp-color-showcase')?.value||'');
+  p.packEnabled=!!document.getElementById('lp-pack-enabled')?.checked;
+  p.packBadge=document.getElementById('lp-pack-badge')?.value.trim()||'';
+  p.packLabel=document.getElementById('lp-pack-label')?.value.trim()||'';
+  p.packPrice=document.getElementById('lp-pack-price')?.value.trim()||'';
+  p.packOldPrice=document.getElementById('lp-pack-oldprice')?.value.trim()||'';
   return p;
 }
 async function renderAdminLandingPages(){
@@ -2933,6 +2991,7 @@ function bindLandingEditor(){
     if(type==='oneshop' && slugEl && (!slugEl.value || slugEl.value==='offre')) slugEl.value='oneshop';
     if(type==='pyjama' && slugEl && (!slugEl.value || slugEl.value==='offre')) slugEl.value='pyjamastyle';
     if(type==='luxia' && slugEl && (slugEl.value==='oneshop' || slugEl.value==='pyjamastyle')) slugEl.value='offre';
+    const pyFields=document.getElementById('lp-pyjama-fields'); if(pyFields) pyFields.style.display = (type==='pyjama') ? '' : 'none';
   });
   document.getElementById('lp-source-product')?.addEventListener('change',()=>{
     const id=document.getElementById('lp-source-product').value; if(!id) return;
@@ -3096,7 +3155,14 @@ function renderLandingPublic(p, isPreview){
           ? (isArabicText(p.product2NameAr) ? p.product2NameAr : '')
           : (p.product2NameFr || ''));
     const benefits=pickArr('benefits').map(x=>`<div class="lp-card">${escHtml(typeof x==='string'?x:x.text||'')}</div>`).join('');
-    const reviews=pickArr('reviews').map(x=>`<div class="lp-review">★ ★ ★ ★ ★<br>${escHtml(typeof x==='string'?x:x.text||'')}</div>`).join('');
+    const reviews=pickArr('reviews').map(x=>{
+      const raw = typeof x==='string' ? x : (x.text||'');
+      const parts = raw.split('|').map(s=>s.trim());
+      const text = parts[0]||''; const rName = parts[1]||''; const rCity = parts[2]||'';
+      const initial = rName ? rName.trim().charAt(0).toUpperCase() : '★';
+      const metaHTML = (rName||rCity) ? `<div class="lp-review-meta"><span class="lp-review-avatar">${escHtml(initial)}</span><div><div class="lp-review-name">${escHtml(rName)}</div>${rCity?`<div class="lp-review-city">${escHtml(rCity)}</div>`:''}</div></div>` : '';
+      return `<div class="lp-review">${metaHTML}<div class="lp-review-stars">★ ★ ★ ★ ★</div><div class="lp-review-text">${escHtml(text)}</div></div>`;
+    }).join('');
     const faqs=pickArr('faqs').map(x=>`<details><summary>${escHtml(x.q||'')}</summary><p style="padding-top:8px;color:var(--ivory-dim)">${escHtml(x.a||'')}</p></details>`).join('');
     const gallery=(p.gallery||[]).map(u=>`<img src="${escAttr(u)}" alt="${escAttr(title)}">`).join('');
     const p2price=Number(String(p.product2Price||'0').replace(/[^0-9.]/g,''))||0;
@@ -3126,6 +3192,25 @@ function renderLandingPublic(p, isPreview){
     const pyFeatureIcons = ['✧','☁','♡','⌂'];
     const pyFeatureRowHTML = (isPyjama && benefits) ? `<div class="lp-feature-row">${pickArr('benefits').slice(0,4).map((x,i)=>`<div class="lp-feature-chip"><span class="ico">${pyFeatureIcons[i%pyFeatureIcons.length]}</span><span>${escHtml(typeof x==='string'?x:x.text||'')}</span></div>`).join('')}</div>` : '';
     const pySizeRowHTML = (isPyjama && mainHasSizes) ? `<div class="lp-size-row">${mainVariants.sizes.map(s=>`<span class="lp-size-chip">${escHtml(s)}</span>`).join('')}</div>` : '';
+    /* Colors showcase: purely visual gallery of "name | image" lines the admin
+       filled in. Nothing renders if the list is empty. */
+    const colorShowcaseItems = isPyjama ? (p.colorShowcase||[]).map(line=>{
+      const [name,img]=String(line).split('|').map(s=>(s||'').trim());
+      return (name && img) ? {name,img} : null;
+    }).filter(Boolean) : [];
+    const colorShowcaseHTML = colorShowcaseItems.length ? `<section class="lp-section lp-color-showcase">
+      <div class="lp-color-grid">${colorShowcaseItems.map(c=>`<div class="lp-color-item"><img src="${escAttr(c.img)}" alt="${escAttr(c.name)}"><div class="lp-color-item-label">${escHtml(c.name)}</div></div>`).join('')}</div>
+    </section>` : '';
+    /* Pack banner: pure promo visual, CTA scrolls to the existing order form —
+       it never touches cart/order logic, so nothing about how an order is
+       placed changes. */
+    const packBannerHTML = (isPyjama && p.packEnabled && p.packPrice) ? `<section class="lp-section lp-pack-banner-section"><a href="#order" class="lp-pack-banner">
+      ${p.packBadge?`<span class="lp-pack-badge">${escHtml(p.packBadge)}</span>`:''}
+      <div class="lp-pack-banner-text">${p.packLabel?`<div class="lp-pack-label">${escHtml(p.packLabel)}</div>`:''}</div>
+      <div class="lp-pack-price-block"><div class="lp-pack-price">${escHtml(p.packPrice)}dh</div>${p.packOldPrice?`<div class="lp-pack-oldprice">${escHtml(p.packOldPrice)}</div>`:''}</div>
+    </a></section>` : '';
+    const sizesSectionHTML = (isPyjama && mainHasSizes) ? `<section class="lp-section lp-sizes-section"><h2>${lang==='ar'?'المقاسات المتوفرة':'Tailles disponibles'}</h2><div class="lp-size-row">${mainVariants.sizes.map(s=>`<span class="lp-size-chip">${escHtml(s)}</span>`).join('')}</div></section>` : '';
+    const pyHeaderHTML = isPyjama ? `<div class="lp-pyjama-header"><span class="lp-pyjama-logo">Luxia</span></div>` : '';
     const mainPrice=Number(String(p.price||'0').replace(/[^0-9.]/g,''))||0;
     const mainVariantReady = !mainHasVariants || isReady(mainHasColors, mainPack, mainHasSizes, mainState);
     const p2VariantReady = !p2HasVariants || isReady(p2HasColors, p2Pack, p2HasSizes, p2State);
@@ -3218,7 +3303,7 @@ function renderLandingPublic(p, isPreview){
     const cartFabHTML=`<button type="button" id="lp-cart-fab" class="lp-cart-fab" aria-label="${lang==='ar'?'فتح السلة':'Ouvrir le panier'}">🛒<span id="lp-cart-count" class="lp-cart-count">${(mainAdded?1:0)+(p2Added?1:0)}</span></button><div id="lp-cart-drawer" class="lp-cart-drawer" aria-hidden="true"><div class="lp-cart-panel"><div class="lp-cart-head"><div style="font-family:var(--font-display);font-size:calc(22px * var(--font-scale))">${lang==='ar'?'سلتك':'Votre panier'}</div><button type="button" id="lp-cart-close" class="lp-cart-close">×</button></div><div id="lp-cart-live"></div></div></div>`;
     const lightboxHTML = mainGalleryImages.length>1 ? `<div id="lp-lightbox" class="lp-lightbox" aria-hidden="true"><button type="button" id="lp-lightbox-close" class="lp-lightbox-close">✕</button><div class="lp-lightbox-imgs">${mainGalleryImages.map(u=>`<img src="${escAttr(u)}">`).join('')}</div></div>` : '';
     const p2LightboxHTML = p2GalleryImages.length>1 ? `<div id="lp-lightbox-p2" class="lp-lightbox" aria-hidden="true"><button type="button" id="lp-lightbox-p2-close" class="lp-lightbox-close">✕</button><div class="lp-lightbox-imgs">${p2GalleryImages.map(u=>`<img src="${escAttr(u)}">`).join('')}</div></div>` : '';
-    document.body.innerHTML=`${cartFabHTML}${closeBtnHTML}${langSwitchHTML}${lightboxHTML}${p2LightboxHTML}<main class="lp-preview ${isPyjama?'lp-theme-pyjama':''}"><section class="lp-hero" style="background-image:url('${escAttr(p.heroImage||'')}')"><div class="lp-hero-content"><div class="lp-kicker">${escHtml(p.kicker)}</div><h1 class="lp-title">${escHtml(title)}</h1><p class="lp-subtitle">${escHtml(subtitle)}</p>${pyFeatureRowHTML}${p.price?`<div class="lp-price">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div>`:''}${description?`<p style="max-width:640px;margin:14px auto 0;text-align:center;color:var(--ivory-dim);font-size:calc(16px * var(--font-scale))">${escHtml(description)}</p>`:''}${pySizeRowHTML}<a class="lp-cta" href="#lp-main-product">${lang==='ar'?'إكتشفي':'Découvrir'}</a></div></section><div class="lp-wrap">${p.video2?`<section class="lp-section lp-video-section lp-video2-section"><div class="lunea-video-wrap"><video class="lp-video lp-video2" src="${escAttr(p.video2)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}${p.showOrderForm?`<section class="lp-section" id="order">${mainCardHTML.replace('__LP_FORM_HERE__',formHTML)}${p2CardHTML}</section>`:''}${p.showBenefits&&benefits?`<section class="lp-section"><h2>${lang==='ar'?'المميزات':'Les avantages'}</h2><div class="lp-benefits">${benefits}</div></section>`:''}${p.showReviews&&reviews?`<section class="lp-section"><h2>${lang==='ar'?'آراء الزبناء':'Avis clientes'}</h2>${reviews}</section>`:''}${p.showFaq&&faqs?`<section class="lp-section lp-faq"><h2>FAQ</h2>${faqs}</section>`:''}${p.video?`<section class="lp-section"><div class="lunea-video-wrap"><video class="lp-video" src="${escAttr(p.video)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}
+    document.body.innerHTML=`${pyHeaderHTML}${cartFabHTML}${closeBtnHTML}${langSwitchHTML}${lightboxHTML}${p2LightboxHTML}<main class="lp-preview ${isPyjama?'lp-theme-pyjama':''}"><section class="lp-hero" style="background-image:url('${escAttr(p.heroImage||'')}')"><div class="lp-hero-content"><div class="lp-kicker">${escHtml(p.kicker)}</div><h1 class="lp-title">${escHtml(title)}</h1><p class="lp-subtitle">${escHtml(subtitle)}</p>${pyFeatureRowHTML}${p.price?`<div class="lp-price">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div>`:''}${description?`<p style="max-width:640px;margin:14px auto 0;text-align:center;color:var(--ivory-dim);font-size:calc(16px * var(--font-scale))">${escHtml(description)}</p>`:''}${pySizeRowHTML}<a class="lp-cta" href="#lp-main-product">${lang==='ar'?'إكتشفي':'Découvrir'}</a></div></section>${colorShowcaseHTML}${packBannerHTML}<div class="lp-wrap">${p.video2?`<section class="lp-section lp-video-section lp-video2-section"><div class="lunea-video-wrap"><video class="lp-video lp-video2" src="${escAttr(p.video2)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}${p.showOrderForm?`<section class="lp-section" id="order">${mainCardHTML.replace('__LP_FORM_HERE__',formHTML)}${p2CardHTML}</section>`:''}${p.showBenefits&&benefits?`<section class="lp-section"><h2>${lang==='ar'?'المميزات':'Les avantages'}</h2><div class="lp-benefits">${benefits}</div></section>`:''}${p.showReviews&&reviews?`<section class="lp-section"><h2>${lang==='ar'?'آراء الزبناء':'Avis clientes'}</h2><div class="lp-reviews-grid">${reviews}</div></section>`:''}${p.showFaq&&faqs?`<section class="lp-section lp-faq"><h2>FAQ</h2>${faqs}</section>`:''}${p.video?`<section class="lp-section"><div class="lunea-video-wrap"><video class="lp-video" src="${escAttr(p.video)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}
 <section class="lp-section lp-experience-section">
   <div class="lp-experience-kicker">${lang==='ar'?'التجربة':'L’EXPÉRIENCE'}</div>
   <h2>${lang==='ar'?'لماذا LUXIA':'Pourquoi LUXIA'}</h2>
@@ -3246,6 +3331,7 @@ function renderLandingPublic(p, isPreview){
   </div>
   <div class="lp-experience-quote">${lang==='ar'?'«الأناقة الحقيقية لا تُرى، بل تُشعَر.»':'« La vraie élégance ne se remarque pas, elle se ressent. »'}</div>
 </section>
+${sizesSectionHTML}
 <p style="text-align:center;color:var(--ivory-dim);font-size:calc(14px * var(--font-scale));margin-top:30px">${lang==='ar'?'التوصيل مجاني في جميع أنحاء المغرب':'Livraison gratuite partout au Maroc'}</p></div>${isPyjama ? `${p.price?`<div class="lp-sticky-pyjama"><div class="lp-price" style="margin:0;">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div><a class="lp-cta" href="#order">${escHtml(cta || (lang==='ar'?'اطلبي الآن':'Commander maintenant'))}</a></div>`:''}${p.showWhatsapp&&wa?`<a class="lp-wa-float" href="${escAttr(wa)}" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>`:''}` : (p.showWhatsapp&&wa?`<div class="lp-sticky"><a class="lp-cta" href="${escAttr(wa)}" target="_blank" rel="noopener">WhatsApp</a></div>`:'')}</main>`;
     if(isPyjama) document.title = `${title}${p.price?` — ${p.price}dh`:''}`;
 
