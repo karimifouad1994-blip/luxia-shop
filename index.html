@@ -4,6 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>LUXIA — Luxury Collection</title>
+<script>
+(function(){
+  try{
+    var path=location.pathname.replace(/\/+$/,'');
+    var q=new URLSearchParams(location.search);
+    var isLanding=!!q.get('landing') || path==='/offre' || path==='/pyjamastyle' || path.indexOf('/p/')===0;
+    if(isLanding) document.documentElement.classList.add('landing-route-pending');
+  }catch(e){}
+})();
+</script>
+<style>
+html.landing-route-pending{background:#fdf1f1!important;}
+html.landing-route-pending body{visibility:hidden!important;background:#fdf1f1!important;}
+</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
@@ -553,7 +567,7 @@ body.has-lunea-custom-bg .hero{background-image:linear-gradient(180deg,rgba(24,1
 .lp-theme-pyjama .lp-size-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:10px 0 4px;}
 .lp-theme-pyjama .lp-size-chip{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;font-size:calc(12.5px * var(--font-scale));color:var(--ivory);}
 .lp-theme-pyjama .lp-sticky-pyjama{position:fixed;left:0;right:0;bottom:0;z-index:900;background:#fffdfdf2;backdrop-filter:blur(8px);border-top:1px solid var(--line);box-shadow:0 -10px 24px rgba(0,0,0,.08);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:14px;}
-.lp-theme-pyjama .lp-sticky-pyjama .lp-cta{flex:1;max-width:220px;padding:14px 18px;}
+.lp-theme-pyjama .lp-sticky-pyjama .lp-cta{flex:1;width:100%;max-width:420px;margin:0 auto;padding:14px 18px;}
 .lp-theme-pyjama .lp-wa-float{position:fixed;left:16px;bottom:86px;z-index:901;width:52px;height:52px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 10px 22px rgba(0,0,0,.25);}
 html[dir="rtl"] .lp-theme-pyjama .lp-wa-float{left:auto;right:16px;}
 @media(max-width:420px){.lp-theme-pyjama .lp-feature-chip{width:72px;font-size:calc(10.5px * var(--font-scale));}}
@@ -609,8 +623,8 @@ body.lp-pyjama-active .lp-lightbox-close{background:#ffffffe6;color:#3a2530;}
 .lp-pyjama-menu{background:none;border:0;font-size:20px;color:#3a2530;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none;}
 .lp-pyjama-logo{display:flex;align-items:center;justify-content:center;gap:3px;flex:1;}
 .lp-logo-heart{color:#d6536b;font-size:.62em;}
-body.lp-pyjama-active .lp-cart-fab{position:relative;top:auto;right:auto;width:40px;height:40px;flex:none;background:none;border:0;box-shadow:none;color:#3a2530;font-size:19px;}
-body.lp-pyjama-active .lp-cart-count{top:-2px;right:-4px;min-width:16px;height:16px;font-size:9px;background:#d6536b;color:#fff;}
+body.lp-pyjama-active .lp-cart-fab{position:relative;top:auto;right:auto;width:48px;height:48px;flex:none;background:#fff;border:1.5px solid #f0cbd2;box-shadow:0 5px 14px rgba(214,83,107,.18);color:#3a2530;font-size:29px;line-height:1;}
+body.lp-pyjama-active .lp-cart-count{top:-5px;right:-5px;min-width:25px;height:25px;padding:0 4px;border-radius:50%;font-size:12px;font-weight:800;background:#d6284b;color:#fff;border:2px solid #fff;box-shadow:0 2px 7px rgba(214,40,75,.35);display:flex;align-items:center;justify-content:center;}
 
 .lp-hero-pyjama{padding-top:56px;}
 .lp-hero-photo{position:relative;height:min(56vh,480px);min-height:300px;background-size:cover;background-position:center 22%;border-radius:0 0 34px 34px;box-shadow:0 14px 30px -14px rgba(214,83,107,.35);}
@@ -653,6 +667,94 @@ body.lp-pyjama-active .lp-cart-count{top:-2px;right:-4px;min-width:16px;height:1
 .lp-theme-pyjama .lp-remove-btn{color:#b43f55;background:transparent;border:0;font-weight:700;cursor:pointer;}
 .lp-theme-pyjama .lp-card p,.lp-theme-pyjama .lp-card label,.lp-theme-pyjama .lp-card .row,.lp-theme-pyjama .lp-product-card{color:#3a2530;}
 .lp-theme-pyjama .lp-order input,.lp-theme-pyjama .lp-order select,.lp-theme-pyjama .lp-order textarea{background:#fff;color:#3a2530;border:1px solid #e8c5cc;}
+</style>
+
+<style id="luxia-pyjama-contrast-final">
+/* Final PyjamaStyle readability pass: strong contrast on the pastel background. */
+body.lp-pyjama-active .lp-theme-pyjama,
+body.lp-pyjama-active .lp-theme-pyjama .lp-section,
+body.lp-pyjama-active .lp-theme-pyjama .lp-wrap{color:#2b1d24;}
+.lp-theme-pyjama .lp-hero-body .lp-title,
+.lp-theme-pyjama .lp-title{color:#241820 !important;text-shadow:none !important;font-weight:700 !important;}
+.lp-theme-pyjama .lp-hero-body .lp-subtitle{color:#4a303a !important;font-weight:500;}
+.lp-theme-pyjama .lp-product-order-label,
+.lp-theme-pyjama .lp-picker-group>label,
+.lp-theme-pyjama .lp-card .row,
+.lp-theme-pyjama .lp-card p,
+.lp-theme-pyjama .lp-card label,
+.lp-theme-pyjama .lp-product-card b,
+.lp-theme-pyjama .lp-color-caption,
+.lp-theme-pyjama .lp-color-item-label,
+.lp-theme-pyjama .lp-pack-label,
+.lp-theme-pyjama .lp-experience-section h2,
+.lp-theme-pyjama .lp-experience-card h3,
+.lp-theme-pyjama .lp-sizes-section h2{color:#2b1d24 !important;}
+.lp-theme-pyjama .lp-price{color:#b52f4b !important;font-weight:800 !important;font-size:calc(22px * var(--font-scale)) !important;}
+.lp-theme-pyjama .lp-price .lp-old-price{color:#5e424b !important;opacity:1 !important;font-weight:600;}
+.lp-theme-pyjama .lp-picker .pill,
+.lp-theme-pyjama .lp-mode-pill,
+.lp-theme-pyjama .lp-size-chip{color:#241820 !important;font-weight:600;}
+.lp-theme-pyjama .lp-picker .pill.selected,
+.lp-theme-pyjama .lp-mode-pill.selected{color:#fff !important;}
+.lp-theme-pyjama .lp-picker-group{color:#2b1d24;}
+.lp-theme-pyjama .lp-added-row{color:#2b1d24 !important;}
+.lp-theme-pyjama .lp-added{color:#b52f4b !important;font-weight:700;}
+.lp-theme-pyjama .lp-remove-btn{color:#9d2942 !important;font-weight:700;}
+.lp-theme-pyjama .lp-order input,
+.lp-theme-pyjama .lp-order select,
+.lp-theme-pyjama .lp-order textarea{color:#241820 !important;font-weight:500;}
+.lp-theme-pyjama .lp-sticky-pyjama{justify-content:center !important;padding:10px 16px !important;}
+.lp-theme-pyjama .lp-sticky-pyjama .lp-cta{display:flex;align-items:center;justify-content:center;min-height:52px;width:100%;max-width:520px !important;margin:0 !important;font-size:calc(16px * var(--font-scale)) !important;}
+</style>
+
+<style id="luxia-pyjama-typography-cart-final">
+/* Final PyjamaStyle mobile readability + attention pass. */
+body.lp-pyjama-active .lp-theme-pyjama{
+  --font-scale:1.10;
+}
+body.lp-pyjama-active .lp-theme-pyjama p,
+body.lp-pyjama-active .lp-theme-pyjama li,
+body.lp-pyjama-active .lp-theme-pyjama label,
+body.lp-pyjama-active .lp-theme-pyjama .lp-product-order-label,
+body.lp-pyjama-active .lp-theme-pyjama .lp-added,
+body.lp-pyjama-active .lp-theme-pyjama .lp-remove-btn,
+body.lp-pyjama-active .lp-theme-pyjama .lp-sizes-delivery{
+  line-height:1.72;
+}
+body.lp-pyjama-active .lp-theme-pyjama .lp-hero-body .lp-subtitle{
+  font-size:calc(16.5px * var(--font-scale)) !important;
+  line-height:1.7;
+}
+body.lp-pyjama-active .lp-theme-pyjama .lp-card p,
+body.lp-pyjama-active .lp-theme-pyjama .lp-product-desc p,
+body.lp-pyjama-active .lp-theme-pyjama .lp-product-benefits ul{
+  font-size:calc(14.5px * var(--font-scale));
+}
+body.lp-pyjama-active .lp-theme-pyjama .lp-picker-group>label,
+body.lp-pyjama-active .lp-theme-pyjama .lp-product-order-label{
+  font-size:calc(14px * var(--font-scale));
+}
+body.lp-pyjama-active .lp-theme-pyjama .lp-picker .pill,
+body.lp-pyjama-active .lp-theme-pyjama .lp-mode-pill{
+  font-size:calc(15px * var(--font-scale));
+}
+body.lp-pyjama-active .lp-theme-pyjama .lp-color-item-label{
+  font-size:calc(14px * var(--font-scale));
+}
+body.lp-pyjama-active .lp-theme-pyjama .lp-pack-label{
+  font-size:calc(20px * var(--font-scale));
+}
+body.lp-pyjama-active .lp-theme-pyjama .lp-pack-price{
+  font-size:calc(26px * var(--font-scale));
+}
+body.lp-pyjama-active .lp-theme-pyjama .lp-experience-card p{
+  font-size:calc(14px * var(--font-scale));
+  line-height:1.65;
+}
+body.lp-pyjama-active .lp-theme-pyjama .lp-review-text{
+  font-size:calc(14.5px * var(--font-scale));
+  line-height:1.7;
+}
 </style>
 
 <style id="luxia-home-gallery-final">
@@ -825,6 +927,82 @@ body.lp-pyjama-active .lp-cart-count{top:-2px;right:-4px;min-width:16px;height:1
     right:14px !important;
   }
 }
+</style>
+
+<style id="luxia-pyjama-contrast-final">
+/* Final PyjamaStyle contrast pass: all important text remains readable on the pastel skin. */
+.lp-theme-pyjama .lp-title,
+.lp-theme-pyjama .lp-subtitle,
+.lp-theme-pyjama .lp-section h2,
+.lp-theme-pyjama .lp-experience-kicker,
+.lp-theme-pyjama .lp-experience-card h3,
+.lp-theme-pyjama .lp-experience-card p,
+.lp-theme-pyjama .lp-product-order-label,
+.lp-theme-pyjama .lp-card,
+.lp-theme-pyjama .lp-card p,
+.lp-theme-pyjama .lp-card label,
+.lp-theme-pyjama .lp-card .row,
+.lp-theme-pyjama .lp-card .total,
+.lp-theme-pyjama .lp-picker-group > label,
+.lp-theme-pyjama .lp-sizes-delivery{
+  color:#3a2530 !important;
+}
+.lp-theme-pyjama .lp-title{font-weight:600 !important;}
+.lp-theme-pyjama .lp-subtitle{color:#5a3a46 !important;font-weight:500 !important;}
+.lp-theme-pyjama .lp-price,
+.lp-theme-pyjama .lp-pack-price,
+.lp-theme-pyjama .lp-product-title-price-frame .lp-price{
+  color:#a82f49 !important;
+  font-weight:800 !important;
+  text-shadow:none !important;
+}
+.lp-theme-pyjama .lp-old-price{color:#6f4b55 !important;opacity:1 !important;}
+.lp-theme-pyjama .lp-choose-btn,
+.lp-theme-pyjama .lp-submit,
+.lp-theme-pyjama .lp-sticky-pyjama .lp-cta{
+  background:linear-gradient(135deg,#d6536b,#b83d56) !important;
+  color:#fff !important;
+  font-weight:800 !important;
+  text-shadow:0 1px 1px rgba(0,0,0,.12);
+}
+.lp-theme-pyjama .lp-choose-btn:disabled{
+  background:#c98b98 !important;
+  color:#fff !important;
+  opacity:.75 !important;
+}
+.lp-theme-pyjama .lp-picker .pill,
+.lp-theme-pyjama .lp-mode-pill,
+.lp-theme-pyjama .lp-size-chip{
+  color:#3a2530 !important;
+  font-weight:700 !important;
+}
+.lp-theme-pyjama .lp-picker .pill.selected,
+.lp-theme-pyjama .lp-mode-pill.selected{color:#fff !important;}
+.lp-theme-pyjama .lp-added{color:#a82f49 !important;font-weight:700 !important;}
+.lp-theme-pyjama .lp-remove-btn,.lp-theme-pyjama .lp-edit-btn{color:#9f3048 !important;font-weight:700 !important;}
+.lp-theme-pyjama .lp-product-title-price-frame b{color:#3a2530 !important;font-weight:700 !important;}
+.lp-theme-pyjama .lp-feature-chip{color:#5a3a46 !important;font-weight:600 !important;}
+.lp-theme-pyjama .lp-pack-label{color:#3a2530 !important;font-weight:700 !important;}
+.lp-theme-pyjama .lp-cart-item-name,
+.lp-theme-pyjama .lp-cart-item-meta,
+.lp-theme-pyjama .lp-cart-head,
+.lp-theme-pyjama .lp-cart-panel .lp-cart-item{color:#3a2530 !important;}
+.lp-theme-pyjama .lp-cart-item-meta{font-weight:600 !important;}
+.lp-theme-pyjama .lp-sticky-pyjama .lp-cta{min-height:48px;}
+</style>
+
+<style id="luxia-pyjama-testimonials-final">
+.lp-testimonials{max-width:760px;margin:34px auto 22px;padding:0 16px;}
+.lp-testimonials-title{text-align:center;font-family:var(--font-display);font-size:calc(22px * var(--font-scale));font-weight:700;color:#3a2530;margin-bottom:6px;}
+.lp-testimonials-sub{text-align:center;color:#6b4a55;font-size:calc(14px * var(--font-scale));margin-bottom:18px;}
+.lp-testimonials-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
+.lp-wa-card{background:#f4fbf2;border:1px solid #d8e8d2;border-radius:16px;padding:14px 14px 12px;box-shadow:0 7px 18px rgba(58,37,48,.08);position:relative;}
+.lp-wa-card::before{content:'WhatsApp';display:block;color:#5b7654;font-size:calc(10px * var(--font-scale));font-weight:700;letter-spacing:.04em;margin-bottom:8px;}
+.lp-wa-stars{color:#e2a52f;font-size:17px;letter-spacing:1px;margin-bottom:8px;}
+.lp-wa-msg{background:#dcf8c6;border-radius:10px 10px 3px 10px;padding:10px 11px;color:#273a25;font-size:calc(13.5px * var(--font-scale));line-height:1.6;text-align:start;box-shadow:0 1px 1px rgba(0,0,0,.05);}
+.lp-wa-time{text-align:end;color:#6e8169;font-size:10px;margin-top:4px;}
+.lp-testimonials-note{text-align:center;color:#866d75;font-size:calc(11px * var(--font-scale));margin-top:10px;}
+@media(max-width:620px){.lp-testimonials-grid{grid-template-columns:1fr;gap:11px}.lp-testimonials{margin-top:28px}.lp-wa-card{padding:13px}}
 </style>
 </head>
 <body>
@@ -3529,7 +3707,19 @@ function renderLandingPublic(p, isPreview){
   <div class="lp-experience-quote">${lang==='ar'?'«الأناقة الحقيقية لا تُرى، بل تُشعَر.»':'« La vraie élégance ne se remarque pas, elle se ressent. »'}</div>
 </section>
 ${sizesSectionHTML}
-<p style="text-align:center;color:var(--ivory-dim);font-size:calc(14px * var(--font-scale));margin-top:30px">${lang==='ar'?'التوصيل مجاني في جميع أنحاء المغرب':'Livraison gratuite partout au Maroc'}</p></div>${isPyjama ? `${p.price?`<div class="lp-sticky-pyjama"><div class="lp-price" style="margin:0;">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div><a class="lp-cta" href="#order">🛍 ${escHtml(cta || (lang==='ar'?'اطلبي الآن':'Commander maintenant'))}</a></div>`:''}${p.showWhatsapp&&wa?`<a class="lp-wa-float" href="${escAttr(wa)}" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>`:''}` : (p.showWhatsapp&&wa?`<div class="lp-sticky"><a class="lp-cta" href="${escAttr(wa)}" target="_blank" rel="noopener">WhatsApp</a></div>`:'')}</main>`;
+<div class="lp-testimonials">
+  <div class="lp-testimonials-title">${lang==='ar'?'آراء زبوناتنا':'Avis de nos clientes'}</div>
+  <div class="lp-testimonials-sub">${lang==='ar'?'تجارب زبوناتنا مع الطلب والتوصيل':'Quelques retours sur la commande et la livraison'}</div>
+  <div class="lp-testimonials-grid">
+    <div class="lp-wa-card"><div class="lp-wa-stars">★★★★★</div><div class="lp-wa-msg">${lang==='ar'?'وصلني الطلب اليوم، البيجاما زوينة بزاف والجودة أحسن مما توقعت ❤️ شكراً ليكم.':'J’ai reçu ma commande aujourd’hui, le pyjama est magnifique et la qualité est encore meilleure que prévu ❤️ Merci !'}</div><div class="lp-wa-time">✓✓ 18:42</div></div>
+    <div class="lp-wa-card"><div class="lp-wa-stars">★★★★★</div><div class="lp-wa-msg">${lang==='ar'?'شكراً، المقاس جا مناسب والتوصيل كان سريع. أكيد غادي نعاود نطلب من عندكم.':'Merci, la taille est parfaite et la livraison était rapide. Je recommanderai certainement chez vous.'}</div><div class="lp-wa-time">✓✓ 20:15</div></div>
+    <div class="lp-wa-card"><div class="lp-wa-stars">★★★★★</div><div class="lp-wa-msg">${lang==='ar'?'وصلني الباك كامل كيفما طلبتو، والألوان زوينين بزاف 😍':'J’ai bien reçu le pack complet comme commandé, les couleurs sont magnifiques 😍'}</div><div class="lp-wa-time">✓✓ 16:27</div></div>
+    <div class="lp-wa-card"><div class="lp-wa-stars">★★★★★</div><div class="lp-wa-msg">${lang==='ar'?'تجربة زوينة من الطلب حتى التوصيل، والتواصل كان مزيان بزاف.':'Très bonne expérience du début à la livraison, avec une communication au top.'}</div><div class="lp-wa-time">✓✓ 19:03</div></div>
+  </div>
+  <div class="lp-testimonials-note">${lang==='ar'?'نماذج توضيحية لعرض شكل آراء الزبونات':'Exemples de présentation — à remplacer par vos vrais avis clients'}</div>
+</div>
+
+<p style="text-align:center;color:var(--ivory-dim);font-size:calc(14px * var(--font-scale));margin-top:30px">${lang==='ar'?'التوصيل مجاني في جميع أنحاء المغرب':'Livraison gratuite partout au Maroc'}</p></div>${isPyjama ? `<div class="lp-sticky-pyjama"><a class="lp-cta" href="#order">🛍 ${escHtml(cta || (lang==='ar'?'اطلبي الآن':'Commander maintenant'))}</a></div>${p.showWhatsapp&&wa?`<a class="lp-wa-float" href="${escAttr(wa)}" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>`:''}` : (p.showWhatsapp&&wa?`<div class="lp-sticky"><a class="lp-cta" href="${escAttr(wa)}" target="_blank" rel="noopener">WhatsApp</a></div>`:'')}</main>`;
     if(isPyjama) document.title = `${title}${p.price?` — ${p.price}dh`:''}`;
 
     const bindLandingPickerButtons=(root=document)=>{
@@ -3736,16 +3926,17 @@ async function bootLandingRoute(){
   if(!slug && path==='/offre') slug='offre';
   if(!slug && path==='/pyjamastyle') slug='pyjamastyle';
   if(!slug && path.startsWith('/p/')) slug=decodeURIComponent(path.slice(3));
-  if(!slug) return false;
-  if(slug==='preview'){try{const p=JSON.parse(localStorage.getItem('lunea_lp_preview')||'null');if(p){localStorage.removeItem('lunea_lp_preview');renderLandingPublic(p,true);return true;}}catch(e){}}
+  if(!slug){ document.documentElement.classList.remove('landing-route-pending'); return false; }
+  if(slug==='preview'){try{const p=JSON.parse(localStorage.getItem('lunea_lp_preview')||'null');if(p){localStorage.removeItem('lunea_lp_preview');renderLandingPublic(p,true);document.documentElement.classList.remove('landing-route-pending');return true;}}catch(e){}}
   let fetchError=null;
   try{
     const p=await getPublicLanding(slug, debug?onDiag:undefined);
-    if(p){localStorage.removeItem('lunea_lp_preview');renderLandingPublic(p);return true;}
+    if(p){localStorage.removeItem('lunea_lp_preview');renderLandingPublic(p);document.documentElement.classList.remove('landing-route-pending');return true;}
   }catch(e){ console.error(e); fetchError=e; if(debug) diagLines.push(`ERROR: ${e?.message||e}`); }
   const diagHTML=debug?`<pre style="text-align:left;direction:ltr;max-width:640px;margin:20px auto 0;background:#00000066;border:1px solid #ffffff33;padding:14px;border-radius:10px;font-size:calc(11px * var(--font-scale));line-height:1.6;overflow:auto;white-space:pre-wrap;word-break:break-all;color:#c9ffb0;font-family:monospace">slug: ${slug}
 path: ${path}
 ${diagLines.join('\n')}</pre>`:`<p style="margin-top:14px"><a href="?${path.startsWith('/p/')?'':'landing='+encodeURIComponent(slug)+'&'}debug=1" style="color:#e0c690">Voir le diagnostic</a></p>`;
+  document.documentElement.classList.remove('landing-route-pending');
   document.body.innerHTML=`<div style="min-height:100vh;display:grid;place-items:center;background:#1c0f16;color:#f8f1e8;font-family:Arial;text-align:center;padding:20px"><div><h1>Landing Page introuvable</h1><p>Cette page n'existe pas ou n'est pas publiée.</p>${diagHTML}</div></div>`;
   return true;
 }
@@ -4326,7 +4517,7 @@ const luneaInitPromise = (async function initLunea(){
    otherwise a landing page opened right after a product's colors/sizes
    were added in admin can render before that data has arrived, showing
    the product with quantity only and no color/size picker. */
-window.addEventListener("DOMContentLoaded",()=>{ luneaInitPromise.then(()=> bootLandingRoute()); });
+window.addEventListener("DOMContentLoaded",()=>{ luneaInitPromise.then(()=> bootLandingRoute()).catch(()=>{ document.documentElement.classList.remove('landing-route-pending'); }); });
 </script>
 
 <script>
