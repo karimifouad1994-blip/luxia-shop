@@ -507,6 +507,52 @@ body.has-lunea-custom-bg .hero{background-image:linear-gradient(180deg,rgba(24,1
 .lunea-video-wrap .lunea-sound-btn:focus-visible{outline:2px solid #fff;outline-offset:2px;}
 
 .lp-product-card > *{position:relative;z-index:2}
+
+/* ============================================================
+   LANDING PAGE THEME — "Pyjama Style" (type:"pyjama")
+   Scoped entirely under .lp-theme-pyjama so the default LUXIA
+   landing design is 100% untouched. Re-theming is done mostly
+   through CSS custom properties (the existing .lp-* rules already
+   consume var(--gold), var(--ivory), var(--bg-deep) etc.), plus a
+   handful of extra rules for the pieces that are new to this theme
+   (feature row, discount badge, swatches, pack/promo card, sticky
+   price bar, WhatsApp float button).
+   ============================================================ */
+.lp-theme-pyjama{
+  --bg-deep:#fdf1f1; --bg-plum:#ffffff; --bg-plum-2:#fbe1e5;
+  --ivory:#3a2530; --ivory-dim:#8a6870;
+  --rose:#f3b6c2; --rose-deep:#d6536b;
+  --gold:#e8879c; --gold-soft:#d6536b;
+  --line:#f3d3d8; --shadow:0 18px 40px -18px rgba(214,83,107,.35);
+  --font-display:'Cormorant Garamond','Amiri',serif;
+  background:var(--bg-deep);
+}
+.lp-theme-pyjama .lp-hero{border-radius:0 0 34px 34px;}
+.lp-theme-pyjama .lp-hero::before{background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(253,241,241,.94) 78%);}
+.lp-theme-pyjama .lp-kicker{display:inline-block;background:#ffffffcc;color:var(--gold-soft);padding:7px 18px;border-radius:999px;border:1px solid var(--line);font-weight:600;}
+.lp-theme-pyjama .lp-title{color:var(--ivory);}
+.lp-theme-pyjama .lp-price{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);padding:10px 20px;border-radius:999px;box-shadow:var(--shadow);color:var(--gold-soft);font-weight:700;}
+.lp-theme-pyjama .lp-old-price{color:var(--ivory-dim);opacity:.7;}
+.lp-theme-pyjama .lp-discount-badge{display:inline-block;background:var(--gold-soft);color:#fff;font-size:calc(11px * var(--font-scale));font-weight:700;padding:3px 9px;border-radius:999px;margin-inline-start:6px;vertical-align:middle;}
+.lp-theme-pyjama .lp-feature-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 18px;margin:18px auto 6px;max-width:560px;}
+.lp-theme-pyjama .lp-feature-chip{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:calc(11.5px * var(--font-scale));color:var(--ivory-dim);width:84px;}
+.lp-theme-pyjama .lp-feature-chip .ico{width:42px;height:42px;border-radius:50%;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--gold-soft);}
+.lp-theme-pyjama .lp-cta{background:linear-gradient(135deg,#eda3b3,var(--gold-soft));color:#fff;font-weight:700;box-shadow:0 14px 28px rgba(214,83,107,.35);}
+.lp-theme-pyjama .lp-card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);}
+.lp-theme-pyjama .lp-review{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);}
+.lp-theme-pyjama .pill{background:#fff;border:1px solid var(--line);color:var(--ivory);border-radius:14px;display:inline-flex;align-items:center;gap:7px;}
+.lp-theme-pyjama .pill.selected{background:var(--gold-soft);border-color:var(--gold-soft);color:#fff;}
+.lp-theme-pyjama .pill .swatch-dot{width:14px;height:14px;border-radius:50%;border:1px solid #00000022;display:inline-block;flex:none;}
+.lp-theme-pyjama .lp-choose-btn, .lp-theme-pyjama .lp-submit{background:linear-gradient(135deg,#eda3b3,var(--gold-soft));color:#fff;border-radius:999px;padding:13px;font-weight:700;width:100%;}
+.lp-theme-pyjama .lp-experience-section{background:transparent;}
+.lp-theme-pyjama .lp-experience-icon{color:var(--gold-soft);}
+.lp-theme-pyjama .lp-size-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:10px 0 4px;}
+.lp-theme-pyjama .lp-size-chip{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;font-size:calc(12.5px * var(--font-scale));color:var(--ivory);}
+.lp-theme-pyjama .lp-sticky-pyjama{position:fixed;left:0;right:0;bottom:0;z-index:900;background:#fffdfdf2;backdrop-filter:blur(8px);border-top:1px solid var(--line);box-shadow:0 -10px 24px rgba(0,0,0,.08);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:14px;}
+.lp-theme-pyjama .lp-sticky-pyjama .lp-cta{flex:1;max-width:220px;padding:14px 18px;}
+.lp-theme-pyjama .lp-wa-float{position:fixed;left:16px;bottom:86px;z-index:901;width:52px;height:52px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 10px 22px rgba(0,0,0,.25);}
+html[dir="rtl"] .lp-theme-pyjama .lp-wa-float{left:auto;right:16px;}
+@media(max-width:420px){.lp-theme-pyjama .lp-feature-chip{width:72px;font-size:calc(10.5px * var(--font-scale));}}
 </style>
 
 <style id="luxia-home-gallery-final">
@@ -2683,7 +2729,7 @@ function landingDefaults(){ return {
 }; }
 function landingNormalize(x){
   const d=landingDefaults(); const c=x?.config||{};
-  const merged={...d,...c}; merged.type = merged.type==="oneshop" ? "oneshop" : "luxia";
+  const merged={...d,...c}; merged.type = (merged.type==="oneshop"||merged.type==="pyjama") ? merged.type : "luxia";
   /* Backward-compat: pages saved before the bilingual fields existed only had a
      single title/subtitle/description/cta/product2Name (and a `language` flag).
      If the new Fr/Ar pair is still empty, pour the legacy value into whichever
@@ -2757,6 +2803,7 @@ function landingEditorHTML(p){
           <select id="lp-type">
             <option value="luxia" ${p.type==='luxia'?'selected':''}>${t("lp.typeLuxia")}</option>
             <option value="oneshop" ${p.type==='oneshop'?'selected':''}>${t("lp.typeOneshop")}</option>
+            <option value="pyjama" ${p.type==='pyjama'?'selected':''}>Pyjama Style — /pyjamastyle</option>
           </select>
           <small>${t("lp.typeHint")}</small>
         </div>
@@ -2835,7 +2882,7 @@ function collectLandingForm(){
      else into "-". The old ASCII-only regex silently wiped out any Arabic slug,
      leaving an empty string and triggering a false "slug required" error. */
   const slugify = s => (s||"").trim().toLowerCase().replace(/[^\p{L}\p{N}-]+/gu,'-').replace(/^-+|-+$/g,'');
-  p.type=document.getElementById('lp-type')?.value==="oneshop" ? "oneshop" : "luxia";
+  { const tv=document.getElementById('lp-type')?.value; p.type=(tv==="oneshop"||tv==="pyjama")?tv:"luxia"; }
   p.slug = slugify(document.getElementById('lp-slug').value);
   p.status=document.getElementById('lp-status').value; p.language=document.getElementById('lp-language').value;
   ['kicker','price','oldprice','whatsapp'].forEach(k=>{const id='lp-'+k; p[k==='oldprice'?'oldPrice':k]=document.getElementById(id).value.trim();});
@@ -2884,7 +2931,8 @@ function bindLandingEditor(){
     const type=document.getElementById('lp-type').value;
     const slugEl=document.getElementById('lp-slug');
     if(type==='oneshop' && slugEl && (!slugEl.value || slugEl.value==='offre')) slugEl.value='oneshop';
-    if(type==='luxia' && slugEl && slugEl.value==='oneshop') slugEl.value='offre';
+    if(type==='pyjama' && slugEl && (!slugEl.value || slugEl.value==='offre')) slugEl.value='pyjamastyle';
+    if(type==='luxia' && slugEl && (slugEl.value==='oneshop' || slugEl.value==='pyjamastyle')) slugEl.value='offre';
   });
   document.getElementById('lp-source-product')?.addEventListener('change',()=>{
     const id=document.getElementById('lp-source-product').value; if(!id) return;
@@ -2964,6 +3012,12 @@ function bindLandingEditor(){
 }
 function bindLandingImageRemove(){document.querySelectorAll('[data-remove-lpimg]').forEach(b=>b.onclick=()=>b.closest('.lp-image-row')?.remove());}
 function renderLandingPublic(p, isPreview){
+  /* Visual theme only — the data model, cart state machine, order flow and
+     WhatsApp handoff below are IDENTICAL regardless of theme. "pyjama" is a
+     purely cosmetic variant (see .lp-theme-pyjama CSS) built for the Cute/
+     Feminine/Cozy pyjama landing page, selected per-page from the admin
+     "Type de Landing Page" dropdown — it changes zero business logic. */
+  const isPyjama = p.type === 'pyjama';
   /* `lang` is the currently displayed language. It starts at the admin's chosen
      default (p.language) but the customer can flip it with the FR/AR switch;
      `paint()` re-renders the whole page whenever it changes. */
@@ -3004,12 +3058,13 @@ function renderLandingPublic(p, isPreview){
     const parts=[colorTxt, state.size].filter(Boolean);
     return parts.join(' / ');
   };
+  const swatchDot = c => isPyjama && c.hex ? `<span class="swatch-dot" style="background:${escAttr(c.hex)}"></span>` : '';
   function pickerInner(ns, variants, pack, hasColors, hasSizes, state){
     let colorHTML='';
     if(pack>1 && hasColors){
-      colorHTML=Array.from({length:pack},(_,idx)=>`<div style="margin-bottom:10px"><label style="display:block;font-size:calc(12px * var(--font-scale));color:var(--ivory-dim);margin-bottom:6px">${lang==='ar'?'اللون':'Couleur'} ${idx+1}</label><div style="display:flex;flex-wrap:wrap;gap:8px">${variants.colors.map(c=>`<button type="button" class="pill ${state.colors[idx]===c.id?'selected':''}" data-ns="${ns}" data-pack-color="${idx}:${c.id}">${escHtml(lang==='ar'?c.ar:c.fr)}</button>`).join('')}</div></div>`).join('');
+      colorHTML=Array.from({length:pack},(_,idx)=>`<div style="margin-bottom:10px"><label style="display:block;font-size:calc(12px * var(--font-scale));color:var(--ivory-dim);margin-bottom:6px">${lang==='ar'?'اللون':'Couleur'} ${idx+1}</label><div style="display:flex;flex-wrap:wrap;gap:8px">${variants.colors.map(c=>`<button type="button" class="pill ${state.colors[idx]===c.id?'selected':''}" data-ns="${ns}" data-pack-color="${idx}:${c.id}">${swatchDot(c)}${escHtml(lang==='ar'?c.ar:c.fr)}</button>`).join('')}</div></div>`).join('');
     }else if(hasColors){
-      colorHTML=`<div style="margin-bottom:10px"><label style="display:block;font-size:calc(12px * var(--font-scale));color:var(--ivory-dim);margin-bottom:6px">${lang==='ar'?'اللون':'Couleur'}</label><div style="display:flex;flex-wrap:wrap;gap:8px">${variants.colors.map(c=>`<button type="button" class="pill ${state.color===c.id?'selected':''}" data-ns="${ns}" data-color="${c.id}">${escHtml(lang==='ar'?c.ar:c.fr)}</button>`).join('')}</div></div>`;
+      colorHTML=`<div style="margin-bottom:10px"><label style="display:block;font-size:calc(12px * var(--font-scale));color:var(--ivory-dim);margin-bottom:6px">${lang==='ar'?'اللون':'Couleur'}</label><div style="display:flex;flex-wrap:wrap;gap:8px">${variants.colors.map(c=>`<button type="button" class="pill ${state.color===c.id?'selected':''}" data-ns="${ns}" data-color="${c.id}">${swatchDot(c)}${escHtml(lang==='ar'?c.ar:c.fr)}</button>`).join('')}</div></div>`;
     }
     const sizeHTML = hasSizes ? `<div><label style="display:block;font-size:calc(12px * var(--font-scale));color:var(--ivory-dim);margin-bottom:6px">${lang==='ar'?'المقاس':'Taille'}</label><div style="display:flex;flex-wrap:wrap;gap:8px">${variants.sizes.map(s=>`<button type="button" class="pill ${state.size===s?'selected':''}" data-ns="${ns}" data-size="${escAttr(s)}">${escHtml(s)}</button>`).join('')}</div></div>` : '';
     return `${colorHTML}${sizeHTML}`;
@@ -3061,6 +3116,16 @@ function renderLandingPublic(p, isPreview){
     const mainAdditionalImages = mainGalleryImages.slice(1);
     const p2AdditionalImages = p2GalleryImages.slice(1);
 
+    /* ---- Pyjama theme only: cosmetic fragments built from data that already
+       exists (price/oldPrice, benefits list, main product's own sizes) — no
+       new admin fields, nothing shown unless the admin actually filled it. */
+    const pyOldPriceNum = Number(String(p.oldPrice||'0').replace(/[^0-9.]/g,''))||0;
+    const pyPriceNum = Number(String(p.price||'0').replace(/[^0-9.]/g,''))||0;
+    const pyDiscountPct = (pyOldPriceNum>pyPriceNum && pyPriceNum>0) ? Math.round((1-pyPriceNum/pyOldPriceNum)*100) : 0;
+    const pyDiscountBadgeHTML = (isPyjama && pyDiscountPct>0) ? `<span class="lp-discount-badge">-${pyDiscountPct}%</span>` : '';
+    const pyFeatureIcons = ['✧','☁','♡','⌂'];
+    const pyFeatureRowHTML = (isPyjama && benefits) ? `<div class="lp-feature-row">${pickArr('benefits').slice(0,4).map((x,i)=>`<div class="lp-feature-chip"><span class="ico">${pyFeatureIcons[i%pyFeatureIcons.length]}</span><span>${escHtml(typeof x==='string'?x:x.text||'')}</span></div>`).join('')}</div>` : '';
+    const pySizeRowHTML = (isPyjama && mainHasSizes) ? `<div class="lp-size-row">${mainVariants.sizes.map(s=>`<span class="lp-size-chip">${escHtml(s)}</span>`).join('')}</div>` : '';
     const mainPrice=Number(String(p.price||'0').replace(/[^0-9.]/g,''))||0;
     const mainVariantReady = !mainHasVariants || isReady(mainHasColors, mainPack, mainHasSizes, mainState);
     const p2VariantReady = !p2HasVariants || isReady(p2HasColors, p2Pack, p2HasSizes, p2State);
@@ -3153,7 +3218,7 @@ function renderLandingPublic(p, isPreview){
     const cartFabHTML=`<button type="button" id="lp-cart-fab" class="lp-cart-fab" aria-label="${lang==='ar'?'فتح السلة':'Ouvrir le panier'}">🛒<span id="lp-cart-count" class="lp-cart-count">${(mainAdded?1:0)+(p2Added?1:0)}</span></button><div id="lp-cart-drawer" class="lp-cart-drawer" aria-hidden="true"><div class="lp-cart-panel"><div class="lp-cart-head"><div style="font-family:var(--font-display);font-size:calc(22px * var(--font-scale))">${lang==='ar'?'سلتك':'Votre panier'}</div><button type="button" id="lp-cart-close" class="lp-cart-close">×</button></div><div id="lp-cart-live"></div></div></div>`;
     const lightboxHTML = mainGalleryImages.length>1 ? `<div id="lp-lightbox" class="lp-lightbox" aria-hidden="true"><button type="button" id="lp-lightbox-close" class="lp-lightbox-close">✕</button><div class="lp-lightbox-imgs">${mainGalleryImages.map(u=>`<img src="${escAttr(u)}">`).join('')}</div></div>` : '';
     const p2LightboxHTML = p2GalleryImages.length>1 ? `<div id="lp-lightbox-p2" class="lp-lightbox" aria-hidden="true"><button type="button" id="lp-lightbox-p2-close" class="lp-lightbox-close">✕</button><div class="lp-lightbox-imgs">${p2GalleryImages.map(u=>`<img src="${escAttr(u)}">`).join('')}</div></div>` : '';
-    document.body.innerHTML=`${cartFabHTML}${closeBtnHTML}${langSwitchHTML}${lightboxHTML}${p2LightboxHTML}<main class="lp-preview"><section class="lp-hero" style="background-image:url('${escAttr(p.heroImage||'')}')"><div class="lp-hero-content"><div class="lp-kicker">${escHtml(p.kicker)}</div><h1 class="lp-title">${escHtml(title)}</h1><p class="lp-subtitle">${escHtml(subtitle)}</p>${p.price?`<div class="lp-price">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}</div>`:''}${description?`<p style="max-width:640px;margin:14px auto 0;text-align:center;color:var(--ivory-dim);font-size:calc(16px * var(--font-scale))">${escHtml(description)}</p>`:''}<a class="lp-cta" href="#lp-main-product">${lang==='ar'?'إكتشفي':'Découvrir'}</a></div></section><div class="lp-wrap">${p.video2?`<section class="lp-section lp-video-section lp-video2-section"><div class="lunea-video-wrap"><video class="lp-video lp-video2" src="${escAttr(p.video2)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}${p.showOrderForm?`<section class="lp-section" id="order">${mainCardHTML.replace('__LP_FORM_HERE__',formHTML)}${p2CardHTML}</section>`:''}${p.showBenefits&&benefits?`<section class="lp-section"><h2>${lang==='ar'?'المميزات':'Les avantages'}</h2><div class="lp-benefits">${benefits}</div></section>`:''}${p.showReviews&&reviews?`<section class="lp-section"><h2>${lang==='ar'?'آراء الزبناء':'Avis clientes'}</h2>${reviews}</section>`:''}${p.showFaq&&faqs?`<section class="lp-section lp-faq"><h2>FAQ</h2>${faqs}</section>`:''}${p.video?`<section class="lp-section"><div class="lunea-video-wrap"><video class="lp-video" src="${escAttr(p.video)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}
+    document.body.innerHTML=`${cartFabHTML}${closeBtnHTML}${langSwitchHTML}${lightboxHTML}${p2LightboxHTML}<main class="lp-preview ${isPyjama?'lp-theme-pyjama':''}"><section class="lp-hero" style="background-image:url('${escAttr(p.heroImage||'')}')"><div class="lp-hero-content"><div class="lp-kicker">${escHtml(p.kicker)}</div><h1 class="lp-title">${escHtml(title)}</h1><p class="lp-subtitle">${escHtml(subtitle)}</p>${pyFeatureRowHTML}${p.price?`<div class="lp-price">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div>`:''}${description?`<p style="max-width:640px;margin:14px auto 0;text-align:center;color:var(--ivory-dim);font-size:calc(16px * var(--font-scale))">${escHtml(description)}</p>`:''}${pySizeRowHTML}<a class="lp-cta" href="#lp-main-product">${lang==='ar'?'إكتشفي':'Découvrir'}</a></div></section><div class="lp-wrap">${p.video2?`<section class="lp-section lp-video-section lp-video2-section"><div class="lunea-video-wrap"><video class="lp-video lp-video2" src="${escAttr(p.video2)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}${p.showOrderForm?`<section class="lp-section" id="order">${mainCardHTML.replace('__LP_FORM_HERE__',formHTML)}${p2CardHTML}</section>`:''}${p.showBenefits&&benefits?`<section class="lp-section"><h2>${lang==='ar'?'المميزات':'Les avantages'}</h2><div class="lp-benefits">${benefits}</div></section>`:''}${p.showReviews&&reviews?`<section class="lp-section"><h2>${lang==='ar'?'آراء الزبناء':'Avis clientes'}</h2>${reviews}</section>`:''}${p.showFaq&&faqs?`<section class="lp-section lp-faq"><h2>FAQ</h2>${faqs}</section>`:''}${p.video?`<section class="lp-section"><div class="lunea-video-wrap"><video class="lp-video" src="${escAttr(p.video)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}
 <section class="lp-section lp-experience-section">
   <div class="lp-experience-kicker">${lang==='ar'?'التجربة':'L’EXPÉRIENCE'}</div>
   <h2>${lang==='ar'?'لماذا LUXIA':'Pourquoi LUXIA'}</h2>
@@ -3181,7 +3246,8 @@ function renderLandingPublic(p, isPreview){
   </div>
   <div class="lp-experience-quote">${lang==='ar'?'«الأناقة الحقيقية لا تُرى، بل تُشعَر.»':'« La vraie élégance ne se remarque pas, elle se ressent. »'}</div>
 </section>
-<p style="text-align:center;color:var(--ivory-dim);font-size:calc(14px * var(--font-scale));margin-top:30px">${lang==='ar'?'التوصيل مجاني في جميع أنحاء المغرب':'Livraison gratuite partout au Maroc'}</p></div>${p.showWhatsapp&&wa?`<div class="lp-sticky"><a class="lp-cta" href="${escAttr(wa)}" target="_blank" rel="noopener">WhatsApp</a></div>`:''}</main>`;
+<p style="text-align:center;color:var(--ivory-dim);font-size:calc(14px * var(--font-scale));margin-top:30px">${lang==='ar'?'التوصيل مجاني في جميع أنحاء المغرب':'Livraison gratuite partout au Maroc'}</p></div>${isPyjama ? `${p.price?`<div class="lp-sticky-pyjama"><div class="lp-price" style="margin:0;">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div><a class="lp-cta" href="#order">${escHtml(cta || (lang==='ar'?'اطلبي الآن':'Commander maintenant'))}</a></div>`:''}${p.showWhatsapp&&wa?`<a class="lp-wa-float" href="${escAttr(wa)}" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>`:''}` : (p.showWhatsapp&&wa?`<div class="lp-sticky"><a class="lp-cta" href="${escAttr(wa)}" target="_blank" rel="noopener">WhatsApp</a></div>`:'')}</main>`;
+    if(isPyjama) document.title = `${title}${p.price?` — ${p.price}dh`:''}`;
 
     const bindLandingPickerButtons=(root=document)=>{
       root.querySelectorAll('[data-pack-color]').forEach(btn=>btn.addEventListener('click',()=>{
@@ -3356,6 +3422,7 @@ async function bootLandingRoute(){
   const onDiag=(info)=>{ diagLines.push(JSON.stringify(info)); };
   let slug=params.get('landing');
   if(!slug && path==='/offre') slug='offre';
+  if(!slug && path==='/pyjamastyle') slug='pyjamastyle';
   if(!slug && path.startsWith('/p/')) slug=decodeURIComponent(path.slice(3));
   if(!slug) return false;
   if(slug==='preview'){try{const p=JSON.parse(localStorage.getItem('lunea_lp_preview')||'null');if(p){localStorage.removeItem('lunea_lp_preview');renderLandingPublic(p,true);return true;}}catch(e){}}
