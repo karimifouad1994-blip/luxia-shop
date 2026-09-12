@@ -652,6 +652,7 @@ body.lp-pyjama-active .lp-cart-panel.lp-cart-vibrate{animation:lpCartVibrate .18
 @keyframes lpAttentionPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
 @keyframes lpAttentionBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
+.lp-order-success{background:linear-gradient(180deg,#fff7f8,#fffdfd)!important;border:2px solid #d6536b!important;border-radius:22px!important;box-shadow:0 14px 38px rgba(181,47,75,.16)!important;}body.lp-pyjama-active .lp-success-icon{width:58px;height:58px;border-radius:50%;margin:0 auto 14px;background:#d6536b;color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;box-shadow:0 8px 20px rgba(214,83,107,.28);animation:lpSuccessPop .45s ease-out both;}body.lp-pyjama-active .lp-success-title{color:#9f2943!important;font-size:calc(25px * var(--font-scale));font-weight:900;line-height:1.35;}body.lp-pyjama-active .lp-success-text{color:#3a2530!important;font-size:calc(17px * var(--font-scale));font-weight:700;line-height:1.7;margin:12px auto 0;max-width:520px;}@keyframes lpSuccessPop{0%{transform:scale(.65);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
 body.lp-pyjama-active .lp-lightbox{background:rgba(58,37,48,.9);}
 body.lp-pyjama-active .lp-lightbox-close{background:#ffffffe6;color:#3a2530;}
 
@@ -3625,9 +3626,10 @@ function renderLandingPublic(p, isPreview){
     }else{
       mainActionHTML+=`<button type="button" id="lp-main-toggle" class="lp-choose-btn">${mainCartItems.length?(lang==='ar'?'إضافة اختيار آخر':'Ajouter un autre choix'):(lang==='ar'?'اختاري المقاس واللون':'Choisir taille & couleur')}</button>`;
     }
-    const mainCardHTML = orderPlaced ? `<div id="lp-main-product" class="lp-card lp-product-card" style="text-align:center;padding:32px 20px;">
-      <div style="font-family:var(--font-display);font-size:calc(24px * var(--font-scale));margin-bottom:10px;">${lang==='ar'?'تم الطلب بنجاح ❤️':'Commande passée avec succès ❤️'}</div>
-      <p style="color:var(--ivory-dim);font-size:calc(15px * var(--font-scale))">${lang==='ar'?'غادي نتصلو بيك قريبا لتأكيد الطلب':'Nous vous contacterons bientôt pour confirmer votre commande'}</p>
+    const mainCardHTML = orderPlaced ? `<div id="lp-main-product" class="lp-card lp-product-card lp-order-success" style="text-align:center;padding:34px 20px;margin:20px 0;">
+      <div class="lp-success-icon">✓</div>
+      <div class="lp-success-title">${lang==='ar'?'تم تسجيل طلبك بنجاح ❤️':'Votre commande a été enregistrée avec succès ❤️'}</div>
+      <p class="lp-success-text">${lang==='ar'?'شكراً لك! غادي نتاصلو بيك قريباً باش نأكدو معاك الطلب.':'Merci ! Nous vous contacterons bientôt pour confirmer votre commande.'}</p>
     </div>` : `<div id="lp-main-product" class="lp-card lp-product-card" style="text-align:${dir==='rtl'?'right':'left'};padding:18px;margin-bottom:14px;">
       <div class="lp-product-title-price-frame lp-product-head-top"><b>${escHtml(mainProductName)}</b><span class="lp-price">${mainPrice}dh</span></div>
       ${mainImageURL?`<div class="lp-main-gallery-wrap">
@@ -4022,6 +4024,7 @@ document.getElementById('lp-cart-fab')?.addEventListener('click',()=>{const d=do
       if(wa) window.open(`${wa}?text=${encodeURIComponent(msg)}`,'_blank');
       orderPlaced=true; mainCartItems.length=0; p2Added=false; showForm=false;
       paint();
+      setTimeout(()=>{ document.getElementById('lp-main-product')?.scrollIntoView({behavior:'smooth',block:'center'}); },80);
     });
   }
   paint();
