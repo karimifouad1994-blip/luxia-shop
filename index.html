@@ -648,7 +648,7 @@ body.lp-pyjama-active .lp-cart-remove{color:#a82f49;font-weight:700;}
 body.lp-pyjama-active #lp-cart-checkout{background:linear-gradient(135deg,#d6536b,#b83d56) !important;color:#fff !important;}body.lp-pyjama-active .lp-attention-signal{animation:lpAttentionPulse 0.75s ease-in-out 0s 3;box-shadow:0 0 0 5px rgba(214,83,107,.20),0 0 28px rgba(214,83,107,.42) !important;position:relative;z-index:3;}
 body.lp-pyjama-active .lp-attention-signal::after{content:'👇';position:absolute;inset-inline-end:12px;top:-18px;font-size:25px;line-height:1;animation:lpAttentionBounce .75s ease-in-out 0s 3;pointer-events:none;}
 body.lp-pyjama-active .lp-cart-panel.lp-cart-vibrate{animation:lpCartVibrate .18s ease-in-out 0s 6;}
-@keyframes lpCartVibrate{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@keyframes lpCartVibrate{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}body.lp-pyjama-active .lp-cart-drawer.lp-cart-vibrate{animation:lpDrawerVibrate .16s linear 0s 8 !important;}@keyframes lpDrawerVibrate{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}50%{transform:translateX(7px)}75%{transform:translateX(-5px)}}
 @keyframes lpAttentionPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
 @keyframes lpAttentionBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
@@ -3917,7 +3917,8 @@ document.getElementById('lp-cart-fab')?.addEventListener('click',()=>{const d=do
             panel.classList.remove('lp-cart-vibrate');
             void panel.offsetWidth;
             panel.classList.add('lp-cart-vibrate');
-            setTimeout(()=>panel.classList.remove('lp-cart-vibrate'),1200);
+            setTimeout(()=>panel.classList.remove('lp-cart-vibrate'),1600);
+           if(cart){ cart.classList.remove('lp-cart-vibrate'); void cart.offsetWidth; cart.classList.add('lp-cart-vibrate'); setTimeout(()=>cart.classList.remove('lp-cart-vibrate'),1600); }
           }
           signalElement(target||cart);
         },120);
