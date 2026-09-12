@@ -613,6 +613,8 @@ body.lp-pyjama-active .lp-cart-live,
 body.lp-pyjama-active .lp-cart-live > div,
 body.lp-pyjama-active .lp-cart-live .lp-cart-item > div{color:#3a2530 !important;opacity:1 !important;}
 body.lp-pyjama-active .lp-cart-item-meta{font-weight:600;color:#6b4a55 !important;}
+body.lp-pyjama-active .lp-cart-total{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding:12px 4px 4px;border-top:1px solid #ead3d8;color:#3a2530 !important;opacity:1 !important;font-family:var(--font-display);font-size:calc(19px * var(--font-scale));font-weight:800 !important;}
+body.lp-pyjama-active .lp-cart-total strong{color:#b52f4b !important;font-weight:900 !important;}
 body.lp-pyjama-active .lp-cart-item{border-color:#f3d3d8;}
 body.lp-pyjama-active .lp-cart-close{color:#3a2530;}
 body.lp-pyjama-active .lp-cart-remove{color:#a82f49;font-weight:700;}
@@ -1007,7 +1009,7 @@ body.lp-pyjama-active .lp-theme-pyjama .lp-review-text{
 .lp-testimonials-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
 .lp-wa-card{background:#f4fbf2;border:1px solid #d8e8d2;border-radius:16px;padding:14px 14px 12px;box-shadow:0 7px 18px rgba(58,37,48,.08);position:relative;}
 .lp-wa-card::before{content:'WhatsApp';display:block;color:#5b7654;font-size:calc(10px * var(--font-scale));font-weight:700;letter-spacing:.04em;margin-bottom:8px;}
-.lp-wa-stars{color:#e2a52f;font-size:17px;letter-spacing:1px;margin-bottom:8px;}
+.lp-wa-phone{display:inline-block;color:#5b7654;font-size:calc(11px * var(--font-scale));font-weight:700;letter-spacing:.08em;margin-bottom:8px;filter:blur(2.4px);user-select:none;}
 .lp-wa-msg{background:#dcf8c6;border-radius:10px 10px 3px 10px;padding:10px 11px;color:#273a25;font-size:calc(13.5px * var(--font-scale));line-height:1.6;text-align:start;box-shadow:0 1px 1px rgba(0,0,0,.05);}
 .lp-wa-time{text-align:end;color:#6e8169;font-size:10px;margin-top:4px;}
 .lp-testimonials-note{text-align:center;color:#866d75;font-size:calc(11px * var(--font-scale));margin-top:10px;}
@@ -3649,7 +3651,7 @@ function renderLandingPublic(p, isPreview){
     const summaryBlock = `<div class="lp-card" style="padding:18px;margin-bottom:14px;">
       <div style="font-family:var(--font-display);font-size:calc(16px * var(--font-scale));margin-bottom:10px;">${lang==='ar'?'سلتك':'Votre panier'}</div>
       ${summaryLines}
-      <div class="row total" style="margin-top:8px;padding-top:10px;border-top:1px solid var(--line);"><span>${lang==='ar'?'المجموع':'Total'}</span><span>${total} DH</span></div>
+      <div class="row total lp-cart-total" style="margin-top:8px;"><span>${lang==='ar'?'المجموع':'Total'}</span><strong>${total} DH</strong></div>
     </div>`;
 
 
@@ -3720,15 +3722,15 @@ ${sizesSectionHTML}
   <div class="lp-testimonials-title">${lang==='ar'?'آراء زبوناتنا':'Avis de nos clientes'}</div>
   <div class="lp-testimonials-sub">${lang==='ar'?'تجارب زبوناتنا مع الطلب والتوصيل':'Quelques retours sur la commande et la livraison'}</div>
   <div class="lp-testimonials-grid">
-    <div class="lp-wa-card"><div class="lp-wa-stars">★★★★★</div><div class="lp-wa-msg">${lang==='ar'?'وصلني الطلب اليوم، البيجاما زوينة بزاف والجودة أحسن مما توقعت ❤️ شكراً ليكم.':'J’ai reçu ma commande aujourd’hui, le pyjama est magnifique et la qualité est encore meilleure que prévu ❤️ Merci !'}</div><div class="lp-wa-time">✓✓ 18:42</div></div>
-    <div class="lp-wa-card"><div class="lp-wa-stars">★★★★★</div><div class="lp-wa-msg">${lang==='ar'?'شكراً، المقاس جا مناسب والتوصيل كان سريع. أكيد غادي نعاود نطلب من عندكم.':'Merci, la taille est parfaite et la livraison était rapide. Je recommanderai certainement chez vous.'}</div><div class="lp-wa-time">✓✓ 20:15</div></div>
-    <div class="lp-wa-card"><div class="lp-wa-stars">★★★★★</div><div class="lp-wa-msg">${lang==='ar'?'وصلني الباك كامل كيفما طلبتو، والألوان زوينين بزاف 😍':'J’ai bien reçu le pack complet comme commandé, les couleurs sont magnifiques 😍'}</div><div class="lp-wa-time">✓✓ 16:27</div></div>
-    <div class="lp-wa-card"><div class="lp-wa-stars">★★★★★</div><div class="lp-wa-msg">${lang==='ar'?'تجربة زوينة من الطلب حتى التوصيل، والتواصل كان مزيان بزاف.':'Très bonne expérience du début à la livraison, avec une communication au top.'}</div><div class="lp-wa-time">✓✓ 19:03</div></div>
+    <div class="lp-wa-card"><div class="lp-wa-phone" dir="ltr">06 12 34 56 78</div><div class="lp-wa-msg">${lang==='ar'?'وصلني الطلب اليوم، البيجاما زوينة بزاف والجودة أحسن مما توقعت ❤️ شكراً ليكم.':'J’ai reçu ma commande aujourd’hui, le pyjama est magnifique et la qualité est encore meilleure que prévu ❤️ Merci !'}</div><div class="lp-wa-time">✓✓ 18:42</div></div>
+    <div class="lp-wa-card"><div class="lp-wa-phone" dir="ltr">06 23 45 67 89</div><div class="lp-wa-msg">${lang==='ar'?'شكراً، المقاس جا مناسب والتوصيل كان سريع. أكيد غادي نعاود نطلب من عندكم.':'Merci, la taille est parfaite et la livraison était rapide. Je recommanderai certainement chez vous.'}</div><div class="lp-wa-time">✓✓ 20:15</div></div>
+    <div class="lp-wa-card"><div class="lp-wa-phone" dir="ltr">07 34 56 78 90</div><div class="lp-wa-msg">${lang==='ar'?'وصلني الباك كامل كيفما طلبتو، والألوان زوينين بزاف 😍':'J’ai bien reçu le pack complet comme commandé, les couleurs sont magnifiques 😍'}</div><div class="lp-wa-time">✓✓ 16:27</div></div>
+    <div class="lp-wa-card"><div class="lp-wa-phone" dir="ltr">06 45 67 89 01</div><div class="lp-wa-msg">${lang==='ar'?'تجربة زوينة من الطلب حتى التوصيل، والتواصل كان مزيان بزاف.':'Très bonne expérience du début à la livraison, avec une communication au top.'}</div><div class="lp-wa-time">✓✓ 19:03</div></div>
   </div>
   <div class="lp-testimonials-note">${lang==='ar'?'نماذج توضيحية لعرض شكل آراء الزبونات':'Exemples de présentation — à remplacer par vos vrais avis clients'}</div>
 </div>
 
-<p style="text-align:center;color:var(--ivory-dim);font-size:calc(14px * var(--font-scale));margin-top:30px">${lang==='ar'?'التوصيل مجاني في جميع أنحاء المغرب':'Livraison gratuite partout au Maroc'}</p></div>${isPyjama ? `<div class="lp-sticky-pyjama"><a class="lp-cta" href="#order">🛍 ${escHtml(cta || (lang==='ar'?'اطلبي الآن':'Commander maintenant'))}</a></div>${p.showWhatsapp&&wa?`<a class="lp-wa-float" href="${escAttr(wa)}" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>`:''}` : (p.showWhatsapp&&wa?`<div class="lp-sticky"><a class="lp-cta" href="${escAttr(wa)}" target="_blank" rel="noopener">WhatsApp</a></div>`:'')}</main>`;
+<p style="text-align:center;color:var(--ivory-dim);font-size:calc(14px * var(--font-scale));margin-top:30px">${lang==='ar'?'التوصيل مجاني في جميع أنحاء المغرب':'Livraison gratuite partout au Maroc'}</p></div>${isPyjama ? `<div class="lp-sticky-pyjama"><a class="lp-cta" href="#order" id="lp-sticky-order-cta">🛍 ${escHtml(cta || (lang==='ar'?'اطلبي الآن':'Commander maintenant'))}</a></div>${p.showWhatsapp&&wa?`<a class="lp-wa-float" href="${escAttr(wa)}" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>`:''}` : (p.showWhatsapp&&wa?`<div class="lp-sticky"><a class="lp-cta" href="${escAttr(wa)}" target="_blank" rel="noopener">WhatsApp</a></div>`:'')}</main>`;
     if(isPyjama) document.title = `${title}${p.price?` — ${p.price}dh`:''}`;
 
     const bindLandingPickerButtons=(root=document)=>{
@@ -3847,7 +3849,7 @@ ${sizesSectionHTML}
       if(p2Added)items.push(`<div class="lp-cart-item"><div><div class="lp-cart-item-name">${escHtml(product2Name)}</div><div class="lp-cart-item-meta">${p2price}dh${p2HasVariants?` · ${escHtml(summaryText(p2Variants,p2HasColors,p2Pack,p2HasSizes,p2State))}`:''}</div></div><button type="button" class="lp-cart-remove" id="lp-cart-remove-p2">${lang==='ar'?'حذف':'Supprimer'}</button></div>`);
       const cartTotalNow=mainCartItems.reduce((s,i)=>s+i.price*i.qty,0)+(p2Added?p2price:0);
       if(live)live.innerHTML=items.join('')||`<div class="lp-cart-empty">${lang==='ar'?'السلة فارغة':'Votre panier est vide'}</div>`;
-      if(live&&items.length)live.innerHTML+=`<div style="margin-top:14px;text-align:center;font-family:var(--font-display);font-size:calc(18px * var(--font-scale))">${lang==='ar'?'المجموع':'Total'}: ${cartTotalNow}dh</div><button type="button" id="lp-cart-checkout" class="lp-cta" style="width:100%;text-align:center;border:none;cursor:pointer;margin-top:16px;">${lang==='ar'?'إتمام الطلب':'Commander'}</button>`;
+      if(live&&items.length)live.innerHTML+=`<div class="lp-cart-total"><span>${lang==='ar'?'المجموع':'Total'}</span><strong>${cartTotalNow} DH</strong></div><button type="button" id="lp-cart-checkout" class="lp-cta" style="width:100%;text-align:center;border:none;cursor:pointer;margin-top:16px;">${lang==='ar'?'إتمام الطلب':'Commander'}</button>`;
       if(count)count.textContent=String(mainCartItems.length+(p2Added?1:0));
       document.querySelectorAll('[data-cart-remove-main]').forEach(b=>b.addEventListener('click',()=>{const i=Number(b.dataset.cartRemoveMain);if(Number.isInteger(i))mainCartItems.splice(i,1);showForm=false;paint();}));
       document.getElementById('lp-cart-remove-p2')?.addEventListener('click',()=>{p2Added=false;paint()});
@@ -3855,6 +3857,13 @@ ${sizesSectionHTML}
     };
 document.getElementById('lp-pyjama-menu')?.addEventListener('click',()=>{document.getElementById('order')?.scrollIntoView({behavior:'smooth',block:'start'});});
 document.getElementById('lp-cart-fab')?.addEventListener('click',()=>{const d=document.getElementById('lp-cart-drawer');if(d){d.classList.add('open');d.setAttribute('aria-hidden','false');refreshCartUI();}});document.getElementById('lp-cart-close')?.addEventListener('click',()=>document.getElementById('lp-cart-drawer')?.classList.remove('open'));document.getElementById('lp-cart-drawer')?.addEventListener('click',e=>{if(e.target.id==='lp-cart-drawer')e.currentTarget.classList.remove('open');});
+    document.getElementById('lp-sticky-order-cta')?.addEventListener('click',(e)=>{
+      e.preventDefault();
+      mainOpen=true;
+      showForm=false;
+      paint();
+      setTimeout(()=>{ document.getElementById('lp-main-product')?.scrollIntoView({behavior:'smooth',block:'start'}); },50);
+    });
     document.querySelector('.lp-hero .lp-cta')?.addEventListener('click',(e)=>{
       e.preventDefault();
       document.getElementById('lp-main-product')?.scrollIntoView({behavior:'smooth',block:'start'});
