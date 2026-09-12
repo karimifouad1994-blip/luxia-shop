@@ -1,2 +1,3 @@
 /offre        /?landing=offre        200
+/pyjamastyle  /?landing=pyjamastyle  200
 /p/:slug      /?landing=:slug        200
