@@ -579,6 +579,60 @@ html[dir="rtl"] .lp-theme-pyjama .lp-wa-float{left:auto;right:16px;}
 .lp-theme-pyjama .lp-sizes-section .lp-size-row{justify-content:center;}
 .lp-theme-pyjama .lp-size-chip{width:44px;height:44px;font-weight:600;}
 .lp-theme-pyjama .lp-reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+/* The header/cart/lightbox controls render as siblings of <main class="lp-theme-pyjama">,
+   not inside it, so they need their own pastel skin via this body-level class
+   (toggled in JS right before repainting the landing page). Fixes the page still
+   showing dark/gold "old Luxia" chrome around a pastel pyjama page. */
+html.lp-pyjama-active, body.lp-pyjama-active{background:#fdf1f1;}
+body.lp-pyjama-active .lp-cart-fab{background:#ffffffe6;border:1px solid #f3d3d8;color:#d6536b;box-shadow:0 8px 20px -8px rgba(214,83,107,.35);}
+body.lp-pyjama-active .lp-cart-count{background:#d6536b;color:#fff;}
+body.lp-pyjama-active .lp-cart-panel{background:#fffdfd;border-color:#f3d3d8;}
+body.lp-pyjama-active .lp-cart-head, body.lp-pyjama-active .lp-cart-item-name{color:#3a2530;}
+body.lp-pyjama-active .lp-cart-item{border-color:#f3d3d8;}
+body.lp-pyjama-active .lp-cart-close{color:#3a2530;}
+body.lp-pyjama-active .lp-lightbox{background:rgba(58,37,48,.9);}
+body.lp-pyjama-active .lp-lightbox-close{background:#ffffffe6;color:#3a2530;}
+
+/* ============================================================
+   PYJAMA THEME v2 — header / hero / showcase rebuild to match
+   the "Cute Pyjama" reference composition (photo-led hero,
+   feature icons with labels, 3-color showcase, pack banner,
+   circle-icon "why choose" grid). Data/logic unchanged — this
+   is presentation only, built on the fields that already exist
+   (kicker/title/subtitle/price/benefits/colorShowcase/pack*).
+   ============================================================ */
+.lp-pyjama-header{display:flex;align-items:center;justify-content:space-between;padding:0 10px;gap:8px;}
+.lp-pyjama-menu{background:none;border:0;font-size:20px;color:#3a2530;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none;}
+.lp-pyjama-logo{display:flex;align-items:center;justify-content:center;gap:3px;flex:1;}
+.lp-logo-heart{color:#d6536b;font-size:.62em;}
+body.lp-pyjama-active .lp-cart-fab{position:relative;top:auto;right:auto;width:40px;height:40px;flex:none;background:none;border:0;box-shadow:none;color:#3a2530;font-size:19px;}
+body.lp-pyjama-active .lp-cart-count{top:-2px;right:-4px;min-width:16px;height:16px;font-size:9px;background:#d6536b;color:#fff;}
+
+.lp-hero-pyjama{padding-top:56px;}
+.lp-hero-photo{position:relative;height:min(56vh,480px);min-height:300px;background-size:cover;background-position:center 22%;border-radius:0 0 34px 34px;box-shadow:0 14px 30px -14px rgba(214,83,107,.35);}
+.lp-hero-scribble{position:absolute;top:16px;inset-inline-start:16px;font-family:'Cormorant Garamond','Amiri',serif;font-style:italic;font-weight:600;font-size:calc(16px * var(--font-scale));color:#3a2530;background:#fffdfdd9;padding:9px 15px;border-radius:16px;line-height:1.25;box-shadow:0 8px 18px rgba(58,37,48,.14);}
+.lp-scribble-heart{display:block;color:#d6536b;font-size:.8em;margin-top:2px;}
+.lp-hero-body{max-width:640px;margin:0 auto;padding:24px 22px 4px;text-align:center;}
+.lp-hero-body .lp-kicker{display:inline-block;background:#ffffffcc;color:#d6536b;padding:7px 18px;border-radius:999px;border:1px solid #f3d3d8;font-weight:600;margin-bottom:12px;}
+.lp-hero-body .lp-title{font-size:calc(clamp(30px,7vw,44px) * var(--font-scale));color:#3a2530;margin-bottom:10px;}
+.lp-hero-body .lp-subtitle{color:#8a6870;font-size:calc(15px * var(--font-scale));margin-bottom:4px;}
+.lp-hero-body .lp-price{margin-top:14px;}
+
+.lp-color-caption{text-align:center;font-family:var(--font-display);font-style:italic;font-size:calc(16px * var(--font-scale));color:#3a2530;margin-bottom:14px;}
+.lp-caption-heart{color:#d6536b;font-style:normal;}
+.lp-color-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-inline-start:6px;vertical-align:middle;border:1px solid #00000022;}
+.lp-pack-banner{padding-inline-start:14px;}
+.lp-pack-banner-img{width:54px;height:54px;border-radius:14px;object-fit:cover;flex:none;box-shadow:0 6px 14px rgba(0,0,0,.15);}
+.lp-sizes-delivery{text-align:center;color:#8a6870;font-size:calc(12.5px * var(--font-scale));margin-top:12px;}
+
+/* "Why choose" grid: swap the plain glyph for a soft circle-outline badge,
+   and add a small heart after every section heading — cheap, CSS-only,
+   and safe because it never depends on which text the admin typed. */
+.lp-theme-pyjama .lp-experience-icon{width:52px;height:52px;border-radius:50%;border:1.5px solid #f3d3d8;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:19px;}
+.lp-theme-pyjama .lp-experience-quote{display:none;}
+.lp-theme-pyjama section.lp-section > h2::after,
+.lp-theme-pyjama .lp-experience-section h2::after,
+.lp-theme-pyjama .lp-sizes-section h2::after{content:" ♡";color:#d6536b;}
 </style>
 
 <style id="luxia-home-gallery-final">
@@ -3192,6 +3246,11 @@ function renderLandingPublic(p, isPreview){
     const pyFeatureIcons = ['✧','☁','♡','⌂'];
     const pyFeatureRowHTML = (isPyjama && benefits) ? `<div class="lp-feature-row">${pickArr('benefits').slice(0,4).map((x,i)=>`<div class="lp-feature-chip"><span class="ico">${pyFeatureIcons[i%pyFeatureIcons.length]}</span><span>${escHtml(typeof x==='string'?x:x.text||'')}</span></div>`).join('')}</div>` : '';
     const pySizeRowHTML = (isPyjama && mainHasSizes) ? `<div class="lp-size-row">${mainVariants.sizes.map(s=>`<span class="lp-size-chip">${escHtml(s)}</span>`).join('')}</div>` : '';
+    /* Purely visual name → swatch-color mapping for the color showcase dots —
+       best-effort guess from the admin-typed color name, never invented data:
+       if the name isn't recognized, simply no dot is shown. */
+    const PY_SWATCH_MAP = {'وردي':'#f3b6c2','rose':'#f3b6c2','pink':'#f3b6c2','كريمي':'#e8d9c3','beige':'#e8d9c3','crème':'#e8d9c3','creme':'#e8d9c3','بنفسجي':'#c9b6e4','violet':'#c9b6e4','mauve':'#c9b6e4','purple':'#c9b6e4','أبيض':'#f7f3ee','blanc':'#f7f3ee','white':'#f7f3ee','أسود':'#2a2a2a','noir':'#2a2a2a','black':'#2a2a2a','بيج':'#d8c3a5','أحمر':'#d6536b','rouge':'#d6536b','red':'#d6536b','أزرق':'#a9c6e8','bleu':'#a9c6e8','blue':'#a9c6e8','أخضر':'#b3d1b0','vert':'#b3d1b0','green':'#b3d1b0'};
+    const guessSwatch = (name)=>PY_SWATCH_MAP[String(name||'').trim().toLowerCase()] || '';
     /* Colors showcase: purely visual gallery of "name | image" lines the admin
        filled in. Nothing renders if the list is empty. */
     const colorShowcaseItems = isPyjama ? (p.colorShowcase||[]).map(line=>{
@@ -3199,18 +3258,28 @@ function renderLandingPublic(p, isPreview){
       return (name && img) ? {name,img} : null;
     }).filter(Boolean) : [];
     const colorShowcaseHTML = colorShowcaseItems.length ? `<section class="lp-section lp-color-showcase">
-      <div class="lp-color-grid">${colorShowcaseItems.map(c=>`<div class="lp-color-item"><img src="${escAttr(c.img)}" alt="${escAttr(c.name)}"><div class="lp-color-item-label">${escHtml(c.name)}</div></div>`).join('')}</div>
+      ${isPyjama?`<div class="lp-color-caption">${(lang==='ar'?`${colorShowcaseItems.length} ألوان لإطلالة مختلفة`:`${colorShowcaseItems.length} coloris pour changer de style`)} <span class="lp-caption-heart">♡</span></div>`:''}
+      <div class="lp-color-grid">${colorShowcaseItems.map(c=>{const sw=guessSwatch(c.name);return `<div class="lp-color-item"><img src="${escAttr(c.img)}" alt="${escAttr(c.name)}"><div class="lp-color-item-label">${escHtml(c.name)}${sw?`<span class="lp-color-dot" style="background:${sw}"></span>`:''}</div></div>`;}).join('')}</div>
     </section>` : '';
     /* Pack banner: pure promo visual, CTA scrolls to the existing order form —
        it never touches cart/order logic, so nothing about how an order is
        placed changes. */
     const packBannerHTML = (isPyjama && p.packEnabled && p.packPrice) ? `<section class="lp-section lp-pack-banner-section"><a href="#order" class="lp-pack-banner">
+      ${mainImageURL?`<img class="lp-pack-banner-img" src="${escAttr(mainImageURL)}" alt="">`:''}
       ${p.packBadge?`<span class="lp-pack-badge">${escHtml(p.packBadge)}</span>`:''}
-      <div class="lp-pack-banner-text">${p.packLabel?`<div class="lp-pack-label">${escHtml(p.packLabel)}</div>`:''}</div>
+      <div class="lp-pack-banner-text">${p.packLabel?`<div class="lp-pack-label">${escHtml(p.packLabel)} <span class="lp-caption-heart">♡</span></div>`:''}</div>
       <div class="lp-pack-price-block"><div class="lp-pack-price">${escHtml(p.packPrice)}dh</div>${p.packOldPrice?`<div class="lp-pack-oldprice">${escHtml(p.packOldPrice)}</div>`:''}</div>
     </a></section>` : '';
-    const sizesSectionHTML = (isPyjama && mainHasSizes) ? `<section class="lp-section lp-sizes-section"><h2>${lang==='ar'?'المقاسات المتوفرة':'Tailles disponibles'}</h2><div class="lp-size-row">${mainVariants.sizes.map(s=>`<span class="lp-size-chip">${escHtml(s)}</span>`).join('')}</div></section>` : '';
-    const pyHeaderHTML = isPyjama ? `<div class="lp-pyjama-header"><span class="lp-pyjama-logo">Luxia</span></div>` : '';
+    const pyDeliveryText = I18N[lang] && I18N[lang]['promo.text'] ? I18N[lang]['promo.text'].replace(/^[^\p{L}]*/u,'') : '';
+    const sizesSectionHTML = (isPyjama && mainHasSizes) ? `<section class="lp-section lp-sizes-section"><h2>${lang==='ar'?'المقاسات المتوفرة':'Tailles disponibles'}</h2><div class="lp-size-row">${mainVariants.sizes.map(s=>`<span class="lp-size-chip">${escHtml(s)}</span>`).join('')}</div>${pyDeliveryText?`<p class="lp-sizes-delivery">${escHtml(pyDeliveryText)}</p>`:''}</section>` : '';
+    /* Header: on the pyjama theme the cart button lives INSIDE the fixed header
+       bar (next to the hamburger + logo) instead of floating on its own —
+       same #lp-cart-fab id/markup either way, so the existing click wiring
+       (queried fresh after every paint()) keeps working untouched. */
+    const cartButtonHTML = `<button type="button" id="lp-cart-fab" class="lp-cart-fab" aria-label="${lang==='ar'?'فتح السلة':'Ouvrir le panier'}">🛒<span id="lp-cart-count" class="lp-cart-count">${(mainAdded?1:0)+(p2Added?1:0)}</span></button>`;
+    const cartDrawerHTML = `<div id="lp-cart-drawer" class="lp-cart-drawer" aria-hidden="true"><div class="lp-cart-panel"><div class="lp-cart-head"><div style="font-family:var(--font-display);font-size:calc(22px * var(--font-scale))">${lang==='ar'?'سلتك':'Votre panier'}</div><button type="button" id="lp-cart-close" class="lp-cart-close">×</button></div><div id="lp-cart-live"></div></div></div>`;
+    const cartFabHTML = isPyjama ? cartDrawerHTML : (cartButtonHTML + cartDrawerHTML);
+    const pyHeaderHTML = isPyjama ? `<div class="lp-pyjama-header"><button type="button" id="lp-pyjama-menu" class="lp-pyjama-menu" aria-label="Menu">☰</button><span class="lp-pyjama-logo">Luxia<span class="lp-logo-heart">♥</span></span>${cartButtonHTML}</div>` : '';
     const mainPrice=Number(String(p.price||'0').replace(/[^0-9.]/g,''))||0;
     const mainVariantReady = !mainHasVariants || isReady(mainHasColors, mainPack, mainHasSizes, mainState);
     const p2VariantReady = !p2HasVariants || isReady(p2HasColors, p2Pack, p2HasSizes, p2State);
@@ -3294,16 +3363,37 @@ function renderLandingPublic(p, isPreview){
 
     const sideOpp = dir==='rtl' ? 'left' : 'right';
     const sideSame = dir==='rtl' ? 'right' : 'left';
-    const langSwitchHTML=`<div style="position:fixed;top:14px;${sideOpp}:14px;z-index:900;display:flex;gap:2px;background:#1c0f16cc;backdrop-filter:blur(10px);border:1px solid #ffffff33;border-radius:20px;padding:3px;">
-      <button type="button" data-lp-lang="fr" style="padding:6px 12px;border-radius:16px;font-size:calc(11.5px * var(--font-scale));letter-spacing:.04em;font-weight:500;color:${lang==='fr'?'#1c0f16':'#f8f1e8'};background:${lang==='fr'?'#c7a15c':'transparent'};">FR</button>
-      <button type="button" data-lp-lang="ar" style="padding:6px 12px;border-radius:16px;font-size:calc(11.5px * var(--font-scale));letter-spacing:.04em;font-weight:500;color:${lang==='ar'?'#1c0f16':'#f8f1e8'};background:${lang==='ar'?'#c7a15c':'transparent'};">AR</button>
+    const lsBg = isPyjama ? '#ffffffe6' : '#1c0f16cc';
+    const lsBorder = isPyjama ? '#f3d3d8' : '#ffffff33';
+    const lsIdleColor = isPyjama ? '#8a6870' : '#f8f1e8';
+    const lsActiveColor = isPyjama ? '#ffffff' : '#1c0f16';
+    const lsActiveBg = isPyjama ? '#d6536b' : '#c7a15c';
+    const lsTop = isPyjama ? 66 : 14;
+    const langSwitchHTML=`<div style="position:fixed;top:${lsTop}px;${sideOpp}:14px;z-index:900;display:flex;gap:2px;background:${lsBg};backdrop-filter:blur(10px);border:1px solid ${lsBorder};border-radius:20px;padding:3px;box-shadow:${isPyjama?'0 8px 20px -8px rgba(214,83,107,.35)':'none'};">
+      <button type="button" data-lp-lang="fr" style="padding:6px 12px;border-radius:16px;font-size:calc(11.5px * var(--font-scale));letter-spacing:.04em;font-weight:500;color:${lang==='fr'?lsActiveColor:lsIdleColor};background:${lang==='fr'?lsActiveBg:'transparent'};">FR</button>
+      <button type="button" data-lp-lang="ar" style="padding:6px 12px;border-radius:16px;font-size:calc(11.5px * var(--font-scale));letter-spacing:.04em;font-weight:500;color:${lang==='ar'?lsActiveColor:lsIdleColor};background:${lang==='ar'?lsActiveBg:'transparent'};">AR</button>
     </div>`;
-    const closeBtnHTML = isPreview ? `<button type="button" id="lp-preview-close" title="${lang==='ar'?'رجوع للتعديل':"Retour à l'édition"}" style="position:fixed;top:14px;${sideSame}:14px;z-index:900;width:38px;height:38px;border-radius:50%;background:#1c0f16cc;backdrop-filter:blur(10px);border:1px solid #ffffff33;color:#f8f1e8;font-size:calc(15px * var(--font-scale));display:flex;align-items:center;justify-content:center;">✖️</button>` : '';
+    const closeBtnHTML = isPreview ? `<button type="button" id="lp-preview-close" title="${lang==='ar'?'رجوع للتعديل':"Retour à l'édition"}" style="position:fixed;top:${lsTop}px;${sideSame}:14px;z-index:900;width:38px;height:38px;border-radius:50%;background:${lsBg};backdrop-filter:blur(10px);border:1px solid ${lsBorder};color:${isPyjama?'#3a2530':'#f8f1e8'};font-size:calc(15px * var(--font-scale));display:flex;align-items:center;justify-content:center;">✖️</button>` : '';
 
-    const cartFabHTML=`<button type="button" id="lp-cart-fab" class="lp-cart-fab" aria-label="${lang==='ar'?'فتح السلة':'Ouvrir le panier'}">🛒<span id="lp-cart-count" class="lp-cart-count">${(mainAdded?1:0)+(p2Added?1:0)}</span></button><div id="lp-cart-drawer" class="lp-cart-drawer" aria-hidden="true"><div class="lp-cart-panel"><div class="lp-cart-head"><div style="font-family:var(--font-display);font-size:calc(22px * var(--font-scale))">${lang==='ar'?'سلتك':'Votre panier'}</div><button type="button" id="lp-cart-close" class="lp-cart-close">×</button></div><div id="lp-cart-live"></div></div></div>`;
     const lightboxHTML = mainGalleryImages.length>1 ? `<div id="lp-lightbox" class="lp-lightbox" aria-hidden="true"><button type="button" id="lp-lightbox-close" class="lp-lightbox-close">✕</button><div class="lp-lightbox-imgs">${mainGalleryImages.map(u=>`<img src="${escAttr(u)}">`).join('')}</div></div>` : '';
     const p2LightboxHTML = p2GalleryImages.length>1 ? `<div id="lp-lightbox-p2" class="lp-lightbox" aria-hidden="true"><button type="button" id="lp-lightbox-p2-close" class="lp-lightbox-close">✕</button><div class="lp-lightbox-imgs">${p2GalleryImages.map(u=>`<img src="${escAttr(u)}">`).join('')}</div></div>` : '';
-    document.body.innerHTML=`${pyHeaderHTML}${cartFabHTML}${closeBtnHTML}${langSwitchHTML}${lightboxHTML}${p2LightboxHTML}<main class="lp-preview ${isPyjama?'lp-theme-pyjama':''}"><section class="lp-hero" style="background-image:url('${escAttr(p.heroImage||'')}')"><div class="lp-hero-content"><div class="lp-kicker">${escHtml(p.kicker)}</div><h1 class="lp-title">${escHtml(title)}</h1><p class="lp-subtitle">${escHtml(subtitle)}</p>${pyFeatureRowHTML}${p.price?`<div class="lp-price">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div>`:''}${description?`<p style="max-width:640px;margin:14px auto 0;text-align:center;color:var(--ivory-dim);font-size:calc(16px * var(--font-scale))">${escHtml(description)}</p>`:''}${pySizeRowHTML}<a class="lp-cta" href="#lp-main-product">${lang==='ar'?'إكتشفي':'Découvrir'}</a></div></section>${colorShowcaseHTML}${packBannerHTML}<div class="lp-wrap">${p.video2?`<section class="lp-section lp-video-section lp-video2-section"><div class="lunea-video-wrap"><video class="lp-video lp-video2" src="${escAttr(p.video2)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}${p.showOrderForm?`<section class="lp-section" id="order">${mainCardHTML.replace('__LP_FORM_HERE__',formHTML)}${p2CardHTML}</section>`:''}${p.showBenefits&&benefits?`<section class="lp-section"><h2>${lang==='ar'?'المميزات':'Les avantages'}</h2><div class="lp-benefits">${benefits}</div></section>`:''}${p.showReviews&&reviews?`<section class="lp-section"><h2>${lang==='ar'?'آراء الزبناء':'Avis clientes'}</h2><div class="lp-reviews-grid">${reviews}</div></section>`:''}${p.showFaq&&faqs?`<section class="lp-section lp-faq"><h2>FAQ</h2>${faqs}</section>`:''}${p.video?`<section class="lp-section"><div class="lunea-video-wrap"><video class="lp-video" src="${escAttr(p.video)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}
+    document.documentElement.classList.toggle('lp-pyjama-active', isPyjama);
+    document.body.classList.toggle('lp-pyjama-active', isPyjama);
+    document.body.style.background = isPyjama ? '#fdf1f1' : '';
+    document.documentElement.style.background = isPyjama ? '#fdf1f1' : '';
+    const heroHTML = isPyjama ? `<section class="lp-hero-pyjama">
+      <div class="lp-hero-photo" style="background-image:url('${escAttr(p.heroImage||'')}')">
+        <span class="lp-hero-scribble">Good Mood<br>Everyday<span class="lp-scribble-heart">♡</span></span>
+      </div>
+      <div class="lp-hero-body">
+        ${p.kicker?`<div class="lp-kicker">${escHtml(p.kicker)}</div>`:''}
+        <h1 class="lp-title">${escHtml(title)}</h1>
+        ${subtitle?`<p class="lp-subtitle">${escHtml(subtitle)}</p>`:''}
+        ${pyFeatureRowHTML}
+        ${p.price?`<div class="lp-price">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div>`:''}
+      </div>
+    </section>` : `<section class="lp-hero" style="background-image:url('${escAttr(p.heroImage||'')}')"><div class="lp-hero-content"><div class="lp-kicker">${escHtml(p.kicker)}</div><h1 class="lp-title">${escHtml(title)}</h1><p class="lp-subtitle">${escHtml(subtitle)}</p>${pyFeatureRowHTML}${p.price?`<div class="lp-price">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div>`:''}${description?`<p style="max-width:640px;margin:14px auto 0;text-align:center;color:var(--ivory-dim);font-size:calc(16px * var(--font-scale))">${escHtml(description)}</p>`:''}${pySizeRowHTML}<a class="lp-cta" href="#lp-main-product">${lang==='ar'?'إكتشفي':'Découvrir'}</a></div></section>`;
+    document.body.innerHTML=`${pyHeaderHTML}${cartFabHTML}${closeBtnHTML}${langSwitchHTML}${lightboxHTML}${p2LightboxHTML}<main class="lp-preview ${isPyjama?'lp-theme-pyjama':''}">${heroHTML}${colorShowcaseHTML}${packBannerHTML}<div class="lp-wrap">${p.video2?`<section class="lp-section lp-video-section lp-video2-section"><div class="lunea-video-wrap"><video class="lp-video lp-video2" src="${escAttr(p.video2)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}${p.showOrderForm?`<section class="lp-section" id="order">${mainCardHTML.replace('__LP_FORM_HERE__',formHTML)}${p2CardHTML}</section>`:''}${p.showBenefits&&benefits?`<section class="lp-section"><h2>${lang==='ar'?'المميزات':'Les avantages'}</h2><div class="lp-benefits">${benefits}</div></section>`:''}${p.showReviews&&reviews?`<section class="lp-section"><h2>${lang==='ar'?'آراء الزبناء':'Avis clientes'}</h2><div class="lp-reviews-grid">${reviews}</div></section>`:''}${p.showFaq&&faqs?`<section class="lp-section lp-faq"><h2>FAQ</h2>${faqs}</section>`:''}${p.video?`<section class="lp-section"><div class="lunea-video-wrap"><video class="lp-video" src="${escAttr(p.video)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}
 <section class="lp-section lp-experience-section">
   <div class="lp-experience-kicker">${lang==='ar'?'التجربة':'L’EXPÉRIENCE'}</div>
   <h2>${lang==='ar'?'لماذا LUXIA':'Pourquoi LUXIA'}</h2>
@@ -3332,7 +3422,7 @@ function renderLandingPublic(p, isPreview){
   <div class="lp-experience-quote">${lang==='ar'?'«الأناقة الحقيقية لا تُرى، بل تُشعَر.»':'« La vraie élégance ne se remarque pas, elle se ressent. »'}</div>
 </section>
 ${sizesSectionHTML}
-<p style="text-align:center;color:var(--ivory-dim);font-size:calc(14px * var(--font-scale));margin-top:30px">${lang==='ar'?'التوصيل مجاني في جميع أنحاء المغرب':'Livraison gratuite partout au Maroc'}</p></div>${isPyjama ? `${p.price?`<div class="lp-sticky-pyjama"><div class="lp-price" style="margin:0;">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div><a class="lp-cta" href="#order">${escHtml(cta || (lang==='ar'?'اطلبي الآن':'Commander maintenant'))}</a></div>`:''}${p.showWhatsapp&&wa?`<a class="lp-wa-float" href="${escAttr(wa)}" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>`:''}` : (p.showWhatsapp&&wa?`<div class="lp-sticky"><a class="lp-cta" href="${escAttr(wa)}" target="_blank" rel="noopener">WhatsApp</a></div>`:'')}</main>`;
+<p style="text-align:center;color:var(--ivory-dim);font-size:calc(14px * var(--font-scale));margin-top:30px">${lang==='ar'?'التوصيل مجاني في جميع أنحاء المغرب':'Livraison gratuite partout au Maroc'}</p></div>${isPyjama ? `${p.price?`<div class="lp-sticky-pyjama"><div class="lp-price" style="margin:0;">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div><a class="lp-cta" href="#order">🛍 ${escHtml(cta || (lang==='ar'?'اطلبي الآن':'Commander maintenant'))}</a></div>`:''}${p.showWhatsapp&&wa?`<a class="lp-wa-float" href="${escAttr(wa)}" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>`:''}` : (p.showWhatsapp&&wa?`<div class="lp-sticky"><a class="lp-cta" href="${escAttr(wa)}" target="_blank" rel="noopener">WhatsApp</a></div>`:'')}</main>`;
     if(isPyjama) document.title = `${title}${p.price?` — ${p.price}dh`:''}`;
 
     const bindLandingPickerButtons=(root=document)=>{
@@ -3437,6 +3527,7 @@ ${sizesSectionHTML}
     document.getElementById('lp-lightbox-p2')?.addEventListener('click',e=>{ if(e.target.id==='lp-lightbox-p2') e.currentTarget.classList.remove('open'); });
     document.querySelectorAll('[data-lp-lang]').forEach(b=>b.addEventListener('click',()=>{ if(b.dataset.lpLang!==lang){ lang=b.dataset.lpLang; paint(); } }));
     const refreshCartUI=()=>{const live=document.getElementById('lp-cart-live'),count=document.getElementById('lp-cart-count');const items=[];if(mainAdded)items.push(`<div class="lp-cart-item"><div><div class="lp-cart-item-name">${escHtml(mainProductName)}</div><div class="lp-cart-item-meta">${mainPrice}dh${mainHasVariants?` · ${escHtml(summaryText(mainVariants,mainHasColors,mainPack,mainHasSizes,mainState))}`:''}</div></div><button type="button" class="lp-cart-remove" id="lp-cart-remove-main">${lang==='ar'?'حذف':'Supprimer'}</button></div>`);if(p2Added)items.push(`<div class="lp-cart-item"><div><div class="lp-cart-item-name">${escHtml(product2Name)}</div><div class="lp-cart-item-meta">${p2price}dh${p2HasVariants?` · ${escHtml(summaryText(p2Variants,p2HasColors,p2Pack,p2HasSizes,p2State))}`:''}</div></div><button type="button" class="lp-cart-remove" id="lp-cart-remove-p2">${lang==='ar'?'حذف':'Supprimer'}</button></div>`);if(live)live.innerHTML=items.join('')||`<div class="lp-cart-empty">${lang==='ar'?'السلة فارغة':'Votre panier est vide'}</div><div style="margin-top:12px;text-align:center;font-family:var(--font-display);font-size:calc(18px * var(--font-scale))">${lang==='ar'?'المجموع: 0dh':'Total : 0dh'}</div>`;if(live&&items.length)live.innerHTML+=`<div style="margin-top:14px;text-align:center;font-family:var(--font-display);font-size:calc(18px * var(--font-scale))">${lang==='ar'?'المجموع':'Total'}: ${total}dh</div>`;if(live&&items.length){live.innerHTML+= mainAdded ? `<button type="button" id="lp-cart-checkout" class="lp-cta" style="width:100%;text-align:center;border:none;cursor:pointer;margin-top:16px;">${lang==='ar'?'إتمام الطلب':'Commander'}</button>` : `<p class="lp-main-required" style="margin-top:14px;text-align:center;">${lang==='ar'?'أضيفي المنتج الرئيسي إلى السلة لإكمال الطلب':'Ajoutez le produit principal au panier pour finaliser la commande'}</p>`;}if(count)count.textContent=String((mainAdded?1:0)+(p2Added?1:0));document.getElementById('lp-cart-remove-main')?.addEventListener('click',()=>{mainAdded=false;showForm=false;paint()});document.getElementById('lp-cart-remove-p2')?.addEventListener('click',()=>{p2Added=false;paint()});document.getElementById('lp-cart-checkout')?.addEventListener('click',()=>{document.getElementById('lp-cart-drawer')?.classList.remove('open');showForm=true;paint();setTimeout(()=>{document.getElementById('lp-order-form')?.scrollIntoView({behavior:'smooth',block:'center'});},50);});};
+document.getElementById('lp-pyjama-menu')?.addEventListener('click',()=>{document.getElementById('order')?.scrollIntoView({behavior:'smooth',block:'start'});});
 document.getElementById('lp-cart-fab')?.addEventListener('click',()=>{const d=document.getElementById('lp-cart-drawer');if(d){d.classList.add('open');d.setAttribute('aria-hidden','false');refreshCartUI();}});document.getElementById('lp-cart-close')?.addEventListener('click',()=>document.getElementById('lp-cart-drawer')?.classList.remove('open'));document.getElementById('lp-cart-drawer')?.addEventListener('click',e=>{if(e.target.id==='lp-cart-drawer')e.currentTarget.classList.remove('open');});
     document.querySelector('.lp-hero .lp-cta')?.addEventListener('click',(e)=>{
       e.preventDefault();
