@@ -3420,7 +3420,6 @@ function renderProducts(){
         <div class="product-title-above">
           <span class="product-title-above-text">${t(p.nameKey)}</span>
         </div>
-        <div class="product-price-only">${Number(p.price||0)} ${t("unit.dh")}</div>
       </div>
       <div class="product-visual product-main-click" data-detail-product="${escAttr(p.id)}" data-gallery-index="0" style="touch-action:pan-y;cursor:pointer;">
         <img class="product-photo" src="${escAttr(gallery[0])}" alt="${escAttr(t(p.nameKey))}" loading="lazy">
@@ -3431,6 +3430,7 @@ function renderProducts(){
       <div class="product-info">
         ${colors.length?`<div class="swatch-row"><span class="swatch-label">${t("product.colors")}</span>${colors.map(c=>`<span class="swatch" style="background:${c.hex||'#c9a877'}" title="${escAttr(currentLang==='ar'?c.ar:c.fr)}"></span>`).join('')}</div>`:''}
         ${sizes.length?`<div class="product-sizes-row"><span class="product-variants-label">${currentLang==='ar'?'المقاسات':'Tailles'}</span>${sizes.map(sz=>`<span class="product-size-chip">${escHtml(sz)}</span>`).join('')}</div>`:''}
+        <div class="product-price-only product-price-bottom">${Number(p.price||0)} ${t("unit.dh")}</div>
         <button class="btn-order" data-product="${escAttr(p.id)}">${t("product.order")}</button>
       </div>
     </article>`;
@@ -3529,11 +3529,11 @@ function openProductDetailModal(id){
       ${gallery.length>1?`<div class="product-detail-thumbs">${gallery.map((src,i)=>`<button type="button" class="product-detail-thumb ${i===0?'active':''}" data-detail-image="${i}"><img src="${escAttr(src)}" alt="${escAttr(title)} — ${i+1}"></button>`).join('')}</div>`:''}
     </div>
     <div class="product-detail-content">
-      <div class="product-detail-price">${Number(p.price||0)} ${t('unit.dh')}</div>
       ${desc?`<section class="product-detail-section"><h4>${lang==='ar'?'الوصف':'Description'}</h4><p>${escHtml(desc)}</p></section>`:''}
       ${benefits.length?`<section class="product-detail-section"><h4>${lang==='ar'?'المميزات':'Les avantages'}</h4><ul>${benefits.map(x=>`<li>${escHtml(String(x))}</li>`).join('')}</ul></section>`:''}
       ${colors.length?`<section class="product-detail-section"><h4>${lang==='ar'?'الألوان':'Couleurs'}</h4><div class="product-detail-colors">${colors.map(c=>`<span class="product-detail-color"><i style="background:${c.hex||'#c9a877'}"></i>${escHtml(lang==='ar'?c.ar:c.fr)}</span>`).join('')}</div></section>`:''}
       ${sizes.length?`<section class="product-detail-section"><h4>${lang==='ar'?'المقاسات':'Tailles'}</h4><div class="product-detail-sizes">${sizes.map(sz=>`<span>${escHtml(sz)}</span>`).join('')}</div></section>`:''}
+      <div class="product-detail-price">${Number(p.price||0)} ${t('unit.dh')}</div>
       <button type="button" class="btn btn-primary btn-block product-detail-add" data-detail-add="${escAttr(id)}">${t('product.order')}</button>
     </div>`;
   m.querySelectorAll('[data-detail-image]').forEach(btn=>btn.addEventListener('click',()=>{
@@ -6974,6 +6974,42 @@ body.luxia-store-home .product-detail-main-image img,
 }
 </style>
 
+<style id="luxia-store-card-price-final-fix">
+/* Store cards: title frame -> main image directly; price -> immediately before CTA. */
+body.luxia-store-home .product-title-price-head{
+  margin:0!important;
+  padding:0!important;
+}
+body.luxia-store-home .product-title-price-head .product-title-above{
+  min-height:0!important;
+  margin:0!important;
+}
+body.luxia-store-home .product-title-price-head + .product-visual{
+  margin-top:0!important;
+}
+body.luxia-store-home .product-info .product-price-bottom{
+  display:block!important;
+  width:max-content!important;
+  max-width:100%!important;
+  margin:0 auto 10px!important;
+  padding:5px 12px!important;
+  background:#fff!important;
+  border:1px solid #b69257!important;
+  border-radius:999px!important;
+  box-sizing:border-box!important;
+  color:#967644!important;
+  font-family:var(--font-display)!important;
+  font-size:16px!important;
+  font-weight:600!important;
+  line-height:1!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+}
+body.luxia-store-home .product-info .btn-order{
+  margin-top:0!important;
+}
+</style>
+
 </body>
 
 <style id="luxia-v7-exact-title-price-layout">
@@ -7253,6 +7289,16 @@ body.luxia-store-home .product-info .btn-order{margin-top:auto!important;width:1
 body.luxia-store-home .product-info .btn-order:hover{background:#403a34!important;border-color:#403a34!important;}
 
 /* Detail modal */
+.product-detail-overlay .product-detail-modal .modal-head{
+  margin-bottom:0!important;
+  padding-bottom:0!important;
+}
+.product-detail-overlay .product-detail-modal #productDetailBody{
+  margin-top:0!important;
+}
+.product-detail-overlay .product-detail-modal .product-detail-gallery{
+  margin-top:0!important;
+}
 .product-detail-overlay{z-index:10050!important;}
 .product-detail-modal{max-width:760px!important;max-height:92svh!important;overflow-y:auto!important;background:#faf8f3!important;color:#302b27!important;border:1px solid #ddd5ca!important;}
 .product-detail-gallery{margin:2px 0 20px!important;}
@@ -8010,5 +8056,43 @@ body.luxia-store-home .product-title-price-head .product-price-only,
 .why .section-head h2{
   color:var(--gold-soft) !important;
   text-shadow:0 1px 10px rgba(199,161,92,.12);
+}
+</style>
+
+<style id="luxia-final-detail-layout-fix">
+/* فقط ترتيب نافذة تفاصيل المنتج */
+#productDetailOverlay .product-detail-modal .modal-head{
+  margin-bottom:0!important;
+  padding-bottom:0!important;
+}
+#productDetailOverlay .product-detail-modal #productDetailBody{
+  margin-top:0!important;
+}
+#productDetailOverlay .product-detail-modal .product-detail-gallery{
+  margin:0!important;
+}
+#productDetailOverlay .product-detail-modal .product-detail-price{
+  margin-top:0!important;
+  margin-bottom:12px!important;
+}
+#productDetailOverlay .product-detail-modal .product-detail-add{
+  margin-top:0!important;
+}
+</style>
+
+<style id="luxia-final-main-image-flush-fix">
+/* الصورة الرئيسية تملأ الإطار مباشرة تحت إطار العنوان بلا مساحة بيضاء */
+body.luxia-store-home .product-card .product-title-price-head + .product-visual > .product-photo{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+}
+body.luxia-store-home .product-card .product-title-price-head + .product-visual{
+  margin-top:0!important;
+  padding:0!important;
 }
 </style>
