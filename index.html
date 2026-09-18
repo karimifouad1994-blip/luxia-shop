@@ -4168,12 +4168,12 @@ function renderAdminLogin(){
 function signOutAdmin(){ clearAdminSession(); renderAdminLogin(); }
 function adminTabsHTML(active){
   return `<div class="admin-tabs" style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;">
-      
-      
-      
-      
-      
-    </div>`;
+    <button type="button" class="btn ${active==='orders'?'btn-primary':'btn-ghost'}" data-admintab="orders">${t("admin.ordersTab")}</button>
+    <button type="button" class="btn ${active==='products'?'btn-primary':'btn-ghost'}" data-admintab="products">${t("admin.productsTab")}</button>
+    <button type="button" class="btn ${active==='collections'?'btn-primary':'btn-ghost'}" data-admintab="collections">${t("admin.collectionsTab")}</button>
+    <button type="button" class="btn ${active==='landing'?'btn-primary':'btn-ghost'}" data-admintab="landing">Landing Pages</button>
+    <button type="button" class="btn ${active==='settings'?'btn-primary':'btn-ghost'}" data-admintab="settings">${t("admin.settingsTab")}</button>
+  </div>`;
 }
 function bindAdminTabs(){
   document.querySelectorAll("[data-admintab]").forEach(b=>{
