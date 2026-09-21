@@ -561,7 +561,7 @@ body.lp-pyjama-active .lp-site-link:hover{color:#7a5136}
   .lp-experience-grid{gap:10px}
   .lp-experience-card{padding:16px 10px}
 }
-.lp-sticky{position:fixed;left:16px;right:16px;bottom:16px;z-index:900;display:flex;justify-content:center}.lp-sticky a{min-width:240px;text-align:center}.lp-cart-fab{position:fixed;right:16px;top:68px;z-index:950;width:50px;height:50px;border-radius:50%;border:1px solid var(--gold-soft);background:#1c0f16ee;color:var(--ivory);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,.22)}.lp-cart-count{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:var(--gold);color:var(--bg-deep);font-size:calc(11px * var(--font-scale));font-weight:700;display:flex;align-items:center;justify-content:center}.lp-cart-drawer{position:fixed;inset:0;z-index:940;background:rgba(0,0,0,.45);display:none;align-items:flex-end;justify-content:center}.lp-cart-drawer.open{display:flex}.lp-cart-panel{width:min(620px,100%);max-height:78vh;overflow:auto;background:#1c0f16;border:1px solid var(--line);border-bottom:0;border-radius:24px 24px 0 0;padding:20px}.lp-cart-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.lp-cart-close{background:none;border:0;color:var(--ivory);font-size:calc(24px * var(--font-scale));cursor:pointer}.lp-cart-item{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}.lp-cart-item-name{font-family:var(--font-display);font-size:calc(16px * var(--font-scale))}.lp-cart-item-meta{font-size:calc(12px * var(--font-scale));color:var(--ivory-dim);margin-top:4px}.lp-cart-remove{background:none;border:0;color:var(--gold-soft);text-decoration:underline;cursor:pointer;font:inherit}.lp-cart-empty{text-align:center;color:var(--ivory-dim);padding:22px 0}
+.lp-sticky{position:fixed;left:0;right:0;bottom:0;z-index:900;display:flex;justify-content:center;background:#fffdfdf2;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid #ddd6cc;box-shadow:0 -10px 24px rgba(42,36,30,.10);padding:12px 16px;}.lp-sticky a{min-width:240px;text-align:center;}.lp-cart-fab{position:fixed;right:16px;top:68px;z-index:950;width:50px;height:50px;border-radius:50%;border:1px solid var(--gold-soft);background:#1c0f16ee;color:var(--ivory);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,.22)}.lp-cart-count{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:var(--gold);color:var(--bg-deep);font-size:calc(11px * var(--font-scale));font-weight:700;display:flex;align-items:center;justify-content:center}.lp-cart-drawer{position:fixed;inset:0;z-index:940;background:rgba(0,0,0,.45);display:none;align-items:flex-end;justify-content:center}.lp-cart-drawer.open{display:flex}.lp-cart-panel{width:min(620px,100%);max-height:78vh;overflow:auto;background:#1c0f16;border:1px solid var(--line);border-bottom:0;border-radius:24px 24px 0 0;padding:20px}.lp-cart-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.lp-cart-close{background:none;border:0;color:var(--ivory);font-size:calc(24px * var(--font-scale));cursor:pointer}.lp-cart-item{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}.lp-cart-item-name{font-family:var(--font-display);font-size:calc(16px * var(--font-scale))}.lp-cart-item-meta{font-size:calc(12px * var(--font-scale));color:var(--ivory-dim);margin-top:4px}.lp-cart-remove{background:none;border:0;color:var(--gold-soft);text-decoration:underline;cursor:pointer;font:inherit}.lp-cart-empty{text-align:center;color:var(--ivory-dim);padding:22px 0}
 .lp-admin .admin-card{background:#ffffff08;border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px}
 .lp-admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
 .lp-admin .full{grid-column:1/-1}.lp-admin small{color:var(--ivory-dim)}
@@ -5319,9 +5319,17 @@ function collectLandingForm(){
 }
 async function renderAdminLandingPages(){
   if(!isAdminAuthenticated()){renderAdminLogin();return;}
-  let rows=[]; try{rows=await fetchLandingPages();}catch(e){console.error(e);showToast(e?.message||t('admin.backendReadError'));}
+  /* Never let a failed/slow re-fetch wipe an existing landing page's data: start
+     from whatever is already cached in memory, and only replace it once the
+     server actually answers. If the request fails (weak connection, etc.),
+     `rows` stays equal to the previous LANDING_PAGES instead of becoming empty,
+     so opening "Modifier" still shows the saved content instead of a blank form. */
+  let rows=LANDING_PAGES;
+  try{ rows=await fetchLandingPages(); }
+  catch(e){ console.error(e); showToast(e?.message||t('admin.backendReadError')); rows=LANDING_PAGES; }
   if(LANDING_EDIT_ID){
-    const p=LANDING_EDIT_ID==='__new__'?{...landingDefaults(),id:'__new__'}:landingNormalize(rows.find(x=>String(x.id)===String(LANDING_EDIT_ID))||{}); p.id=LANDING_EDIT_ID;
+    const existingRow = LANDING_EDIT_ID==='__new__' ? null : (rows.find(x=>String(x.id)===String(LANDING_EDIT_ID)) || LANDING_PAGES.find(x=>String(x.id)===String(LANDING_EDIT_ID)));
+    const p=LANDING_EDIT_ID==='__new__'?{...landingDefaults(),id:'__new__'}:landingNormalize(existingRow||{}); p.id=LANDING_EDIT_ID;
     document.getElementById('adminWrap').innerHTML=adminLanguageSwitcherHTML()+adminTabsHTML('landing')+landingEditorHTML(p); bindAdminTabs(); bindLandingEditor(); return;
   }
   let html=adminLanguageSwitcherHTML()+adminTabsHTML('landing')+`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;gap:12px"><h2 style="font-family:var(--font-display);font-size:calc(28px * var(--font-scale))">${t("lp.listTitle")}</h2><div><button class="btn btn-primary" id="lp-new">${t("lp.newBtn")}</button> <button class="btn btn-ghost" id="adminLogoutBtn">${t('admin.logout')}</button></div></div>`;
@@ -5333,6 +5341,32 @@ async function renderAdminLandingPages(){
   document.querySelectorAll('[data-lp-copy-url]').forEach(b=>b.addEventListener('click',()=>copyLandingPublicUrl(b.dataset.lpCopyUrl,b)));
 }
 function bindLandingEditor(){
+  /* ---- Slug (public URL) auto-follows the landing page's title ----
+     www.site.com/p/<slug> is generated live from whatever is typed in Titre (FR/AR),
+     for every landing page, whatever product it's built around. The one safety
+     rule: once a page is already saved, its link may already be running in ads,
+     so we never rewrite an existing page's slug automatically — only a brand
+     new page auto-follows the title, and it stops the moment the admin types
+     into the slug field herself. */
+  const slugEl=document.getElementById('lp-slug');
+  const titleFrEl=document.getElementById('lp-title-fr');
+  const titleArEl=document.getElementById('lp-title-ar');
+  let slugAutoSync = (LANDING_EDIT_ID === '__new__');
+  const slugifyLive = s => (s||"").trim().toLowerCase().replace(/[^\p{L}\p{N}-]+/gu,'-').replace(/^-+|-+$/g,'');
+  const refreshLandingPublicUrl=()=>{
+    const slug=(document.getElementById('lp-slug')?.value||'').trim();
+    const url=slug ? `${location.origin}/p/${encodeURIComponent(slug)}` : '';
+    const input=document.getElementById('lp-public-url'); if(input) input.value=url;
+    const copy=document.getElementById('lp-copy-public-url'); if(copy) copy.disabled=!url;
+  };
+  const syncSlugFromTitle=()=>{
+    if(!slugAutoSync || !slugEl) return;
+    const auto=slugifyLive(titleFrEl?.value || titleArEl?.value || '');
+    if(auto){ slugEl.value=auto; refreshLandingPublicUrl(); }
+  };
+  titleFrEl?.addEventListener('input', syncSlugFromTitle);
+  titleArEl?.addEventListener('input', syncSlugFromTitle);
+  slugEl?.addEventListener('input', ()=>{ slugAutoSync=false; refreshLandingPublicUrl(); });
   document.getElementById('lp-type')?.addEventListener('change',()=>{
     const type=document.getElementById('lp-type').value;
     const slugEl=document.getElementById('lp-slug');
@@ -5355,8 +5389,9 @@ function bindLandingEditor(){
     const gallery=(PRODUCT_IMAGE_GALLERY[prod.id]||[]).filter(Boolean);
     const list=document.getElementById('lp-images-list');
     if(list && gallery.length){ list.innerHTML=gallery.map((u,i)=>`<div class="lp-image-row"><img src="${escAttr(u)}"><input value="${escAttr(u)}" data-lpimg="${i}"><button class="btn btn-ghost" data-remove-lpimg="${i}">🗑️</button></div>`).join(''); bindLandingImageRemove(); }
-    const slug=nameFr.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60);
-    if(!document.getElementById('lp-slug').value) set('lp-slug',slug||('landing-'+prod.id));
+    /* Programmatic .value= doesn't fire "input", so sync the slug explicitly. */
+    syncSlugFromTitle();
+    if(!document.getElementById('lp-slug').value) set('lp-slug','landing-'+prod.id);
   });
   document.getElementById('lp-product2-source')?.addEventListener('change',()=>{
     const id=document.getElementById('lp-product2-source').value;
@@ -5373,13 +5408,6 @@ function bindLandingEditor(){
     /* The gallery is persisted automatically by collectLandingForm(); no manual image selection is required. */
   });
   document.getElementById('lp-back')?.addEventListener('click',()=>{LANDING_EDIT_ID=null;renderAdminLandingPages();});
-  const refreshLandingPublicUrl=()=>{
-    const slug=(document.getElementById('lp-slug')?.value||'').trim();
-    const url=slug ? `${location.origin}/p/${encodeURIComponent(slug)}` : '';
-    const input=document.getElementById('lp-public-url'); if(input) input.value=url;
-    const copy=document.getElementById('lp-copy-public-url'); if(copy) copy.disabled=!url;
-  };
-  document.getElementById('lp-slug')?.addEventListener('input',refreshLandingPublicUrl);
   document.getElementById('lp-copy-public-url')?.addEventListener('click',()=>copyLandingPublicUrl(document.getElementById('lp-public-url')?.value,document.getElementById('lp-copy-public-url')));
   document.getElementById('lp-add-image')?.addEventListener('click',()=>{const u=document.getElementById('lp-image-choice').value;if(!u)return;const list=document.getElementById('lp-images-list');const i=list.querySelectorAll('[data-lpimg]').length;list.insertAdjacentHTML('beforeend',`<div class="lp-image-row"><img src="${escAttr(u)}"><input value="${escAttr(u)}" data-lpimg="${i}"><button class="btn btn-ghost" data-remove-lpimg="${i}">🗑️</button></div>`);bindLandingImageRemove();});
   document.getElementById('lp-image-file')?.addEventListener('change',async e=>{const f=e.target.files?.[0];if(!f)return;try{const slug=document.getElementById('lp-slug').value.trim()||('landing-'+Date.now());const u=await uploadProductImageToStorage(f,'landing-'+slug);const list=document.getElementById('lp-images-list');const i=list.querySelectorAll('[data-lpimg]').length;list.insertAdjacentHTML('beforeend',`<div class="lp-image-row"><img src="${escAttr(u)}"><input value="${escAttr(u)}" data-lpimg="${i}"><button class="btn btn-ghost" data-remove-lpimg="${i}">🗑️</button></div>`);bindLandingImageRemove();showToast(t("lp.imageAddedToast"));}catch(err){showToast(err?.message||t("lp.uploadError"));}});
@@ -5595,10 +5623,17 @@ function renderLandingPublic(p, isPreview){
     const lpCartItemsCount = mainCartItems.length+(p2Added?1:0);
     const cartButtonHTML = `<button type="button" id="lp-cart-fab" class="lp-cart-fab${lpCartItemsCount>0?' lp-has-items':''}" aria-label="${lang==='ar'?'فتح السلة':'Ouvrir le panier'}">🛒<span id="lp-cart-count" class="lp-cart-count">${lpCartItemsCount}</span></button>`;
     const cartDrawerHTML = `<div id="lp-cart-drawer" class="lp-cart-drawer" aria-hidden="true"><div class="lp-cart-panel"><div class="lp-cart-head"><div style="font-family:var(--font-display);font-size:calc(22px * var(--font-scale))">${lang==='ar'?'سلتك':'Votre panier'}</div><button type="button" id="lp-cart-close" class="lp-cart-close">×</button></div><div id="lp-cart-live"></div></div></div>`;
+    const lpHeaderLangSwitchHTML = `<div class="lang-switch lp-collection-langswitch" role="group" aria-label="${lang==='ar'?'اختيار اللغة':'Choix de la langue'}">
+      <button type="button" class="lang-btn ${lang==='fr'?'active':''}" data-lp-lang="fr">🇫🇷 FR</button>
+      <button type="button" class="lang-btn ${lang==='ar'?'active':''}" data-lp-lang="ar">🇲🇦 AR</button>
+    </div>`;
     const collectionHeaderHTML = `<div class="lp-collection-header">
       <button type="button" id="lp-collection-menu-btn" class="lp-collection-menu-btn" aria-label="Menu" aria-controls="lp-collection-drawer" aria-expanded="false"><span></span><span></span><span></span></button>
       <span class="lp-collection-logo">LUXIA<span class="lp-collection-logo-heart">✦</span></span>
-      ${cartButtonHTML}
+      <div class="lp-collection-actions">
+        ${lpHeaderLangSwitchHTML}
+        ${cartButtonHTML}
+      </div>
     </div>`;
     const collectionDrawerHTML = `<div id="lp-collection-drawer" class="lp-collection-drawer" aria-hidden="true">
       <aside class="lp-collection-panel" role="dialog" aria-modal="true" aria-label="${lang==='ar'?'المجموعات':'Collections'}">
@@ -5730,10 +5765,9 @@ function renderLandingPublic(p, isPreview){
     const lsActiveColor = isPyjama ? '#ffffff' : '#1c0f16';
     const lsActiveBg = isPyjama ? '#d6536b' : '#c7a15c';
     const lsTop = 66;
-    const langSwitchHTML=`<div style="position:fixed;top:${lsTop}px;${sideOpp}:14px;z-index:900;display:flex;gap:2px;background:${lsBg};backdrop-filter:blur(10px);border:1px solid ${lsBorder};border-radius:20px;padding:3px;box-shadow:${isPyjama?'0 8px 20px -8px rgba(214,83,107,.35)':'none'};">
-      <button type="button" data-lp-lang="fr" style="padding:6px 12px;border-radius:16px;font-size:calc(11.5px * var(--font-scale));letter-spacing:.04em;font-weight:500;color:${lang==='fr'?lsActiveColor:lsIdleColor};background:${lang==='fr'?lsActiveBg:'transparent'};">FR</button>
-      <button type="button" data-lp-lang="ar" style="padding:6px 12px;border-radius:16px;font-size:calc(11.5px * var(--font-scale));letter-spacing:.04em;font-weight:500;color:${lang==='ar'?lsActiveColor:lsIdleColor};background:${lang==='ar'?lsActiveBg:'transparent'};">AR</button>
-    </div>`;
+    /* The FR/AR switch now lives inline in the landing header (lp-collection-actions),
+       matching the main store header exactly — no more floating pill over the content. */
+    const langSwitchHTML='';
     const closeBtnHTML = isPreview ? `<button type="button" id="lp-preview-close" title="${lang==='ar'?'رجوع للتعديل':"Retour à l'édition"}" style="position:fixed;top:${lsTop}px;${sideSame}:14px;z-index:900;width:38px;height:38px;border-radius:50%;background:${lsBg};backdrop-filter:blur(10px);border:1px solid ${lsBorder};color:${isPyjama?'#3a2530':'#f8f1e8'};font-size:calc(15px * var(--font-scale));display:flex;align-items:center;justify-content:center;">✖️</button>` : '';
 
     const lightboxHTML = mainGalleryImages.length>1 ? `<div id="lp-lightbox" class="lp-lightbox" aria-hidden="true"><button type="button" id="lp-lightbox-close" class="lp-lightbox-close">✕</button><div class="lp-lightbox-imgs">${mainGalleryImages.map(u=>`<img src="${escAttr(u)}">`).join('')}</div></div>` : '';
@@ -5792,7 +5826,10 @@ ${sizesSectionHTML}
   </div>
 </div>
 
-<p style="text-align:center;color:var(--ivory-dim);font-size:calc(14px * var(--font-scale));margin-top:30px">${lang==='ar'?'التوصيل مجاني في جميع أنحاء المغرب':'Livraison gratuite partout au Maroc'}</p></div>${isPyjama ? `<div class="lp-sticky-pyjama"><a class="lp-cta" href="#order" id="lp-sticky-order-cta">🛍 ${escHtml(cta || (lang==='ar'?'اطلبي الآن':'Commander maintenant'))}</a></div>${p.showWhatsapp&&wa?`<a class="lp-wa-float" href="${escAttr(wa)}" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>`:''}` : (p.showWhatsapp&&wa?`<div class="lp-sticky"><a class="lp-cta" href="${escAttr(wa)}" target="_blank" rel="noopener">WhatsApp</a></div>`:'')}</main>`;
+<div class="lp-shipping-info" style="max-width:420px;margin:24px auto 0;text-align:${dir==='rtl'?'right':'left'};">
+  <div><span>🚚 ${lang==='ar'?'التوصيل للدار البيضاء':'Livraison à Casablanca'}</span><strong>20dh · ${lang==='ar'?'خلال 24 ساعة':'24h'}</strong></div>
+  <div><span>🚚 ${lang==='ar'?'التوصيل خارج الدار البيضاء':'Livraison hors Casablanca'}</span><strong>35dh · ${lang==='ar'?'من 24 إلى 48 ساعة':'24h-48h'}</strong></div>
+</div></div>${isPyjama ? `<div class="lp-sticky-pyjama"><a class="lp-cta" href="#order" id="lp-sticky-order-cta">🛍 ${escHtml(cta || (lang==='ar'?'اطلبي الآن':'Commander maintenant'))}</a></div>${p.showWhatsapp&&wa?`<a class="lp-wa-float" href="${escAttr(wa)}" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>`:''}` : (p.showWhatsapp&&wa?`<div class="lp-sticky"><a class="lp-cta" href="${escAttr(wa)}" target="_blank" rel="noopener">💬 WhatsApp</a></div>`:'')}</main>`;
     /* Landing collection menu: uses the exact same collection source/order as the main store. */
     const lpMenu=document.getElementById('lp-collection-drawer');
     const lpMenuBtn=document.getElementById('lp-collection-menu-btn');
@@ -8809,6 +8846,16 @@ body.luxia-store-home #productDetailMainImage{
 .lp-collection-header .lp-cart-fab{position:relative;top:auto;right:auto;width:42px;height:42px;border:0;border-radius:0;background:transparent;color:#514c47;box-shadow:none;font-size:22px;flex:none}
 .lp-collection-header .lp-cart-fab:hover{transform:none;box-shadow:none;color:#292622}
 .lp-collection-header .lp-cart-count{top:-1px;right:-1px;min-width:17px;height:17px;font-size:10px;background:#b99a62;color:#fff;border:1px solid #f7f4ee;box-shadow:none}
+/* Landing header actions (lang switch + cart) — same visual language as the main store header. */
+.lp-collection-actions{display:flex;align-items:center;gap:6px;flex:none}
+.lp-collection-header .lang-switch{display:flex;align-items:center;gap:2px;padding:2px;border:1px solid #d8d0c5;border-radius:999px;background:#faf8f3;flex:none}
+.lp-collection-header .lang-switch button{min-width:34px;height:30px;padding:4px 8px;border-radius:999px;color:#70685f;background:transparent;font-size:10px;letter-spacing:.08em;line-height:1;white-space:nowrap}
+.lp-collection-header .lang-switch button.active{background:#292622;color:#fffdf8;font-weight:600}
+@media(max-width:639px){
+  .lp-collection-actions{gap:5px}
+  .lp-collection-header .lang-switch{padding:2px}
+  .lp-collection-header .lang-switch button{min-width:31px;height:28px;padding:4px 7px;font-size:9px}
+}
 .lp-collection-drawer{position:fixed;inset:0;z-index:1100;background:rgba(42,36,30,.28);display:none}
 .lp-collection-drawer.open{display:block}
 .lp-collection-panel{position:absolute;top:0;bottom:0;inset-inline-start:0;width:min(330px,88vw);background:#f7f4ee;border-inline-end:1px solid #ddd6cc;box-shadow:16px 0 40px rgba(42,36,30,.16);padding:76px 20px 24px;overflow:auto}
@@ -9096,6 +9143,27 @@ body.lp-pyjama-active .lp-attention-signal{
 body.lp-pyjama-active .lp-attention-signal::after{
   /* only the visual pointer remains */
 }
+</style>
+
+<style id="luxia-landing-cart-theme-fix">
+/* The landing-page cart drawer (#lp-cart-drawer / .lp-cart-panel) is appended as a
+   SIBLING of <main class="lp-preview">, not a descendant — so the ".lp-preview …"
+   rules meant to give the whole landing page the current cream store look never
+   actually reached it, and it kept rendering in the old dark plum theme. Restyle
+   it directly here so it always matches the rest of the page. */
+.lp-cart-drawer{background:rgba(42,36,30,.38)!important;}
+.lp-cart-panel{background:#faf8f3!important;border:1px solid #ddd5ca!important;color:#302b27!important;box-shadow:0 -20px 55px rgba(37,31,26,.18)!important;}
+.lp-cart-head{border-bottom:1px solid #e4ded5!important;padding-bottom:12px!important;}
+.lp-cart-head > div{color:#292622!important;}
+.lp-cart-close{color:#665f58!important;}
+.lp-cart-close:hover{color:#292622!important;}
+.lp-cart-item{border-bottom:1px solid #e4ded5!important;}
+.lp-cart-item-name{color:#292622!important;}
+.lp-cart-item-meta{color:#7b736b!important;}
+.lp-cart-remove{color:#a64f48!important;text-decoration:none!important;font-weight:600!important;}
+.lp-cart-empty{color:#7b736b!important;}
+.lp-cart-total{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding-top:12px;border-top:1px solid #e4ded5;color:#292622;font-family:var(--font-display);font-size:calc(19px * var(--font-scale));font-weight:700;}
+.lp-cart-total strong{color:#9f8059;}
 </style>
 
 <style id="luxia-shipping-info">
