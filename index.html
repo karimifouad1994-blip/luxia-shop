@@ -5463,6 +5463,11 @@ async function loadSiteSettings(){
         SITE_THEME[k]=(SITE_CONTENT.fr && SITE_CONTENT.fr[key]) || (SITE_CONTENT.ar && SITE_CONTENT.ar[key]) || "";
       });
       applySiteContent();
+      /* The public delivery promise is fixed by the current store logic.
+         Do not let legacy site_content values overwrite the current promise.
+         overwrite it after the initial render. */
+      I18N.fr['promo.text']='🚚 Livraison partout au Maroc';
+      I18N.ar['promo.text']='🚚 التوصيل إلى جميع أنحاء المغرب';
       applySiteBackground();
       applySiteWhatsapp();
       applySiteTheme();
@@ -7838,8 +7843,9 @@ function renderLandingPublic(p, isPreview){
        "Livraison partout au Maroc" promise is visible on every landing page,
        exactly like on the store. Header + page content are pushed down by
        its height (LP_PROMO_H) via inline styles below. */
-    const LP_PROMO_H = 30;
-    const lpPromoBarHTML = `<div class="lp-promo-bar" style="position:fixed;top:0;left:0;right:0;z-index:981;height:${LP_PROMO_H}px;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,#3a1e2b,#4a2436,#3a1e2b);color:#e0c690;font-size:11px;letter-spacing:.03em;font-weight:500;padding:0 12px;text-align:center;">${escHtml((I18N[lang]&&I18N[lang]['promo.text'])||'🚚 Livraison partout au Maroc')}</div>`;
+    const LP_PROMO_H = 38;
+    const LP_PROMO_TEXT = lang==='ar' ? '🚚 التوصيل إلى جميع أنحاء المغرب' : '🚚 Livraison partout au Maroc';
+    const lpPromoBarHTML = `<div class="lp-promo-bar" style="position:fixed;top:0;left:0;right:0;z-index:981;height:${LP_PROMO_H}px;display:flex;align-items:center;justify-content:center;background:#292622;color:#f8f5ef;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;padding:0 12px;text-align:center;box-sizing:border-box;">${escHtml(LP_PROMO_TEXT)}</div>`;
     const collectionHeaderHTML = `<div class="lp-collection-header" style="top:${LP_PROMO_H}px;">
       <button type="button" id="lp-collection-menu-btn" class="lp-collection-menu-btn" aria-label="Menu" aria-controls="lp-collection-drawer" aria-expanded="false"><span></span><span></span><span></span></button>
       <span class="lp-collection-logo">LUXIA<span class="lp-collection-logo-heart">✦</span></span>
@@ -7863,6 +7869,13 @@ function renderLandingPublic(p, isPreview){
     const p2VariantReady=!p2HasVariants || isReady(p2HasColors,p2Pack,p2HasSizes,p2State);
     const mainCartTotal=mainCartItems.reduce((sum,item)=>sum+item.price*item.qty,0);
     const total=mainCartTotal+(p2Added?p2price:0);
+    const lpDeliveryLabel = lpDeliveryType==='casa'
+      ? (lang==='ar'?'التوصيل إلى الدار البيضاء':'Livraison à Casablanca')
+      : lpDeliveryType==='other'
+        ? (lang==='ar'?'التوصيل':'Livraison')
+        : (lang==='ar'?'التوصيل حسب المدينة':'Livraison selon la ville');
+    const lpDeliveryValue = lpDeliveryFee ? `+${lpDeliveryFee} DH` : '—';
+    const lpFinalTotal = total + lpDeliveryFee;
     const mainAdded=mainCartItems.length>0;
 
     /* Main product: piece and Pack are independent cart lines. */
@@ -7951,16 +7964,15 @@ function renderLandingPublic(p, isPreview){
       ...mainCartItems.map(item=>`<div class="row"><span>${escHtml(mainProductName)} — ${item.mode==='pack'?'Pack':'1 '+(lang==='ar'?'قطعة':'pièce')}${item.colorText?` · ${escHtml(item.colorText)}`:''}${item.size?` / ${escHtml(item.size)}`:''}</span><span>${item.price*item.qty}dh</span></div>`),
       p2Added ? `<div class="row"><span>${escHtml(product2Name)}${p2HasVariants?` — ${escHtml(summaryText(p2Variants,p2HasColors,p2Pack,p2HasSizes,p2State))}`:''}</span><span>${p2price}dh</span></div>` : ''
     ].filter(Boolean).join('');
-    const summaryBlock = `<div class="lp-card" style="padding:18px;margin-bottom:14px;">
-      <div style="font-family:var(--font-display);font-size:calc(16px * var(--font-scale));margin-bottom:10px;">${lang==='ar'?'سلتك':'Votre panier'}</div>
+    const summaryBlock = `<div class="lp-card lp-checkout-summary" id="lp-checkout-summary" style="padding:18px;margin-bottom:14px;">
+      <div style="font-family:var(--font-display);font-size:calc(18px * var(--font-scale));margin-bottom:12px;">${lang==='ar'?'تفاصيل الطلب':'Votre commande'}</div>
       ${summaryLines}
-      <div class="row checkout-products-name"><span>${mainCartItems.map(i=>`${i.name}${i.colorText?` — ${i.colorText}`:''}${i.size?` / ${i.size}`:''} ×${i.qty}`).join('<br>')}</span><span>${total} DH</span></div>
-      <div class="row"><span>${lpDeliveryType==='casa'?(lang==='ar'?'التوصيل إلى الدار البيضاء':'Livraison à Casablanca'):lpDeliveryType==='other'?(lang==='ar'?'التوصيل خارج الدار البيضاء':'Livraison hors Casablanca'):(lang==='ar'?'التوصيل':'Livraison')}</span><span>${lpDeliveryFee?lpDeliveryFee+' DH':'—'}</span></div>
-      <div class="row total lp-cart-total" style="margin-top:8px;"><span>${lang==='ar'?'المجموع النهائي':'Sous-total'}</span><strong>${total+lpDeliveryFee} DH</strong></div>
+      <div class="row checkout-products-name"><span>Total de la commande</span><strong id="lp-summary-products-total">${total} DH</strong></div>
+      <div class="row"><span id="lp-summary-delivery-label">${lpDeliveryLabel}</span><strong id="lp-summary-delivery-fee">${lpDeliveryValue}</strong></div>
+      <div class="row total lp-cart-total" style="margin-top:8px;"><span>Sous-total</span><strong id="lp-summary-final-total">${lpFinalTotal} DH</strong></div>
     </div>`;
 
-
-    const formHTML = showForm ? `<form class="lp-order" id="lp-order-form" style="margin-top:16px"><div class="lp-field"><label>${lang==='ar'?'الاسم':'Nom'}</label><input name="name" required></div><div class="lp-field"><label>${lang==='ar'?'الهاتف':'Téléphone'}</label><input name="phone" required></div><div class="lp-field">
+    const formHTML = showForm ? `${summaryBlock}<form class="lp-order" id="lp-order-form" style="margin-top:16px"><div class="lp-field"><label>${lang==='ar'?'الاسم':'Nom'}</label><input name="name" required></div><div class="lp-field"><label>${lang==='ar'?'الهاتف':'Téléphone'}</label><input name="phone" required></div><div class="lp-field">
   <label>${lang==='ar'?'المدينة':'Ville'}</label>
   <select name="cityType" id="lp-city-type" required>
     <option value="">${lang==='ar'?'اختاري المدينة':'Choisissez votre ville'}</option>
@@ -8181,13 +8193,20 @@ ${sizesSectionHTML}
       if(p2Added)items.push(`<div class="lp-cart-item"><div><div class="lp-cart-item-name">${escHtml(product2Name)}</div><div class="lp-cart-item-meta">${p2price}dh${p2HasVariants?` · ${escHtml(summaryText(p2Variants,p2HasColors,p2Pack,p2HasSizes,p2State))}`:''}</div></div><button type="button" class="lp-cart-remove" id="lp-cart-remove-p2">🗑️ ${lang==='ar'?'حذف':'Supprimer'}</button></div>`);
       const cartTotalNow=mainCartItems.reduce((s,i)=>s+i.price*i.qty,0)+(p2Added?p2price:0);
       if(live)live.innerHTML=items.join('')||`<div class="lp-cart-empty">${lang==='ar'?'السلة فارغة':'Votre panier est vide'}</div>`;
-      if(live&&items.length)live.innerHTML+=`<div class="lp-cart-total"><span>${lang==='ar'?'المجموع الفرعي':'Sous-total'}</span><strong>${cartTotalNow} DH</strong></div>
-        <div class="lp-shipping-info">
-  <div><span>🚚 ${lang==='ar'?'التوصيل إلى الدار البيضاء':'Livraison à Casablanca'}</span><strong>20 ${t("unit.dh")} · ${lang==='ar'?'خلال 24 ساعة':'dans 24h'}</strong></div>
-  <div><span>🚚 ${lang==='ar'?'التوصيل خارج الدار البيضاء':'Livraison hors Casablanca'}</span><strong>35 ${t("unit.dh")} · ${lang==='ar'?'خلال 24–48 ساعة':'24–48h'}</strong></div>
-  <p>${lang==='ar'?'مصاريف التوصيل كتتحسب حسب المدينة اللي تختاري فمرحلة الطلب، وكتزاد للـSous-total باش يبان ليك المجموع النهائي بوضوح.':'Les frais de livraison dépendent de la ville choisie et sont ajoutés au sous-total pour afficher clairement le total final.'}</p>
-</div>
-        <button type="button" id="lp-cart-checkout" class="lp-cta" style="width:100%;text-align:center;border:none;cursor:pointer;margin-top:16px;">${lang==='ar'?'إتمام الطلب':'Commander'}</button>`;
+      if(live&&items.length){
+        const cartDeliveryLabel = lpDeliveryType==='casa'
+          ? (lang==='ar'?'التوصيل إلى الدار البيضاء':'Livraison à Casablanca')
+          : lpDeliveryType==='other'
+            ? (lang==='ar'?'التوصيل':'Livraison')
+            : (lang==='ar'?'التوصيل حسب المدينة':'Livraison selon la ville');
+        const cartDeliveryValue = lpDeliveryFee ? `+${lpDeliveryFee} DH` : '—';
+        const cartFinalTotal = cartTotalNow + lpDeliveryFee;
+        live.innerHTML+=`<div class="lp-cart-total" style="border-top:1px solid #e4ded5;padding-top:12px;margin-top:14px;"><span>Total de la commande</span><strong>${cartTotalNow} DH</strong></div>
+          <div class="row" style="display:flex;justify-content:space-between;gap:12px;padding:8px 4px;"><span>${cartDeliveryLabel}</span><strong>${cartDeliveryValue}</strong></div>
+          <div class="lp-cart-total" style="margin-top:4px;"><span>Sous-total</span><strong>${cartFinalTotal} DH</strong></div>
+          <p style="margin:8px 0 0;color:#7a736b;font-size:10.5px;line-height:1.45;">${lpDeliveryFee ? (lang==='ar'?'مصاريف التوصيل محسوبة حسب المدينة المختارة.':'Les frais de livraison sont calculés selon la ville choisie.') : (lang==='ar'?'اختاري المدينة باش يتحسب ثمن التوصيل.':'Choisissez votre ville pour calculer les frais de livraison.')}</p>
+          <button type="button" id="lp-cart-checkout" class="lp-cta" style="width:100%;text-align:center;border:none;cursor:pointer;margin-top:16px;">${lang==='ar'?'إتمام الطلب':'Commander'}</button>`;
+      }
       const lpLiveCount=mainCartItems.length+(p2Added?1:0);
       if(count)count.textContent=String(lpLiveCount);
       document.getElementById('lp-cart-fab')?.classList.toggle('lp-has-items', lpLiveCount>0);
@@ -8324,18 +8343,29 @@ document.getElementById('lp-cart-fab')?.addEventListener('click',()=>{const d=do
       const type=document.getElementById('lp-city-type'), other=document.getElementById('lp-city-other');
       lpDeliveryType=type?.value||''; lpDeliveryFee=getLPDeliveryFee();
       if(other){other.style.display=lpDeliveryType==='other'?'block':'none'; if(lpDeliveryType!=='other') other.value='';}
-      const box=document.querySelector('#lp-order-form')?.previousElementSibling;
+      const box=document.getElementById('lp-checkout-summary');
       if(box) {
-        const rows=box.querySelectorAll('.row');
-        const feeRow=rows[rows.length-2], totalRow=rows[rows.length-1];
-        if(feeRow) feeRow.querySelector('span:last-child').textContent=lpDeliveryFee?lpDeliveryFee+' DH':'—';
-        if(totalRow) totalRow.querySelector('strong').textContent=(total+lpDeliveryFee)+' DH';
+        const deliveryLabel=box.querySelector('#lp-summary-delivery-label');
+        const deliveryFee=box.querySelector('#lp-summary-delivery-fee');
+        const finalTotal=box.querySelector('#lp-summary-final-total');
+        if(deliveryLabel) deliveryLabel.textContent=lpDeliveryType==='casa'?(lang==='ar'?'التوصيل إلى الدار البيضاء':'Livraison à Casablanca'):(lang==='ar'?'التوصيل':'Livraison');
+        if(deliveryFee) deliveryFee.textContent=lpDeliveryFee?`+${lpDeliveryFee} DH`:'—';
+        if(finalTotal) finalTotal.textContent=(total+lpDeliveryFee)+' DH';
       }
+      if(document.getElementById('lp-cart-drawer')?.classList.contains('open')) refreshCartUI();
     });
     document.getElementById('lp-city-other')?.addEventListener('input',()=>{
       lpDeliveryType='other'; lpDeliveryFee=35;
-      const box=document.querySelector('#lp-order-form')?.previousElementSibling;
-      if(box){const rows=box.querySelectorAll('.row'); const feeRow=rows[rows.length-2], totalRow=rows[rows.length-1]; if(feeRow) feeRow.querySelector('span:last-child').textContent='35 DH'; if(totalRow) totalRow.querySelector('strong').textContent=(total+35)+' DH';}
+      const box=document.getElementById('lp-checkout-summary');
+      if(box){
+        const deliveryLabel=box.querySelector('#lp-summary-delivery-label');
+        const deliveryFee=box.querySelector('#lp-summary-delivery-fee');
+        const finalTotal=box.querySelector('#lp-summary-final-total');
+        if(deliveryLabel) deliveryLabel.textContent=lang==='ar'?'التوصيل':'Livraison';
+        if(deliveryFee) deliveryFee.textContent='+35 DH';
+        if(finalTotal) finalTotal.textContent=(total+35)+' DH';
+      }
+      if(document.getElementById('lp-cart-drawer')?.classList.contains('open')) refreshCartUI();
     });
     document.getElementById('lp-order-form')?.addEventListener('submit',async e=>{
       e.preventDefault();
