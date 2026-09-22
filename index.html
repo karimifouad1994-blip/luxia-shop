@@ -561,7 +561,7 @@ body.lp-pyjama-active .lp-site-link:hover{color:#7a5136}
   .lp-experience-grid{gap:10px}
   .lp-experience-card{padding:16px 10px}
 }
-.lp-sticky{position:fixed;left:0;right:0;bottom:0;z-index:900;display:flex;justify-content:center;background:#fffdfdf2;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid #ddd6cc;box-shadow:0 -10px 24px rgba(42,36,30,.10);padding:12px 16px;}.lp-sticky a{min-width:240px;text-align:center;}.lp-cart-fab{position:fixed;right:16px;top:68px;z-index:950;width:50px;height:50px;border-radius:50%;border:1px solid var(--gold-soft);background:#1c0f16ee;color:var(--ivory);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,.22)}.lp-cart-count{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:var(--gold);color:var(--bg-deep);font-size:calc(11px * var(--font-scale));font-weight:700;display:flex;align-items:center;justify-content:center}.lp-cart-drawer{position:fixed;inset:0;z-index:940;background:rgba(0,0,0,.45);display:none;align-items:flex-end;justify-content:center}.lp-cart-drawer.open{display:flex}.lp-cart-panel{width:min(620px,100%);max-height:78vh;overflow:auto;background:#1c0f16;border:1px solid var(--line);border-bottom:0;border-radius:24px 24px 0 0;padding:20px}.lp-cart-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.lp-cart-close{background:none;border:0;color:var(--ivory);font-size:calc(24px * var(--font-scale));cursor:pointer}.lp-cart-item{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}.lp-cart-item-name{font-family:var(--font-display);font-size:calc(16px * var(--font-scale))}.lp-cart-item-meta{font-size:calc(12px * var(--font-scale));color:var(--ivory-dim);margin-top:4px}.lp-cart-remove{background:none;border:0;color:var(--gold-soft);text-decoration:underline;cursor:pointer;font:inherit}.lp-cart-empty{text-align:center;color:var(--ivory-dim);padding:22px 0}
+.lp-sticky{position:static;display:flex;justify-content:center;background:#fffdfdf2;border:1px solid #ddd6cc;border-radius:16px;box-shadow:0 8px 20px rgba(42,36,30,.08);padding:14px 16px;margin:20px auto 0;max-width:420px;}.lp-sticky a{min-width:240px;text-align:center;}.lp-cart-fab{position:fixed;right:16px;top:68px;z-index:950;width:50px;height:50px;border-radius:50%;border:1px solid var(--gold-soft);background:#1c0f16ee;color:var(--ivory);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,.22)}.lp-cart-count{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:var(--gold);color:var(--bg-deep);font-size:calc(11px * var(--font-scale));font-weight:700;display:flex;align-items:center;justify-content:center}.lp-cart-drawer{position:fixed;inset:0;z-index:940;background:rgba(0,0,0,.45);display:none;align-items:flex-end;justify-content:center}.lp-cart-drawer.open{display:flex}.lp-cart-panel{width:min(620px,100%);max-height:78vh;overflow:auto;background:#1c0f16;border:1px solid var(--line);border-bottom:0;border-radius:24px 24px 0 0;padding:20px}.lp-cart-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.lp-cart-close{background:none;border:0;color:var(--ivory);font-size:calc(24px * var(--font-scale));cursor:pointer}.lp-cart-item{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}.lp-cart-item-name{font-family:var(--font-display);font-size:calc(16px * var(--font-scale))}.lp-cart-item-meta{font-size:calc(12px * var(--font-scale));color:var(--ivory-dim);margin-top:4px}.lp-cart-remove{background:none;border:0;color:var(--gold-soft);text-decoration:underline;cursor:pointer;font:inherit}.lp-cart-empty{text-align:center;color:var(--ivory-dim);padding:22px 0}
 .lp-admin .admin-card{background:#ffffff08;border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px}
 .lp-admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
 .lp-admin .full{grid-column:1/-1}.lp-admin small{color:var(--ivory-dim)}
@@ -2539,6 +2539,2212 @@ body.luxia-store-home .home-collection-heading{
   .product-detail-variant-picker{gap:9px!important;}
   .product-detail-color-options{gap:7px 10px!important;}
   .product-detail-size-options{gap:6px!important;}
+}
+</style>
+
+<style id="luxia-v3-image-language">
+/* PRODUCT IMAGES: always show the entire source image inside its frame.
+   No crop, no zoom, no forced cover. */
+body.luxia-store-home .product-visual{
+  aspect-ratio:4/3!important;
+  background:#eee9e0!important;
+  border:1px solid #ddd5ca!important;
+  border-radius:12px!important;
+  overflow:hidden!important;
+}
+body.luxia-store-home .product-visual > .product-photo{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  transform:none!important;
+  background:#eee9e0!important;
+}
+body.luxia-store-home .product-card:hover .product-photo{
+  transform:none!important;
+}
+/* Keep the small gallery thumbnails clean and proportional too. */
+body.luxia-store-home .product-gallery-thumb img{
+  object-fit:contain!important;
+  background:#eee9e0!important;
+}
+
+/* LANGUAGE CHOICE: visible on the main store header at all sizes. */
+body.luxia-store-home .header-actions .lang-switch{
+  display:flex!important;
+  align-items:center!important;
+  gap:2px!important;
+  padding:2px!important;
+  border:1px solid #d8d0c5!important;
+  border-radius:999px!important;
+  background:#faf8f3!important;
+  flex:0 0 auto!important;
+}
+body.luxia-store-home .header-actions .lang-switch button{
+  min-width:34px!important;
+  height:30px!important;
+  padding:4px 8px!important;
+  border-radius:999px!important;
+  color:#70685f!important;
+  background:transparent!important;
+  font-size:10px!important;
+  letter-spacing:.08em!important;
+  line-height:1!important;
+}
+body.luxia-store-home .header-actions .lang-switch button.active{
+  background:#292622!important;
+  color:#fffdf8!important;
+  font-weight:600!important;
+}
+@media(max-width:639px){
+  body.luxia-store-home .header-inner{gap:6px!important;}
+  body.luxia-store-home .header-actions{gap:5px!important;}
+  body.luxia-store-home .header-actions .lang-switch button{
+    min-width:31px!important;
+    height:28px!important;
+    padding:4px 7px!important;
+    font-size:9px!important;
+  }
+  body.luxia-store-home .header-actions .lang-switch{padding:2px!important;}
+}
+</style>
+<style id="luxia-v16-title-cream-price-below">
+/* V16: stronger creamy title frame + price directly below the title. */
+body.luxia-store-home .product-title-above{
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  min-height:34px!important;padding:7px 8px 6px!important;margin:0!important;
+  cursor:pointer!important;background:#f3eadc!important;
+  border:1px solid #d7c5aa!important;border-radius:12px 12px 0 0!important;
+  box-shadow:none!important;
+}
+body.luxia-store-home .product-title-above-text{
+  display:block!important;width:100%!important;text-align:center!important;
+  font-family:var(--font-display)!important;font-size:14px!important;line-height:1.3!important;
+  font-weight:500!important;color:#292622!important;
+  overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;
+}
+body.luxia-store-home .product-price-only{
+  display:block!important;width:100%!important;margin:0!important;padding:5px 8px 7px!important;
+  text-align:center!important;background:#f3eadc!important;
+  border-left:1px solid #d7c5aa!important;border-right:1px solid #d7c5aa!important;
+  border-bottom:1px solid #d7c5aa!important;border-radius:0 0 12px 12px!important;
+  color:#967644!important;font-family:var(--font-display)!important;
+  font-size:17px!important;font-weight:600!important;line-height:1.1!important;
+}
+body.luxia-store-home .product-visual{margin-top:8px!important;}
+@media(max-width:520px){
+  body.luxia-store-home .product-title-above{min-height:32px!important;padding:6px 6px 5px!important;}
+  body.luxia-store-home .product-title-above-text{font-size:13px!important;}
+  body.luxia-store-home .product-price-only{font-size:16px!important;padding:5px 6px 6px!important;}
+}
+
+/* Landing page: title gets a clearly visible creamy frame; price sits immediately underneath. */
+.lp-product-title-price-frame.lp-product-head-top{
+  margin:10px 0 0!important;padding:9px 12px!important;
+  border:1px solid #d7c5aa!important;border-bottom:0!important;border-radius:12px 12px 0 0!important;
+  box-shadow:none!important;background:#f3eadc!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+}
+.lp-product-title-price-frame.lp-product-head-top::before{display:none!important;}
+.lp-product-title-price-frame.lp-product-head-top b{
+  font-size:15px!important;font-weight:500!important;line-height:1.3!important;color:#292622!important;
+  text-align:center!important;
+}
+.lp-product-price-below{
+  margin:0 0 12px!important;padding:4px 12px 8px!important;
+  border:1px solid #d7c5aa!important;border-top:0!important;border-radius:0 0 12px 12px!important;
+  background:#f3eadc!important;box-shadow:none!important;
+  text-align:center!important;font-family:var(--font-display)!important;
+  font-size:17px!important;font-weight:600!important;line-height:1.15!important;color:#967644!important;
+}
+</style>
+<style id="luxia-v17-strong-title-final">
+/* V17: make product titles visibly stronger while preserving the existing layout. */
+body.luxia-store-home .product-title-above{
+  background:#eadcc7!important;
+  border-color:#cdb997!important;
+  min-height:36px!important;
+  padding:7px 8px 6px!important;
+}
+body.luxia-store-home .product-title-above-text{
+  font-size:16px!important;
+  font-weight:600!important;
+  line-height:1.25!important;
+  color:#292622!important;
+  letter-spacing:.01em!important;
+}
+@media(max-width:520px){
+  body.luxia-store-home .product-title-above{min-height:36px!important;padding:7px 6px 6px!important;}
+  body.luxia-store-home .product-title-above-text{font-size:15px!important;font-weight:600!important;}
+}
+.lp-product-title-price-frame.lp-product-head-top{
+  background:#eadcc7!important;
+  border-color:#cdb997!important;
+}
+.lp-product-title-price-frame.lp-product-head-top b{
+  font-size:21px!important;
+  font-weight:600!important;
+  line-height:1.25!important;
+  color:#292622!important;
+  letter-spacing:.01em!important;
+}
+</style>
+<style id="luxia-v6-title-price-pill">
+/* V6: title uses the creamy price-bar tone; price gets a small frame around the numbers only. */
+body.luxia-store-home .product-title-above{
+  background:#f3eadc!important;
+  border:1px solid #d7c5aa!important;
+  border-bottom:0!important;
+  border-radius:12px 12px 0 0!important;
+  min-height:36px!important;
+  padding:8px 8px 5px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+body.luxia-store-home .product-title-above-text{
+  font-family:var(--font-display)!important;
+  font-size:calc(18px * var(--font-scale))!important;
+  font-weight:600!important;
+  line-height:1.25!important;
+  color:#292622!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+body.luxia-store-home .product-price-only{
+  width:fit-content!important;
+  min-width:0!important;
+  margin:0 auto 7px!important;
+  padding:3px 13px 4px!important;
+  background:#f3eadc!important;
+  border:1px solid #b69257!important;
+  border-radius:999px!important;
+  color:#967644!important;
+  font-family:var(--font-display)!important;
+  font-size:calc(16px * var(--font-scale))!important;
+  font-weight:600!important;
+  line-height:1.1!important;
+  text-align:center!important;
+  box-sizing:border-box!important;
+}
+@media(max-width:520px){
+  body.luxia-store-home .product-title-above{min-height:36px!important;padding:8px 6px 5px!important;}
+  body.luxia-store-home .product-title-above-text{font-size:17px!important;font-weight:600!important;}
+  body.luxia-store-home .product-price-only{font-size:16px!important;padding:3px 12px 4px!important;margin-bottom:7px!important;}
+}
+
+/* Landing page: same visual language — creamy title area + compact price pill. */
+.lp-product-title-price-frame.lp-product-head-top{
+  margin:10px 0 0!important;
+  padding:10px 12px 6px!important;
+  border:1px solid #d7c5aa!important;
+  border-bottom:0!important;
+  border-radius:12px 12px 0 0!important;
+  background:#f3eadc!important;
+  box-shadow:none!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.lp-product-title-price-frame.lp-product-head-top b{
+  font-family:var(--font-display)!important;
+  font-size:calc(20px * var(--font-scale))!important;
+  font-weight:600!important;
+  line-height:1.25!important;
+  color:#292622!important;
+  text-align:center!important;
+}
+.lp-product-price-below{
+  width:fit-content!important;
+  min-width:0!important;
+  margin:0 auto 12px!important;
+  padding:3px 13px 4px!important;
+  background:#f3eadc!important;
+  border:1px solid #b69257!important;
+  border-radius:999px!important;
+  color:#967644!important;
+  font-family:var(--font-display)!important;
+  font-size:calc(16px * var(--font-scale))!important;
+  font-weight:600!important;
+  line-height:1.1!important;
+  text-align:center!important;
+  box-sizing:border-box!important;
+}
+</style>
+<style id="luxia-v9-verified-title-price">
+/* V9 verified: target the actual homepage product header DOM. Only title size/frame and price pill. */
+body.luxia-store-home .product-title-price-head{
+  background:#f3e6d3 !important;
+  border:1px solid #cdb997 !important;
+  border-radius:18px 18px 0 0 !important;
+  padding:9px 8px 8px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:6px !important;
+  box-sizing:border-box !important;
+}
+body.luxia-store-home .product-title-price-head .product-title-above{
+  min-height:0 !important; padding:0 3px !important; margin:0 !important;
+  background:transparent !important; border:0 !important;
+  display:flex !important; align-items:center !important; justify-content:center !important;
+}
+body.luxia-store-home .product-title-price-head .product-title-above-text{
+  display:block !important; width:100% !important;
+  font-family:var(--font-display) !important;
+  font-size:calc(16px * var(--font-scale)) !important;
+  font-weight:600 !important; line-height:1.22 !important;
+  color:#2d2924 !important; text-align:center !important;
+  white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important;
+}
+body.luxia-store-home .product-title-price-head .product-price-only{
+  display:inline-flex !important; align-items:center !important; justify-content:center !important;
+  width:max-content !important; max-width:100% !important;
+  margin:0 auto !important; padding:4px 12px !important;
+  background:#fff !important;
+  border:1px solid #b69257 !important; border-radius:999px !important;
+  box-sizing:border-box !important;
+  color:#967644 !important; font-family:var(--font-display) !important;
+  font-size:calc(15px * var(--font-scale)) !important;
+  font-weight:600 !important; line-height:1 !important;
+  text-align:center !important; white-space:nowrap !important;
+}
+/* Landing page: same title/price visual language, with the title kept readable and compact. */
+.lp-product-title-price-frame.lp-product-head-top{
+  background:#f3e6d3 !important; border-color:#cdb997 !important;
+}
+.lp-product-title-price-frame.lp-product-head-top b{
+  font-size:calc(16px * var(--font-scale)) !important; font-weight:600 !important;
+  line-height:1.22 !important; color:#2d2924 !important;
+}
+.lp-product-title-price-frame.lp-product-head-top .lp-price,
+.lp-product-price-below{
+  background:#fff !important; border-color:#b69257 !important;
+}
+</style>
+<style id="luxia-final-exact-title-price-correction">
+/* FINAL: only the agreed title size + white price pill. */
+body.luxia-store-home .product-title-price-head .product-title-above-text{
+  font-size:calc(14px * var(--font-scale)) !important;
+  font-weight:600 !important;
+  line-height:1.25 !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+body.luxia-store-home .product-title-price-head .product-price-only{
+  background:#fff !important;
+  color:#967644 !important;
+}
+.lp-product-title-price-frame.lp-product-head-top b{
+  font-size:calc(16px * var(--font-scale)) !important;
+  font-weight:600 !important;
+  line-height:1.25 !important;
+}
+.lp-product-title-price-frame.lp-product-head-top .lp-price,
+.lp-product-price-below{
+  background:#fff !important;
+  color:#967644 !important;
+}
+</style>
+<style id="luxia-global-fixed-4x5-images">
+/*
+  LUXIA — GLOBAL IMAGE RATIO
+  Customer-facing product images on the main site + landing pages all use
+  a fixed 4:5 frame. The frame dimensions never depend on the source file.
+  object-fit:contain keeps the complete uploaded image visible.
+*/
+
+/* ===== MAIN SITE / COLLECTION PRODUCT CARDS ===== */
+body.luxia-store-home .product-card .product-visual,
+body.luxia-store-home .product-visual {
+  position: relative !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  aspect-ratio: 4 / 5 !important;
+  overflow: hidden !important;
+  flex: 0 0 auto !important;
+  box-sizing: border-box !important;
+}
+
+body.luxia-store-home .product-card .product-visual > .product-photo,
+body.luxia-store-home .product-visual > .product-photo {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  transform: none !important;
+  margin: 0 !important;
+  display: block !important;
+}
+
+/* Main-site product detail opened after clicking a product */
+body.luxia-store-home .product-detail-gallery,
+.product-detail-gallery {
+  width: 100% !important;
+  margin: 0 0 20px !important;
+}
+
+body.luxia-store-home .product-detail-main-image,
+.product-detail-main-image {
+  position: relative !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  aspect-ratio: 4 / 5 !important;
+  overflow: hidden !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  background: #eee9e1 !important;
+  border-radius: 14px !important;
+}
+
+body.luxia-store-home .product-detail-main-image img,
+.product-detail-main-image img,
+#productDetailMainImage {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  display: block !important;
+  margin: 0 !important;
+}
+
+/* ===== LANDING PAGES ===== */
+/* Main product image and optional second product image */
+.lp-main-gallery-wrap .lp-product-card-img,
+.lp-p2-gallery-wrap .lp-product-card-img,
+.lp-product-card-img {
+  position: relative !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  aspect-ratio: 4 / 5 !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  background: #eee9e1 !important;
+  overflow: hidden !important;
+}
+
+/* Landing-page gallery thumbnails: same 4:5 geometry */
+.lp-landing-thumbs .lp-landing-thumb,
+.lp-landing-thumb {
+  aspect-ratio: 4 / 5 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: hidden !important;
+}
+
+.lp-landing-thumbs .lp-landing-thumb img,
+.lp-landing-thumb img {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  display: block !important;
+}
+
+/* Other landing gallery images */
+.lp-gallery img {
+  aspect-ratio: 4 / 5 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+}
+
+/* Prevent image loading from changing any parent geometry */
+.lp-main-gallery-wrap,
+.lp-p2-gallery-wrap,
+.lp-landing-gallery,
+.lp-gallery,
+.product-detail-gallery {
+  min-height: 0 !important;
+}
+</style>
+<style id="luxia-store-card-price-final-fix">
+/* Store cards: title frame -> main image directly; price -> immediately before CTA. */
+body.luxia-store-home .product-title-price-head{
+  margin:0!important;
+  padding:0!important;
+}
+body.luxia-store-home .product-title-price-head .product-title-above{
+  min-height:0!important;
+  margin:0!important;
+}
+body.luxia-store-home .product-title-price-head + .product-visual{
+  margin-top:0!important;
+}
+body.luxia-store-home .product-info .product-price-bottom{
+  display:block!important;
+  width:max-content!important;
+  max-width:100%!important;
+  margin:0 auto 10px!important;
+  padding:5px 12px!important;
+  background:#fff!important;
+  border:1px solid #b69257!important;
+  border-radius:999px!important;
+  box-sizing:border-box!important;
+  color:#967644!important;
+  font-family:var(--font-display)!important;
+  font-size:16px!important;
+  font-weight:600!important;
+  line-height:1!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+}
+body.luxia-store-home .product-info .btn-order{
+  margin-top:0!important;
+}
+</style>
+<style id="luxia-3d-product-frame">
+/* =========================================================
+   LUXIA — ELEGANT 3D PRODUCT FRAME
+   Only visual card-frame styling. No product functionality touched.
+   ========================================================= */
+body.luxia-store-home .product-grid .product-card,
+body.luxia-store-home .product-grid > .product-card {
+  /* Fixed, unified frame geometry */
+  border: 1px solid rgba(174, 151, 112, 0.92) !important;
+  outline: 0 !important;
+  border-radius: 22px !important;
+  overflow: hidden !important;
+  background: #faf8f3 !important;
+
+  /* Layered depth: soft outer shadow + subtle lower lift */
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.95) inset,
+    0 0 0 1px rgba(255,255,255,.55) inset,
+    0 2px 0 rgba(151,128,91,.22),
+    0 7px 14px rgba(91,72,48,.10),
+    0 14px 24px rgba(91,72,48,.07) !important;
+
+  /* Keeps the frame itself independent from image dimensions */
+  box-sizing: border-box !important;
+  position: relative !important;
+}
+
+/* Fine inner highlight gives the border a restrained 3D edge. */
+body.luxia-store-home .product-grid .product-card::before,
+body.luxia-store-home .product-grid > .product-card::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: inherit !important;
+  pointer-events: none !important;
+  z-index: 20 !important;
+  border: 1px solid rgba(255,255,255,.62) !important;
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,.42),
+    inset -1px -1px 0 rgba(137,111,72,.16) !important;
+}
+
+/* Slightly deeper lower/right edge: the requested 3D side feeling. */
+body.luxia-store-home .product-grid .product-card::after,
+body.luxia-store-home .product-grid > .product-card::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 1px !important;
+  border-radius: 21px !important;
+  pointer-events: none !important;
+  z-index: 19 !important;
+  box-shadow:
+    inset -2px -2px 0 rgba(120,94,57,.08),
+    inset 2px 2px 0 rgba(255,255,255,.18) !important;
+}
+
+/* Preserve the existing unified image dimensions and behavior. */
+body.luxia-store-home .product-card .product-visual {
+  box-sizing: border-box !important;
+}
+</style>
+<style id="luxia-v7-exact-title-price-layout">
+/* Exact visual treatment requested: unified creamy title area, centered title,
+   compact framed price directly underneath. Presentation only. */
+body.luxia-store-home .product-title-price-head{
+  width:100%!important;
+  margin:0!important;
+  padding:10px 8px 9px!important;
+  background:#f3e6d3!important;
+  border:1px solid #cdb997!important;
+  border-radius:18px 18px 0 0!important;
+  box-sizing:border-box!important;
+  text-align:center!important;
+}
+body.luxia-store-home .product-title-price-head .product-title-above{
+  min-height:0!important;
+  padding:0 4px 7px!important;
+  margin:0!important;
+  background:transparent!important;
+  border:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+body.luxia-store-home .product-title-price-head .product-title-above-text{
+  width:100%!important;
+  font-family:var(--font-display)!important;
+  font-size:calc(19px * var(--font-scale))!important;
+  line-height:1.25!important;
+  font-weight:600!important;
+  color:#2d2924!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+body.luxia-store-home .product-title-price-head .product-price-only{
+  display:block!important;
+  width:max-content!important;
+  min-width:0!important;
+  margin:0 auto!important;
+  padding:4px 13px 5px!important;
+  background:#f3e6d3!important;
+  border:1px solid #b69257!important;
+  border-radius:999px!important;
+  box-sizing:border-box!important;
+  color:#967644!important;
+  font-family:var(--font-display)!important;
+  font-size:calc(16px * var(--font-scale))!important;
+  line-height:1.05!important;
+  font-weight:600!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+}
+@media(max-width:520px){
+  body.luxia-store-home .product-title-price-head{
+    padding:9px 6px 8px!important;
+    border-radius:18px 18px 0 0!important;
+  }
+  body.luxia-store-home .product-title-price-head .product-title-above-text{
+    font-size:calc(18px * var(--font-scale))!important;
+  }
+  body.luxia-store-home .product-title-price-head .product-price-only{
+    font-size:16px!important;
+    padding:4px 12px 5px!important;
+  }
+}
+
+/* Landing page: same visual hierarchy — title first, compact price pill directly below. */
+.lp-product-title-price-frame.lp-product-head-top{
+  margin:10px 0 0!important;
+  padding:10px 12px 8px!important;
+  background:#f3e6d3!important;
+  border:1px solid #cdb997!important;
+  border-bottom:0!important;
+  border-radius:18px 18px 0 0!important;
+  box-shadow:none!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+}
+.lp-product-title-price-frame.lp-product-head-top b{
+  display:block!important;
+  width:100%!important;
+  font-family:var(--font-display)!important;
+  font-size:calc(20px * var(--font-scale))!important;
+  font-weight:600!important;
+  line-height:1.25!important;
+  color:#2d2924!important;
+  text-align:center!important;
+}
+.lp-product-title-price-frame.lp-product-head-top .lp-price{
+  display:inline-flex!important;
+  width:max-content!important;
+  margin:0 auto!important;
+  padding:4px 13px 5px!important;
+  background:#f3e6d3!important;
+  border:1px solid #b69257!important;
+  border-radius:999px!important;
+  box-sizing:border-box!important;
+  color:#967644!important;
+  font-family:var(--font-display)!important;
+  font-size:calc(16px * var(--font-scale))!important;
+  font-weight:600!important;
+  line-height:1.05!important;
+  text-align:center!important;
+}
+</style>
+<style>
+.product-card::after{content:"";position:absolute;inset:6px;border:1px solid rgba(224,198,144,.20);border-radius:calc(var(--radius-l) - 5px);pointer-events:none;z-index:3}
+.product-card > *{position:relative;z-index:2}
+</style>
+<style id="luxia-v9-full-main-image">
+/* SITE: show the complete main product image, like the landing page; never crop it. */
+.product-visual > .product-photo{
+  width:100% !important;
+  height:auto !important;
+  aspect-ratio:auto !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+}
+</style>
+<style id="luxia-v4-product-card-alignment">
+/* V4 — product cards: framed CTA + perfectly aligned bottoms */
+body.luxia-store-home .product-grid{
+  align-items:stretch!important;
+}
+
+body.luxia-store-home .product-card{
+  height:100%!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-self:stretch!important;
+  border:1px solid #d9d1c6!important;
+  border-radius:14px!important;
+  background:#faf8f3!important;
+  overflow:hidden!important;
+  box-shadow:0 6px 22px -18px rgba(42,36,30,.28)!important;
+  padding:0 0 12px!important;
+}
+
+body.luxia-store-home .product-visual{
+  flex:0 0 auto!important;
+  margin:0!important;
+  padding:0!important;
+  border-radius:13px 13px 0 0!important;
+  overflow:hidden!important;
+}
+
+body.luxia-store-home .product-visual::after{
+  display:none!important;
+}
+
+body.luxia-store-home .product-info{
+  flex:1 1 auto!important;
+  display:flex!important;
+  flex-direction:column!important;
+  padding:14px 14px 0!important;
+  min-width:0!important;
+}
+
+body.luxia-store-home .product-desc{
+  flex:0 0 auto!important;
+  margin-bottom:10px!important;
+}
+
+body.luxia-store-home .swatch-row{
+  flex:0 0 auto!important;
+  margin-bottom:12px!important;
+}
+
+/* Keep the CTA visually strong and make it sit at the same baseline
+   in both cards of every grid row. */
+body.luxia-store-home .product-info .btn-order{
+  width:100%!important;
+  margin-top:auto!important;
+  min-height:46px!important;
+  padding:11px 12px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border:1px solid #292622!important;
+  border-radius:999px!important;
+  background:#292622!important;
+  color:#fffdf8!important;
+  text-align:center!important;
+  font-size:10.5px!important;
+  font-weight:500!important;
+  letter-spacing:.11em!important;
+  line-height:1.2!important;
+  text-decoration:none!important;
+  box-shadow:0 7px 18px -14px rgba(41,38,34,.8)!important;
+  transition:background .2s ease,border-color .2s ease,transform .2s ease!important;
+}
+
+body.luxia-store-home .product-info .btn-order:hover{
+  background:#403a34!important;
+  border-color:#403a34!important;
+  color:#fffdf8!important;
+  transform:translateY(-1px)!important;
+}
+
+/* If the price element is present, give it the same editorial hierarchy. */
+body.luxia-store-home .product-price{
+  flex:0 0 auto!important;
+  margin:0 0 10px!important;
+  color:#967644!important;
+  font-size:15px!important;
+  font-weight:600!important;
+}
+
+/* Mobile: keep the two cards balanced without making them excessively tall. */
+@media(max-width:520px){
+  body.luxia-store-home .product-grid{
+    align-items:stretch!important;
+    gap:18px 14px!important;
+  }
+  body.luxia-store-home .product-card{
+    min-height:100%!important;
+    padding-bottom:10px!important;
+  }
+  body.luxia-store-home .product-info{
+    padding:13px 11px 0!important;
+  }
+  body.luxia-store-home .product-info .btn-order{
+    min-height:43px!important;
+    font-size:9.5px!important;
+    padding:10px 7px!important;
+    letter-spacing:.08em!important;
+  }
+}
+
+/* Desktop keeps the same baseline logic. */
+@media(min-width:521px){
+  body.luxia-store-home .product-card{
+    padding-bottom:14px!important;
+  }
+  body.luxia-store-home .product-info{
+    padding:16px 16px 0!important;
+  }
+}
+</style>
+<style id="luxia-v6-product-detail">
+/* V6 — compact product card + gallery + full detail view */
+body.luxia-store-home .product-card{display:flex!important;flex-direction:column!important;height:100%!important;background:#faf8f3!important;border:1px solid #ddd5ca!important;border-radius:14px!important;overflow:hidden!important;box-shadow:0 7px 24px -20px rgba(42,36,30,.30)!important;}
+body.luxia-store-home .product-visual{aspect-ratio:1/1.22!important;position:relative!important;margin:0!important;overflow:hidden!important;border-radius:0!important;}
+body.luxia-store-home .product-visual > .product-photo{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important;background:#eee9e1!important;border-radius:0!important;transform:none!important;}
+body.luxia-store-home .product-visual:hover > .product-photo{transform:none!important;}
+body.luxia-store-home .product-visual::after{display:none!important;}
+body.luxia-store-home .product-gallery-strip{display:flex!important;gap:7px!important;overflow-x:auto!important;padding:8px 10px 2px!important;scrollbar-width:none!important;background:#faf8f3!important;}
+body.luxia-store-home .product-gallery-strip::-webkit-scrollbar{display:none!important;}
+body.luxia-store-home .product-gallery-thumb{flex:0 0 50px!important;width:50px!important;height:50px!important;padding:0!important;border:1px solid #dcd3c8!important;border-radius:8px!important;overflow:hidden!important;background:#f2eee7!important;cursor:pointer!important;}
+body.luxia-store-home .product-gallery-thumb.active{border-color:#b99a62!important;box-shadow:0 0 0 1px #b99a62!important;}
+body.luxia-store-home .product-gallery-thumb img{width:100%!important;height:100%!important;object-fit:contain!important;display:block!important;}
+body.luxia-store-home .product-info{display:flex!important;flex-direction:column!important;flex:1!important;padding:10px 11px 11px!important;}
+body.luxia-store-home .product-title-button{display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:8px!important;width:100%!important;padding:0!important;margin:0 0 10px!important;border:0!important;background:none!important;text-align:start!important;cursor:pointer!important;}
+body.luxia-store-home .product-title{font-family:'Cormorant Garamond','Amiri',serif!important;font-size:20px!important;line-height:1.05!important;font-weight:600!important;color:#302b27!important;}
+body.luxia-store-home .product-title-button:hover .product-title{text-decoration:underline!important;text-decoration-color:#b99a62!important;text-underline-offset:4px!important;}
+body.luxia-store-home .product-title-button .product-price{margin:0!important;white-space:nowrap!important;color:#967644!important;font-size:14px!important;font-weight:700!important;}
+body.luxia-store-home .product-sizes-row{display:flex!important;align-items:center!important;gap:5px!important;flex-wrap:wrap!important;margin:0 0 11px!important;}
+/* Homepage cards: keep variant details hidden to save vertical space. */
+body.luxia-store-home .product-card .swatch-row,
+body.luxia-store-home .product-card .product-sizes-row{display:none!important;}
+body.luxia-store-home .product-variants-label{font-size:10px!important;color:#827970!important;margin-inline-end:2px!important;}
+body.luxia-store-home .product-size-chip{font-size:9px!important;line-height:1!important;padding:5px 7px!important;border:1px solid #d8cfc3!important;border-radius:999px!important;color:#625a52!important;background:#fffdf9!important;}
+body.luxia-store-home .swatch-row{display:flex!important;align-items:center!important;gap:6px!important;flex-wrap:wrap!important;margin:0 0 12px!important;}
+body.luxia-store-home .swatch-label{font-size:10px!important;color:#827970!important;order:-1!important;}
+body.luxia-store-home .swatch{width:16px!important;height:16px!important;border-radius:50%!important;border:1px solid #cfc5b9!important;box-shadow:inset 0 0 0 2px #faf8f3!important;}
+body.luxia-store-home .product-info .btn-order{margin-top:auto!important;width:100%!important;min-height:43px!important;border:1px solid #292622!important;border-radius:999px!important;background:#292622!important;color:#fffdf8!important;padding:10px 8px!important;text-align:center!important;font-size:9.5px!important;letter-spacing:.08em!important;}
+body.luxia-store-home .product-info .btn-order:hover{background:#403a34!important;border-color:#403a34!important;}
+
+/* Detail modal */
+.product-detail-overlay .product-detail-modal .modal-head{
+  margin-bottom:0!important;
+  padding-bottom:0!important;
+}
+.product-detail-overlay .product-detail-modal #productDetailBody{
+  margin-top:0!important;
+}
+.product-detail-overlay .product-detail-modal .product-detail-gallery{
+  margin-top:0!important;
+}
+.product-detail-overlay{z-index:10050!important;}
+.product-detail-modal{max-width:760px!important;max-height:92svh!important;overflow-y:auto!important;background:#faf8f3!important;color:#302b27!important;border:1px solid #ddd5ca!important;}
+.product-detail-gallery{margin:2px 0 20px!important;}
+.product-detail-main-image{width:100%!important;height:min(58svh,520px)!important;background:#eee9e1!important;border-radius:14px!important;overflow:hidden!important;display:flex!important;align-items:center!important;justify-content:center!important;}
+.product-detail-main-image img{width:100%!important;height:100%!important;object-fit:contain!important;display:block!important;}
+.product-detail-thumbs{display:flex!important;gap:8px!important;overflow-x:auto!important;padding:10px 2px 2px!important;scrollbar-width:none!important;}
+.product-detail-thumbs::-webkit-scrollbar{display:none!important;}
+.product-detail-thumb{flex:0 0 72px!important;width:72px!important;height:72px!important;border:1px solid #d8cfc3!important;border-radius:10px!important;padding:0!important;overflow:hidden!important;background:#f2eee7!important;cursor:pointer!important;}
+.product-detail-thumb.active{border-color:#b99a62!important;box-shadow:0 0 0 1px #b99a62!important;}
+.product-detail-thumb img{width:100%!important;height:100%!important;object-fit:contain!important;display:block!important;}
+.product-detail-content{padding:0 2px 4px!important;}
+.product-detail-price{font-family:'Cormorant Garamond','Amiri',serif!important;font-size:25px!important;font-weight:600!important;color:#967644!important;margin-bottom:14px!important;}
+.product-detail-section{padding:14px 0;border-top:1px solid #e2dbd2!important;}
+.product-detail-section h4{margin:0 0 7px!important;font-family:'Cormorant Garamond','Amiri',serif!important;font-size:21px!important;font-weight:600!important;color:#302b27!important;}
+.product-detail-section p{margin:0!important;color:#6f6860!important;line-height:1.7!important;font-size:14px!important;}
+.product-detail-section ul{margin:0!important;padding-inline-start:20px!important;color:#6f6860!important;line-height:1.75!important;font-size:14px!important;}
+.product-detail-colors{display:flex!important;flex-wrap:wrap!important;gap:8px!important;}
+.product-detail-color{display:inline-flex!important;align-items:center!important;gap:6px!important;padding:7px 10px!important;border:1px solid #ddd5ca!important;border-radius:999px!important;background:#fffdf9!important;color:#625a52!important;font-size:11px!important;}
+.product-detail-color i{width:15px!important;height:15px!important;border-radius:50%!important;border:1px solid #cfc5b9!important;display:block!important;}
+.product-detail-sizes{display:flex!important;flex-wrap:wrap!important;gap:7px!important;}
+.product-detail-sizes span{min-width:38px!important;text-align:center!important;padding:8px 10px!important;border:1px solid #d8cfc3!important;border-radius:999px!important;background:#fffdf9!important;color:#5e574f!important;font-size:11px!important;}
+.product-detail-add{margin-top:12px!important;}
+@media(max-width:520px){
+ .product-detail-modal{max-height:94svh!important;padding:18px 15px 24px!important;}
+ .product-detail-main-image{height:56svh!important;}
+ .product-detail-thumb{flex-basis:62px!important;width:62px!important;height:62px!important;}
+ .product-title{font-size:18px!important;}
+}
+
+/* Add-to-cart modal: color choices stay as compact circles. */
+#variantOverlay .pill.color-pill{width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important;padding:4px!important;border-radius:50%!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;background:#faf8f3!important;border:1px solid #d8cfc3!important;}
+#variantOverlay .pill.color-pill.selected{background:#faf8f3!important;border-color:#967644!important;box-shadow:0 0 0 2px #967644!important;}
+#variantOverlay .variant-color-circle{display:block!important;width:22px!important;height:22px!important;border-radius:50%!important;border:1px solid rgba(80,70,60,.22)!important;box-shadow:inset 0 0 0 2px #faf8f3!important;}
+</style>
+<style id="luxia-v7-black-product-frame">
+body.luxia-store-home .product-card{
+  border:1.5px solid #292622!important;
+  box-shadow:none!important;
+}
+body.luxia-store-home .product-visual{
+  border-bottom:1px solid #ded6ca!important;
+}
+body.luxia-store-home .product-info .btn-order{
+  border:1px solid #292622!important;
+}
+</style>
+<style id="luxia-v7-admin-category-ui">
+.admin-catalog-type{
+  display:flex;gap:8px;flex-wrap:wrap;
+}
+.admin-help{
+  display:block;margin-top:6px;font-size:11px;color:#8a8178;
+}
+</style>
+<style id="luxia-v8-black-frame-final">
+/* Final override: the whole product card gets a clearly visible thin black frame. */
+body.luxia-store-home .product-grid .product-card,
+body.luxia-store-home .product-grid > .product-card{
+  border:1.5px solid #292622!important;
+  outline:1px solid rgba(41,38,34,.12)!important;
+  box-shadow:none!important;
+}
+
+/* Keep the image and content inside the black frame; no inner cream border. */
+body.luxia-store-home .product-card .product-visual{
+  border-bottom:1px solid #292622!important;
+}
+body.luxia-store-home .product-card .product-info{
+  border:0!important;
+}
+</style>
+<style id="luxia-v14-only-remove-separator">
+/* ONLY correction: remove the internal line below the main product image. */
+body.luxia-store-home .product-card .product-visual{
+  border-bottom:0!important;
+}
+</style>
+<style id="luxia-v15-title-width-refinement">
+/* V15: wider mobile cards + light standalone product title above the main image. */
+body.luxia-store-home .product-title-above{
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  min-height:34px!important;padding:7px 8px 6px!important;margin:0!important;
+  cursor:pointer!important;background:transparent!important;border:0!important;
+}
+body.luxia-store-home .product-title-above-text{
+  display:block!important;width:100%!important;text-align:center!important;
+  font-family:var(--font-display)!important;font-size:14px!important;line-height:1.3!important;
+  font-weight:500!important;color:#292622!important;
+  overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;
+}
+body.luxia-store-home .product-price-only{
+  flex:0 0 auto!important;margin:0 0 10px!important;text-align:center!important;
+  color:#967644!important;font-size:15px!important;font-weight:600!important;
+}
+@media(max-width:520px){
+  body.luxia-store-home .container{padding-left:10px!important;padding-right:10px!important;}
+  body.luxia-store-home .product-grid{gap:16px 8px!important;}
+  body.luxia-store-home .product-info{padding-left:9px!important;padding-right:9px!important;}
+  body.luxia-store-home .product-title-above{min-height:32px!important;padding:6px 6px 5px!important;}
+  body.luxia-store-home .product-title-above-text{font-size:13px!important;}
+}
+
+/* Landing page: keep the title clearly separated from the hero image, light and comfortable. */
+.lp-product-title-price-frame.lp-product-head-top{
+  margin:10px 0 12px!important;padding:9px 12px!important;
+  border:1px solid rgba(224,198,144,.48)!important;border-radius:12px!important;
+  box-shadow:none!important;background:#f3eadc!important;
+}
+.lp-product-title-price-frame.lp-product-head-top::before{display:none!important;}
+.lp-product-title-price-frame.lp-product-head-top b{
+  font-size:15px!important;font-weight:500!important;line-height:1.3!important;
+}
+.lp-product-title-price-frame.lp-product-head-top .lp-price{
+  font-size:15px!important;font-weight:500!important;
+}
+</style>
+<style id="luxia-title-attractive-final">
+/* Final title treatment: more visible, elegant, and consistent across store + landing page */
+.product-title-price-frame-top,
+.lp-product-title-price-frame{
+  background:#f3e6d3 !important;
+  border-color:rgba(178,145,91,.62) !important;
+}
+.product-title-price-frame-top h3{
+  font-size:calc(22px * var(--font-scale)) !important;
+  font-weight:600 !important;
+  letter-spacing:.01em !important;
+  color:#2d2924 !important;
+  line-height:1.25 !important;
+}
+.lp-product-title-price-frame b{
+  font-size:calc(22px * var(--font-scale)) !important;
+  font-weight:600 !important;
+  letter-spacing:.01em !important;
+  color:#2d2924 !important;
+  line-height:1.25 !important;
+}
+.product-title-price-frame-top .product-price,
+.lp-product-title-price-frame .lp-price{
+  color:#967644 !important;
+  font-weight:600 !important;
+}
+</style>
+<style id="luxia-title-price-final-adjustment">
+/* Only final title/price positioning and readability adjustment */
+.product-title-price-frame-top,
+.lp-product-title-price-frame{
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+}
+.product-title-price-frame-top h3,
+.lp-product-title-price-frame b{
+  font-size:calc(18px * var(--font-scale)) !important;
+  font-weight:600 !important;
+  line-height:1.28 !important;
+  text-align:center !important;
+  width:100% !important;
+}
+.product-title-price-frame-top .product-price,
+.lp-product-title-price-frame .lp-price{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:max-content !important;
+  max-width:100% !important;
+  margin:3px auto 0 !important;
+  padding:5px 11px !important;
+  background:#fff !important;
+  border:1px solid rgba(178,145,91,.48) !important;
+  border-radius:10px !important;
+  box-sizing:border-box !important;
+  text-align:center !important;
+}
+</style>
+<style id="luxia-title-price-exact-v11">
+/* V11 — exact title/price presentation: no colored title background; border only around title text. */
+.product-title-price-frame-top,
+.lp-product-title-price-frame.lp-product-head-top,
+.lp-product-title-price-frame{
+  margin:0 0 10px !important;
+  padding:7px 4px 5px !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:4px !important;
+  flex-wrap:nowrap !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+}
+.product-title-price-frame-top::before,
+.lp-product-title-price-frame::before{
+  display:none !important;
+}
+.product-title-price-frame-top h3,
+.lp-product-title-price-frame.lp-product-head-top b,
+.lp-product-title-price-frame b{
+  display:inline-block !important;
+  width:auto !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+  margin:0 !important;
+  padding:4px 10px !important;
+  border:1px solid rgba(178,145,91,.68) !important;
+  border-radius:11px !important;
+  background:transparent !important;
+  color:#302b27 !important;
+  font-family:var(--font-display) !important;
+  font-size:15px !important;
+  font-weight:600 !important;
+  line-height:1.18 !important;
+  letter-spacing:.01em !important;
+  text-align:center !important;
+  white-space:normal !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+}
+.product-title-price-frame-top .product-price,
+.lp-product-title-price-frame .lp-price{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:max-content !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+  margin:0 auto !important;
+  padding:3px 10px !important;
+  border:1px solid rgba(178,145,91,.52) !important;
+  border-radius:10px !important;
+  background:#fff !important;
+  color:#967644 !important;
+  font-family:var(--font-display) !important;
+  font-size:14px !important;
+  font-weight:600 !important;
+  line-height:1.15 !important;
+  white-space:nowrap !important;
+  text-align:center !important;
+}
+@media(max-width:520px){
+  .product-title-price-frame-top,
+  .lp-product-title-price-frame.lp-product-head-top,
+  .lp-product-title-price-frame{
+    margin-bottom:8px !important;
+    padding:6px 3px 4px !important;
+    gap:3px !important;
+  }
+  .product-title-price-frame-top h3,
+  .lp-product-title-price-frame.lp-product-head-top b,
+  .lp-product-title-price-frame b{
+    font-size:14px !important;
+    line-height:1.18 !important;
+    padding:4px 9px !important;
+  }
+  .product-title-price-frame-top .product-price,
+  .lp-product-title-price-frame .lp-price{
+    font-size:13px !important;
+    padding:3px 9px !important;
+  }
+}
+</style>
+<style id="luxia-exact-clean-title-price-v12">
+/* V12 — only the agreed visual correction:
+   transparent title area, compact title frame, centered white price pill. */
+body.luxia-store-home .product-title-price-head{
+  width:100% !important;
+  margin:0 !important;
+  padding:7px 6px 8px !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:5px !important;
+  box-sizing:border-box !important;
+  text-align:center !important;
+}
+body.luxia-store-home .product-title-price-head .product-title-above{
+  min-height:0 !important;
+  width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  box-sizing:border-box !important;
+}
+body.luxia-store-home .product-title-price-head .product-title-above-text{
+  display:inline-block !important;
+  width:auto !important;
+  max-width:calc(100% - 8px) !important;
+  margin:0 !important;
+  padding:3px 9px !important;
+  background:transparent !important;
+  border:1px solid rgba(178,145,91,.68) !important;
+  border-radius:10px !important;
+  box-sizing:border-box !important;
+  color:#2d2924 !important;
+  font-family:var(--font-display) !important;
+  font-size:15px !important;
+  font-weight:600 !important;
+  line-height:1.18 !important;
+  letter-spacing:.01em !important;
+  text-align:center !important;
+  white-space:normal !important;
+  overflow-wrap:anywhere !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+}
+body.luxia-store-home .product-title-price-head .product-price-only{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:max-content !important;
+  max-width:100% !important;
+  min-width:0 !important;
+  margin:0 auto !important;
+  padding:3px 9px !important;
+  background:#fff !important;
+  border:1px solid rgba(178,145,91,.60) !important;
+  border-radius:999px !important;
+  box-sizing:border-box !important;
+  color:#967644 !important;
+  font-family:var(--font-display) !important;
+  font-size:13px !important;
+  font-weight:600 !important;
+  line-height:1.1 !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+}
+
+/* Landing page: same hierarchy and proportions. */
+.lp-product-title-price-frame.lp-product-head-top{
+  margin:0 !important;
+  padding:7px 6px 8px !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:5px !important;
+  box-sizing:border-box !important;
+}
+.lp-product-title-price-frame.lp-product-head-top b{
+  display:inline-block !important;
+  width:auto !important;
+  max-width:calc(100% - 8px) !important;
+  margin:0 !important;
+  padding:3px 9px !important;
+  background:transparent !important;
+  border:1px solid rgba(178,145,91,.68) !important;
+  border-radius:10px !important;
+  box-sizing:border-box !important;
+  color:#2d2924 !important;
+  font-family:var(--font-display) !important;
+  font-size:15px !important;
+  font-weight:600 !important;
+  line-height:1.18 !important;
+  text-align:center !important;
+  white-space:normal !important;
+  overflow-wrap:anywhere !important;
+}
+.lp-product-title-price-frame.lp-product-head-top .lp-price,
+.lp-product-price-below{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:max-content !important;
+  max-width:100% !important;
+  margin:0 auto !important;
+  padding:3px 9px !important;
+  background:#fff !important;
+  border:1px solid rgba(178,145,91,.60) !important;
+  border-radius:999px !important;
+  box-sizing:border-box !important;
+  color:#967644 !important;
+  font-family:var(--font-display) !important;
+  font-size:13px !important;
+  font-weight:600 !important;
+  line-height:1.1 !important;
+  white-space:nowrap !important;
+}
+@media(max-width:520px){
+  body.luxia-store-home .product-title-price-head,
+  .lp-product-title-price-frame.lp-product-head-top{
+    padding:6px 4px 7px !important;
+    gap:4px !important;
+  }
+  body.luxia-store-home .product-title-price-head .product-title-above-text,
+  .lp-product-title-price-frame.lp-product-head-top b{
+    font-size:14px !important;
+    line-height:1.18 !important;
+    padding:3px 8px !important;
+  }
+  body.luxia-store-home .product-title-price-head .product-price-only,
+  .lp-product-title-price-frame.lp-product-head-top .lp-price,
+  .lp-product-price-below{
+    font-size:13px !important;
+    padding:3px 8px !important;
+  }
+}
+</style>
+<style id="luxia-v13-unified-title-header">
+/* V13: unified full-width cream title header; compact white price pill. */
+body.luxia-store-home .product-title-price-head,
+.lp-product-title-price-frame.lp-product-head-top{
+  width:100% !important;
+  min-height:82px !important;
+  height:82px !important;
+  margin:0 !important;
+  padding:8px 10px !important;
+  background:#f3e6d3 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:5px !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+
+body.luxia-store-home .product-title-price-head .product-title-above,
+.lp-product-title-price-frame.lp-product-head-top b{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:100% !important;
+  max-width:100% !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  box-sizing:border-box !important;
+  color:#2d2924 !important;
+  font-family:var(--font-display) !important;
+  font-size:15px !important;
+  font-weight:600 !important;
+  line-height:1.15 !important;
+  letter-spacing:.01em !important;
+  text-align:center !important;
+  white-space:normal !important;
+  overflow-wrap:normal !important;
+  overflow:hidden !important;
+  text-overflow:clip !important;
+}
+body.luxia-store-home .product-title-price-head .product-title-above-text{
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  margin:0 !important;
+  padding:0 2px !important;
+  color:#2d2924 !important;
+  font-family:var(--font-display) !important;
+  font-size:15px !important;
+  font-weight:600 !important;
+  line-height:1.15 !important;
+  text-align:center !important;
+  white-space:normal !important;
+  overflow-wrap:break-word !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+}
+
+body.luxia-store-home .product-title-price-head .product-price-only,
+.lp-product-title-price-frame.lp-product-head-top .lp-price,
+.lp-product-price-below{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:max-content !important;
+  max-width:100% !important;
+  min-width:0 !important;
+  margin:0 auto !important;
+  padding:3px 9px !important;
+  background:#fff !important;
+  border:1px solid #b69257 !important;
+  border-radius:999px !important;
+  box-sizing:border-box !important;
+  color:#967644 !important;
+  font-family:var(--font-display) !important;
+  font-size:13px !important;
+  font-weight:600 !important;
+  line-height:1.1 !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+}
+@media(max-width:520px){
+  body.luxia-store-home .product-title-price-head,
+  .lp-product-title-price-frame.lp-product-head-top{
+    min-height:78px !important;
+    height:78px !important;
+    padding:7px 8px !important;
+    gap:4px !important;
+  }
+  body.luxia-store-home .product-title-price-head .product-title-above-text,
+  .lp-product-title-price-frame.lp-product-head-top b{
+    font-size:14px !important;
+    line-height:1.16 !important;
+  }
+  body.luxia-store-home .product-title-price-head .product-price-only,
+  .lp-product-title-price-frame.lp-product-head-top .lp-price,
+  .lp-product-price-below{
+    font-size:13px !important;
+    padding:3px 8px !important;
+  }
+}
+</style>
+<style id="luxia-final-title-price-refinement">
+/* Final refinement: preserve the site's original background around title/price */
+.product-card .product-info,
+.product-card .product-meta,
+.product-card .product-header,
+.product-card .title-price-area {
+  background: transparent !important;
+}
+
+/* Keep the title header unified in size, with cream treatment only on its frame */
+.product-card .product-title,
+.product-card .title,
+.product-card h3 {
+  background: transparent !important;
+  border: 1.5px solid #d8c4a6 !important;
+  box-sizing: border-box !important;
+}
+
+/* Price: white interior, compact frame, slightly more visible border */
+.product-card .product-price,
+.product-card .price,
+.product-card .price-pill {
+  background: #ffffff !important;
+  border: 1.5px solid #b99a6b !important;
+  box-sizing: border-box !important;
+}
+</style>
+<style id="luxia-background-final-fix">
+/* Remove cream from the whole title/price area; keep only the title frame cream. */
+.product-card .product-info,
+.product-card .product-meta,
+.product-card .product-header,
+.product-card .title-price-area,
+.product-card .title-price,
+.product-card .product-top {
+  background: var(--site-bg, transparent) !important;
+  background-color: var(--site-bg, transparent) !important;
+}
+
+/* Title: cream is only the frame itself, not the surrounding area. */
+.product-card .product-title,
+.product-card .title,
+.product-card h3 {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1.5px solid #d8c4a6 !important;
+}
+
+/* Price: white only inside the compact price frame. */
+.product-card .product-price,
+.product-card .price,
+.product-card .price-pill {
+  background: #fff !important;
+  background-color: #fff !important;
+  border: 1.5px solid #b99a6b !important;
+}
+</style>
+<style id="luxia-v15-background-only-fix">
+/* ONLY fix the real title/price wrapper background on the store and landing page. */
+body.luxia-store-home .product-title-price-head,
+.lp-product-title-price-frame.lp-product-head-top {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Keep the title frame itself cream-toned, without filling the surrounding area. */
+body.luxia-store-home .product-title-price-head .product-title-above-text,
+.lp-product-title-price-frame.lp-product-head-top b {
+  background: transparent !important;
+}
+
+/* Keep the compact price pill white. */
+body.luxia-store-home .product-title-price-head .product-price-only,
+.lp-product-title-price-frame.lp-product-head-top .lp-price,
+.lp-product-price-below {
+  background: #fff !important;
+  background-color: #fff !important;
+}
+</style>
+<style id="luxia-final-title-border-price-white">
+/* ONLY: make the unified title frame more visible, while keeping its surrounding area transparent. */
+body.luxia-store-home .product-title-price-head,
+.lp-product-title-price-frame.lp-product-head-top {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 2px solid #d8c4a6 !important;
+  border-radius: 12px !important;
+  box-sizing: border-box !important;
+}
+
+/* Keep title text itself clean; the cream is the frame, not a fill. */
+body.luxia-store-home .product-title-price-head .product-title-above,
+body.luxia-store-home .product-title-price-head .product-title-above-text,
+.lp-product-title-price-frame.lp-product-head-top b {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Price: pure white interior with a slightly stronger visible frame. */
+body.luxia-store-home .product-title-price-head .product-price-only,
+.lp-product-title-price-frame.lp-product-head-top .lp-price,
+.lp-product-price-below {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border: 1.5px solid #b99a6b !important;
+  box-sizing: border-box !important;
+}
+</style>
+<style id="luxia-v16-exact-title-price">
+/* TITLE: one independent full-width cream frame; never wraps the price. */
+body.luxia-store-home .product-title-price-head,
+.lp-product-title-price-frame.lp-product-head-top {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  margin: 0 0 10px !important;
+  padding: 0 !important;
+}
+
+/* The title itself is the cream frame. Same footprint for every product. */
+body.luxia-store-home .product-title-price-head .product-title-above-text,
+.lp-product-title-price-frame.lp-product-head-top b {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 7px 8px !important;
+  background: #d9c2a0 !important;
+  background-color: #d9c2a0 !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  color: #2d2924 !important;
+  text-align: center !important;
+  font-weight: 600 !important;
+  line-height: 1.18 !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+/* FINAL: title frame flush with the top and sides, with no corner gap. */
+body.luxia-store-home .product-title-price-head .product-title-above-text,
+.lp-product-title-price-frame.lp-product-head-top b {
+  border-radius: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* FINAL: make the title frame flush with the product card top edge. */
+body.luxia-store-home .product-title-price-head .product-title-above-text {
+  margin-top: -1px !important;
+  margin-inline: -1px !important;
+  width: calc(100% + 2px) !important;
+  max-width: none !important;
+}
+
+/* FINAL HOME PRODUCTS FIX: remove the remaining top gap above the title frame. */
+body.luxia-store-home .product-title-price-head {
+  min-height:0 !important;
+  height:auto !important;
+  margin:0 !important;
+  padding:0 !important;
+  justify-content:flex-start !important;
+  gap:0 !important;
+  overflow:visible !important;
+}
+
+/* PRICE: independent frame around the price only, white. */
+body.luxia-store-home .product-title-price-head .product-price-only,
+.lp-product-title-price-frame.lp-product-head-top .lp-price,
+.lp-product-price-below {
+  display: inline-flex !important;
+  width: auto !important;
+  max-width: max-content !important;
+  margin: 4px auto 0 !important;
+  padding: 7px 9px !important;
+  background: #292622 !important;
+  background-color: #292622 !important;
+  border: 1.5px solid #ffffff !important;
+  border-radius: 10px !important;
+  box-sizing: border-box !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  color: #ffffff !important;
+  white-space: nowrap !important;
+}
+</style>
+<style id="luxia-pyjama-products-title-top-flush">
+/* Landing page product cards: remove only the top gap above the title frame. */
+.lp-product-card:not(.lp-order-success) .lp-product-title-price-frame.lp-product-head-top {
+  margin-top: -18px !important;
+  margin-inline: -18px !important;
+  width: calc(100% + 36px) !important;
+  max-width: none !important;
+}
+</style>
+<style>
+/* LANDING PAGE: product card width matches the homepage product cards */
+.lp-product-card:not(.lp-order-success){
+  width:100% !important;
+  max-width:321px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+@media(max-width:639px){
+  .lp-product-card:not(.lp-order-success){
+    max-width:100% !important;
+  }
+}
+</style>
+<style id="luxia-pourquoi-gold-final">
+/* Titre « Pourquoi LUXIA » en doré */
+.why .section-head h2{
+  color:var(--gold-soft) !important;
+  text-shadow:0 1px 10px rgba(199,161,92,.12);
+}
+</style>
+<style id="luxia-final-detail-layout-fix">
+/* فقط ترتيب نافذة تفاصيل المنتج */
+#productDetailOverlay .product-detail-modal .modal-head{
+  margin-bottom:0!important;
+  padding-bottom:0!important;
+}
+#productDetailOverlay .product-detail-modal #productDetailBody{
+  margin-top:0!important;
+}
+#productDetailOverlay .product-detail-modal .product-detail-gallery{
+  margin:0!important;
+}
+#productDetailOverlay .product-detail-modal .product-detail-price{
+  margin-top:0!important;
+  margin-bottom:12px!important;
+}
+#productDetailOverlay .product-detail-modal .product-detail-add{
+  margin-top:0!important;
+}
+</style>
+<style id="luxia-final-main-image-flush-fix">
+/* الصورة الرئيسية تملأ الإطار مباشرة تحت إطار العنوان بلا مساحة بيضاء */
+body.luxia-store-home .product-card .product-title-price-head + .product-visual > .product-photo{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+}
+body.luxia-store-home .product-card .product-title-price-head + .product-visual{
+  margin-top:0!important;
+  padding:0!important;
+}
+</style>
+<style id="luxia-natural-product-photo-final">
+/* Cadre produit à taille unique, quelle que soit la photo : chaque vignette
+   garde exactement le même format 4:5 sur toute la grille (plus de cartes
+   qui rétrécissent/s'agrandissent selon la taille de l'image = plus d'effet
+   de "tremblement" visuel). L'image reste entière dans ce cadre fixe, SANS
+   zoom ni recadrage — une petite photo garde sa taille réelle, centrée. */
+body.luxia-store-home .product-card .product-visual,
+body.luxia-store-home .product-card .product-title-price-head + .product-visual{
+  position:relative!important;
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:4/5!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:hidden!important;
+  padding:0!important;
+  margin:0!important;
+  background:#faf8f3!important;
+}
+
+body.luxia-store-home .product-card .product-visual > .product-photo,
+body.luxia-store-home .product-card .product-title-price-head + .product-visual > .product-photo{
+  position:absolute!important;
+  inset:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-width:none!important;
+  max-height:none!important;
+  aspect-ratio:auto!important;
+  object-fit:contain!important;
+  object-position:center top!important;
+  transform:none!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+}
+
+/* حتى hover ما يدير حتى zoom. */
+body.luxia-store-home .product-card:hover .product-photo,
+body.luxia-store-home .product-card .product-visual:hover > .product-photo{
+  transform:none!important;
+}
+
+/* Detail view: حتى ملي كتفتح المنتوج، الصورة كتبقى بنفس النسبة الأصلية. */
+body.luxia-store-home .product-detail-main-image{
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:hidden!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:#eee9e1!important;
+}
+
+body.luxia-store-home .product-detail-main-image img,
+body.luxia-store-home #productDetailMainImage{
+  position:relative!important;
+  inset:auto!important;
+  width:100%!important;
+  height:auto!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-width:none!important;
+  max-height:none!important;
+  aspect-ratio:auto!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  transform:none!important;
+  display:block!important;
+  margin:0!important;
+}
+</style>
+<style id="luxia-landing-collection-menu">
+/* Landing page collection menu — same collection source/order as the main store. */
+.lp-collection-header{position:fixed;top:0;left:0;right:0;z-index:980;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;background:rgba(250,248,243,.97);border-bottom:1px solid #e2dcd3;box-shadow:0 4px 18px rgba(42,36,30,.06);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.lp-collection-menu-btn{width:42px;height:42px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:0;background:transparent;color:#514c47;cursor:pointer;flex:none}
+.lp-collection-menu-btn span{display:block;width:24px;height:1.5px;background:currentColor;transition:.2s ease}
+.lp-collection-logo{position:absolute;left:50%;transform:translateX(-50%);font-family:'Cormorant Garamond','Amiri',serif;font-size:25px;font-weight:600;letter-spacing:.04em;color:#292622;white-space:nowrap}
+.lp-collection-logo-heart{color:#b99a62;font-size:.65em;margin-inline-start:3px}
+.lp-collection-header .lp-cart-fab{position:relative;top:auto;right:auto;width:42px;height:42px;border:0;border-radius:0;background:transparent;color:#514c47;box-shadow:none;font-size:22px;flex:none}
+.lp-collection-header .lp-cart-fab:hover{transform:none;box-shadow:none;color:#292622}
+.lp-collection-header .lp-cart-count{top:-1px;right:-1px;min-width:17px;height:17px;font-size:10px;background:#b99a62;color:#fff;border:1px solid #f7f4ee;box-shadow:none}
+/* Landing header actions (lang switch + cart) — same visual language as the main store header. */
+.lp-collection-actions{display:flex;align-items:center;gap:6px;flex:none}
+.lp-collection-header .lang-switch{display:flex;align-items:center;gap:2px;padding:2px;border:1px solid #d8d0c5;border-radius:999px;background:#faf8f3;flex:none}
+.lp-collection-header .lang-switch button{min-width:34px;height:30px;padding:4px 8px;border-radius:999px;color:#70685f;background:transparent;font-size:10px;letter-spacing:.08em;line-height:1;white-space:nowrap}
+.lp-collection-header .lang-switch button.active{background:#292622;color:#fffdf8;font-weight:600}
+@media(max-width:639px){
+  .lp-collection-actions{gap:5px}
+  .lp-collection-header .lang-switch{padding:2px}
+  .lp-collection-header .lang-switch button{min-width:31px;height:28px;padding:4px 7px;font-size:9px}
+}
+.lp-collection-drawer{position:fixed;inset:0;z-index:1100;background:rgba(42,36,30,.28);display:none}
+.lp-collection-drawer.open{display:block}
+.lp-collection-panel{position:absolute;top:0;bottom:0;inset-inline-start:0;width:min(330px,88vw);background:#f7f4ee;border-inline-end:1px solid #ddd6cc;box-shadow:16px 0 40px rgba(42,36,30,.16);padding:76px 20px 24px;overflow:auto}
+.lp-collection-panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:15px;border-bottom:1px solid #ddd6cc;margin-bottom:8px;color:#292622}
+.lp-collection-panel-title{font-family:'Cormorant Garamond','Amiri',serif;font-size:25px;font-weight:600}
+.lp-collection-panel-close{width:36px;height:36px;border:1px solid #d9d0c3;border-radius:50%;background:#fffdf9;color:#514c47;font-size:22px;line-height:1;cursor:pointer}
+.lp-collection-list{display:flex;flex-direction:column}
+.lp-collection-list button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 4px;border:0;border-bottom:1px solid #e5dfd6;background:transparent;color:#4f4943;font-family:'Amiri','Jost',sans-serif;font-size:17px;text-align:start;cursor:pointer}
+.lp-collection-list button:hover{color:#9f8059;background:#fffdf9}
+.lp-collection-list button span:last-child{font-family:Arial,sans-serif;color:#b99a62;font-size:20px}
+.lp-theme-pyjama,.lp-theme-pyjama .lp-hero-pyjama{padding-top:0}
+.lp-theme-pyjama .lp-hero-pyjama{padding-top:58px}
+@media(min-width:900px){.lp-collection-header{height:64px;padding:0 28px}.lp-collection-panel{width:360px}.lp-collection-list button{font-size:18px}}
+</style>
+<style id="luxia-landing-current-site-theme">
+/* ============================================================
+   LUXIA LANDING PAGE — align completely with current store theme
+   Palette: warm ivory / espresso / muted camel-gold.
+   No landing-page functionality is changed.
+   ============================================================ */
+
+html.lp-pyjama-active,
+body.lp-pyjama-active{
+  background:#f7f4ee!important;
+  color:#292622!important;
+}
+
+.lp-theme-pyjama{
+  --bg-deep:#f7f4ee;
+  --bg-plum:#f1ede5;
+  --bg-plum-2:#ebe5da;
+  --ivory:#292622;
+  --ivory-dim:#6f6962;
+  --rose:#b99a72;
+  --rose-deep:#9f8059;
+  --gold:#b99a62;
+  --gold-soft:#c9ad79;
+  --line:#ddd6cc;
+  --shadow:0 14px 38px -24px rgba(42,36,30,.28);
+  background:#f7f4ee!important;
+  color:#292622!important;
+}
+
+.lp-theme-pyjama,
+.lp-theme-pyjama *{
+  --lp-current-bg:#f7f4ee;
+  --lp-current-card:#fffdf9;
+  --lp-current-text:#292622;
+  --lp-current-muted:#6f6962;
+  --lp-current-gold:#b99a62;
+  --lp-current-gold-soft:#c9ad79;
+  --lp-current-line:#ddd6cc;
+}
+
+/* Header */
+.lp-pyjama-header{
+  background:rgba(250,248,243,.97)!important;
+  border-bottom:1px solid #e2dcd3!important;
+  box-shadow:none!important;
+  color:#292622!important;
+}
+.lp-pyjama-logo{
+  color:#292622!important;
+  font-family:'Cormorant Garamond','Amiri',serif!important;
+}
+.lp-logo-heart{color:#b99a62!important;}
+.lp-pyjama-menu{color:#59534d!important;}
+
+/* Hero */
+.lp-hero-pyjama,
+.lp-theme-pyjama .lp-hero{
+  background:#f7f4ee!important;
+}
+.lp-theme-pyjama .lp-hero::before{
+  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(247,244,238,.96) 78%)!important;
+}
+.lp-hero-photo{
+  box-shadow:0 14px 30px -14px rgba(42,36,30,.25)!important;
+}
+.lp-hero-scribble{
+  color:#292622!important;
+  background:#fffdf9e8!important;
+  box-shadow:0 8px 18px rgba(42,36,30,.12)!important;
+}
+.lp-scribble-heart{color:#b99a62!important;}
+
+.lp-theme-pyjama .lp-kicker,
+.lp-hero-body .lp-kicker{
+  background:#fffdf9!important;
+  color:#9f8059!important;
+  border-color:#ddd6cc!important;
+}
+.lp-theme-pyjama .lp-title,
+.lp-hero-body .lp-title{
+  color:#292622!important;
+}
+.lp-theme-pyjama .lp-price{
+  background:#fffdf9!important;
+  border-color:#d9d0c3!important;
+  color:#9f8059!important;
+  box-shadow:0 14px 38px -24px rgba(42,36,30,.28)!important;
+}
+.lp-theme-pyjama .lp-old-price{color:#6f6962!important;}
+.lp-theme-pyjama .lp-discount-badge{
+  background:#b99a62!important;
+  color:#fff!important;
+}
+
+/* Main CTA / buttons */
+.lp-theme-pyjama .lp-cta,
+.lp-theme-pyjama .lp-choose-btn,
+.lp-theme-pyjama .lp-submit{
+  background:#292622!important;
+  color:#fff!important;
+  box-shadow:0 12px 26px -16px rgba(42,36,30,.45)!important;
+}
+.lp-theme-pyjama .lp-cta:hover,
+.lp-theme-pyjama .lp-choose-btn:hover,
+.lp-theme-pyjama .lp-submit:hover{
+  background:#3a3530!important;
+}
+
+/* Cards / sections */
+.lp-theme-pyjama .lp-card,
+.lp-theme-pyjama .lp-review,
+.lp-theme-pyjama .lp-pack-banner{
+  background:#fffdf9!important;
+  border-color:#ddd6cc!important;
+  box-shadow:0 14px 38px -24px rgba(42,36,30,.28)!important;
+}
+.lp-theme-pyjama .lp-pack-banner{
+  background:linear-gradient(135deg,#fffdf9,#f1ede5)!important;
+}
+.lp-pack-badge{
+  background:#b99a62!important;
+  color:#fff!important;
+}
+.lp-pack-label,
+.lp-pack-price{
+  color:#292622!important;
+}
+.lp-pack-price{color:#9f8059!important;}
+.lp-pack-oldprice{color:#6f6962!important;}
+
+/* Feature icons / swatches / sizes */
+.lp-theme-pyjama .lp-feature-chip,
+.lp-theme-pyjama .lp-review-city,
+.lp-theme-pyjama .lp-review-text{
+  color:#6f6962!important;
+}
+.lp-theme-pyjama .lp-feature-chip .ico{
+  background:#fffdf9!important;
+  border-color:#ddd6cc!important;
+  color:#b99a62!important;
+}
+.lp-theme-pyjama .pill{
+  background:#fffdf9!important;
+  border-color:#d9d0c3!important;
+  color:#292622!important;
+}
+.lp-theme-pyjama .pill.selected{
+  background:#b99a62!important;
+  border-color:#b99a62!important;
+  color:#fff!important;
+}
+.lp-theme-pyjama .lp-size-chip{
+  background:#fffdf9!important;
+  border-color:#d9d0c3!important;
+  color:#292622!important;
+}
+.lp-theme-pyjama .lp-review-avatar{
+  background:linear-gradient(135deg,#d8c3a1,#b99a62)!important;
+}
+
+/* Product/gallery elements inside the landing page */
+.lp-theme-pyjama .lp-product-card,
+.lp-theme-pyjama .lp-product-card-inner{
+  background:#fffdf9!important;
+  border-color:#ddd6cc!important;
+  color:#292622!important;
+}
+.lp-theme-pyjama .lp-product-card-img{
+  background:#f1ede5!important;
+}
+.lp-theme-pyjama .lp-landing-thumb{
+  background:#f1ede5!important;
+  border-color:#c9ad79!important;
+}
+
+/* Cart — this is the part that was still using the old maroon/pink skin */
+body.lp-pyjama-active .lp-cart-fab{
+  background:#fffdf9e8!important;
+  border:1px solid #d9d0c3!important;
+  color:#514b45!important;
+  box-shadow:0 8px 20px -8px rgba(42,36,30,.28)!important;
+}
+body.lp-pyjama-active .lp-cart-count{
+  background:#b99a62!important;
+  color:#fff!important;
+  border-color:#fffdf9!important;
+  box-shadow:none!important;
+}
+body.lp-pyjama-active .lp-cart-panel,
+body.lp-pyjama-active .lp-cart-drawer{
+  background:#fffdf9!important;
+  border-color:#ddd6cc!important;
+  color:#292622!important;
+}
+body.lp-pyjama-active .lp-cart-head,
+body.lp-pyjama-active .lp-cart-head > div,
+body.lp-pyjama-active .lp-cart-item-name,
+body.lp-pyjama-active .lp-cart-item-meta,
+body.lp-pyjama-active .lp-cart-live,
+body.lp-pyjama-active .lp-cart-live > div,
+body.lp-pyjama-active .lp-cart-live .lp-cart-item > div{
+  color:#292622!important;
+  opacity:1!important;
+}
+body.lp-pyjama-active .lp-cart-item-meta{
+  color:#6f6962!important;
+}
+body.lp-pyjama-active .lp-cart-total{
+  border-top-color:#ddd6cc!important;
+  color:#292622!important;
+}
+body.lp-pyjama-active .lp-cart-total strong{
+  color:#9f8059!important;
+}
+body.lp-pyjama-active .lp-cart-item{
+  border-color:#ddd6cc!important;
+}
+body.lp-pyjama-active .lp-cart-close{
+  color:#514b45!important;
+}
+body.lp-pyjama-active .lp-cart-remove{
+  color:#9f8059!important;
+}
+body.lp-pyjama-active #lp-cart-checkout{
+  background:#292622!important;
+  color:#fff!important;
+}
+
+/* Order success */
+body.lp-pyjama-active .lp-order-success{
+  background:#fffdf9!important;
+  border-color:#c9ad79!important;
+  box-shadow:0 14px 38px -24px rgba(42,36,30,.28)!important;
+}
+body.lp-pyjama-active .lp-success-icon{
+  background:#b99a62!important;
+  box-shadow:0 8px 20px rgba(42,36,30,.18)!important;
+}
+body.lp-pyjama-active .lp-success-title{
+  color:#292622!important;
+}
+body.lp-pyjama-active .lp-success-text{
+  color:#6f6962!important;
+}
+
+/* Lightbox */
+body.lp-pyjama-active .lp-lightbox{
+  background:rgba(41,38,34,.90)!important;
+}
+body.lp-pyjama-active .lp-lightbox-close{
+  background:#fffdf9e8!important;
+  color:#292622!important;
+}
+
+/* Sticky CTA */
+.lp-theme-pyjama .lp-sticky-pyjama{
+  background:#fffdf9f2!important;
+  border-top-color:#ddd6cc!important;
+  box-shadow:0 -10px 24px rgba(42,36,30,.10)!important;
+}
+
+/* Keep WhatsApp recognizable; only remove old theme shadow */
+.lp-theme-pyjama .lp-wa-float{
+  box-shadow:0 10px 22px rgba(42,36,30,.20)!important;
+}
+
+/* Remove the old pink decorative pulse colors */
+body.lp-pyjama-active .lp-attention-signal{
+  box-shadow:0 0 0 5px rgba(185,154,98,.16),0 0 28px rgba(185,154,98,.26)!important;
+}
+body.lp-pyjama-active .lp-attention-signal::after{
+  /* only the visual pointer remains */
+}
+</style>
+<style id="luxia-landing-cart-theme-fix">
+/* The landing-page cart drawer (#lp-cart-drawer / .lp-cart-panel) is appended as a
+   SIBLING of <main class="lp-preview">, not a descendant — so the ".lp-preview …"
+   rules meant to give the whole landing page the current cream store look never
+   actually reached it, and it kept rendering in the old dark plum theme. Restyle
+   it directly here so it always matches the rest of the page. */
+.lp-cart-drawer{background:rgba(42,36,30,.38)!important;}
+.lp-cart-panel{background:#faf8f3!important;border:1px solid #ddd5ca!important;color:#302b27!important;box-shadow:0 -20px 55px rgba(37,31,26,.18)!important;}
+.lp-cart-head{border-bottom:1px solid #e4ded5!important;padding-bottom:12px!important;}
+.lp-cart-head > div{color:#292622!important;}
+.lp-cart-close{color:#665f58!important;}
+.lp-cart-close:hover{color:#292622!important;}
+.lp-cart-item{border-bottom:1px solid #e4ded5!important;}
+.lp-cart-item-name{color:#292622!important;}
+.lp-cart-item-meta{color:#7b736b!important;}
+.lp-cart-remove{color:#a64f48!important;text-decoration:none!important;font-weight:600!important;}
+.lp-cart-empty{color:#7b736b!important;}
+.lp-cart-total{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding-top:12px;border-top:1px solid #e4ded5;color:#292622;font-family:var(--font-display);font-size:calc(19px * var(--font-scale));font-weight:700;}
+.lp-cart-total strong{color:#9f8059;}
+</style>
+<style id="luxia-shipping-info">
+.luxia-shipping-info,
+.lp-shipping-info{
+  margin-top:10px!important;
+  padding:10px 12px!important;
+  border:1px solid #ddd6cc!important;
+  border-radius:10px!important;
+  background:#f7f4ee!important;
+  color:#514b45!important;
+  font-size:12px!important;
+  line-height:1.5!important;
+}
+.luxia-shipping-info > div,
+.lp-shipping-info > div{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  padding:3px 0!important;
+}
+.luxia-shipping-info strong,
+.lp-shipping-info strong{
+  color:#9f8059!important;
+  font-weight:700!important;
+  white-space:nowrap!important;
+}
+.luxia-shipping-info p,
+.lp-shipping-info p{
+  margin:7px 0 0!important;
+  padding-top:7px!important;
+  border-top:1px solid #e4ded5!important;
+  color:#7a736b!important;
+  font-size:10.5px!important;
+  line-height:1.45!important;
+}
+</style>
+<style id="luxia-shipping-transparency-v8">
+.luxia-shipping-info,
+.lp-shipping-info{
+  margin-top:10px!important;
+  padding:11px 12px!important;
+  border:1px solid #ddd6cc!important;
+  border-radius:10px!important;
+  background:#f7f4ee!important;
+  color:#514b45!important;
+  font-size:12px!important;
+  line-height:1.5!important;
+}
+.luxia-shipping-info > div,
+.lp-shipping-info > div{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:10px!important;
+  padding:4px 0!important;
+}
+.luxia-shipping-info strong,
+.lp-shipping-info strong{
+  color:#9f8059!important;
+  font-weight:700!important;
+  white-space:nowrap!important;
+  text-align:right!important;
+}
+.luxia-shipping-info p,
+.lp-shipping-info p{
+  margin:7px 0 0!important;
+  padding-top:7px!important;
+  border-top:1px solid #e4ded5!important;
+  color:#7a736b!important;
+  font-size:10.5px!important;
+  line-height:1.45!important;
+}
+@media(max-width:520px){
+  .luxia-shipping-info,
+  .lp-shipping-info{font-size:11px!important;padding:10px!important;}
+  .luxia-shipping-info > div,
+  .lp-shipping-info > div{gap:7px!important;}
+  .luxia-shipping-info strong,
+  .lp-shipping-info strong{font-size:10.5px!important;}
+}
+</style>
+<style id="luxia-delivery-checkout-v9">
+#fCityType,#fCityOther,#lp-city-type,#lp-city-other{width:100%;box-sizing:border-box;border:1px solid #d9d0c3;background:#fffdf9;color:#292622;border-radius:10px;padding:11px 12px;font:inherit;}
+#fCityType.invalid,#fCityOther.invalid,#lp-city-type.invalid,#lp-city-other.invalid{border-color:#c58f87!important;}
+</style>
+<style id="luxia-detail-gallery-no-clip-fix">
+/* Detail modal: the gallery wrapper must contain BOTH the main photo and thumbnails.
+   Do not force a 4:5 ratio on the wrapper itself, otherwise the thumbnails get clipped
+   and the Description section appears to cover the gallery. */
+#productDetailOverlay .product-detail-modal .product-detail-gallery{
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  aspect-ratio:auto!important;
+  overflow:visible!important;
+  margin:0 0 20px!important;
+}
+#productDetailOverlay .product-detail-modal .product-detail-thumbs{
+  position:relative!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:72px!important;
+  max-height:none!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  flex-shrink:0!important;
+  padding:10px 2px 2px!important;
+}
+@media(max-width:520px){
+  #productDetailOverlay .product-detail-modal .product-detail-thumbs{
+    min-height:62px!important;
+  }
+}
+</style>
+<style id="luxia-checkout-required-blink-v12">
+@keyframes luxiaRequiredBlink{0%,100%{border-color:#d9d0c3;box-shadow:0 0 0 0 rgba(166,79,72,0)}35%,70%{border-color:#c9635f;box-shadow:0 0 0 4px rgba(166,79,72,.13)}}
+#stepCheckoutForm input.invalid,#stepCheckoutForm textarea.invalid,#stepCheckoutForm select.invalid{animation:luxiaRequiredBlink .85s ease-in-out 0s 3!important;border-color:#c9635f!important}
+#stepCheckoutForm .field-error.show{display:block!important}
+</style>
+<style id="luxia-checkout-product-name-v13">
+.checkout-products-name{align-items:flex-start!important;}
+.checkout-products-name span:first-child{line-height:1.55;text-align:left;}
+[dir="rtl"] .checkout-products-name span:first-child{text-align:right;}
+</style>
+<style id="luxia-3d-product-frame-final">
+/* FINAL OVERRIDE — Luxia product cards: elegant unified 3D frame */
+body.luxia-store-home .product-grid .product-card,
+body.luxia-store-home .product-grid > .product-card {
+  position:relative!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+  border:1px solid #bda77e!important;
+  border-radius:22px!important;
+  outline:none!important;
+  background:#faf8f3!important;
+  /* top/left highlight + lower/right depth */
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,.96),
+    inset -1px -1px 0 rgba(156,126,78,.20),
+    0 1px 0 rgba(255,255,255,.90),
+    2px 2px 0 rgba(186,158,112,.38),
+    4px 4px 0 rgba(153,124,78,.18),
+    0 9px 18px rgba(74,58,39,.10)!important;
+  transform:none!important;
+  transition:none!important;
+}
+
+/* A very subtle inner bevel: no black line and no effect on layout. */
+body.luxia-store-home .product-grid .product-card::before,
+body.luxia-store-home .product-grid > .product-card::before {
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:30!important;
+  pointer-events:none!important;
+  border-radius:inherit!important;
+  border:1px solid rgba(255,255,255,.68)!important;
+  box-shadow:
+    inset 2px 2px 0 rgba(255,255,255,.28),
+    inset -2px -2px 0 rgba(139,108,62,.10)!important;
+}
+
+/* Gives the lower/right side a little more 3D presence, matching the reference. */
+body.luxia-store-home .product-grid .product-card::after,
+body.luxia-store-home .product-grid > .product-card::after {
+  content:""!important;
+  position:absolute!important;
+  inset:2px!important;
+  z-index:29!important;
+  pointer-events:none!important;
+  border-radius:20px!important;
+  border-right:1px solid rgba(143,111,66,.16)!important;
+  border-bottom:1px solid rgba(143,111,66,.18)!important;
+  box-shadow:
+    inset -1px -1px 0 rgba(127,97,54,.08),
+    inset 1px 1px 0 rgba(255,255,255,.16)!important;
+}
+
+/* Keep the unified image frame exactly as it is. */
+body.luxia-store-home .product-card .product-visual {
+  box-sizing:border-box!important;
 }
 </style>
 </head>
@@ -6863,76 +9069,7 @@ function highlightProductFromUrl(){
 })();
 </script>
 
-<style id="luxia-v3-image-language">
-/* PRODUCT IMAGES: always show the entire source image inside its frame.
-   No crop, no zoom, no forced cover. */
-body.luxia-store-home .product-visual{
-  aspect-ratio:4/3!important;
-  background:#eee9e0!important;
-  border:1px solid #ddd5ca!important;
-  border-radius:12px!important;
-  overflow:hidden!important;
-}
-body.luxia-store-home .product-visual > .product-photo{
-  position:absolute!important;
-  inset:0!important;
-  width:100%!important;
-  height:100%!important;
-  max-width:100%!important;
-  max-height:100%!important;
-  object-fit:contain!important;
-  object-position:center center!important;
-  transform:none!important;
-  background:#eee9e0!important;
-}
-body.luxia-store-home .product-card:hover .product-photo{
-  transform:none!important;
-}
-/* Keep the small gallery thumbnails clean and proportional too. */
-body.luxia-store-home .product-gallery-thumb img{
-  object-fit:contain!important;
-  background:#eee9e0!important;
-}
 
-/* LANGUAGE CHOICE: visible on the main store header at all sizes. */
-body.luxia-store-home .header-actions .lang-switch{
-  display:flex!important;
-  align-items:center!important;
-  gap:2px!important;
-  padding:2px!important;
-  border:1px solid #d8d0c5!important;
-  border-radius:999px!important;
-  background:#faf8f3!important;
-  flex:0 0 auto!important;
-}
-body.luxia-store-home .header-actions .lang-switch button{
-  min-width:34px!important;
-  height:30px!important;
-  padding:4px 8px!important;
-  border-radius:999px!important;
-  color:#70685f!important;
-  background:transparent!important;
-  font-size:10px!important;
-  letter-spacing:.08em!important;
-  line-height:1!important;
-}
-body.luxia-store-home .header-actions .lang-switch button.active{
-  background:#292622!important;
-  color:#fffdf8!important;
-  font-weight:600!important;
-}
-@media(max-width:639px){
-  body.luxia-store-home .header-inner{gap:6px!important;}
-  body.luxia-store-home .header-actions{gap:5px!important;}
-  body.luxia-store-home .header-actions .lang-switch button{
-    min-width:31px!important;
-    height:28px!important;
-    padding:4px 7px!important;
-    font-size:9px!important;
-  }
-  body.luxia-store-home .header-actions .lang-switch{padding:2px!important;}
-}
-</style>
 
 
 <script id="luxia-v5-pack-collections">
@@ -7145,254 +9282,17 @@ body.luxia-store-home .header-actions .lang-switch button.active{
 </script>
 
 
-<style id="luxia-v16-title-cream-price-below">
-/* V16: stronger creamy title frame + price directly below the title. */
-body.luxia-store-home .product-title-above{
-  display:flex!important;align-items:center!important;justify-content:center!important;
-  min-height:34px!important;padding:7px 8px 6px!important;margin:0!important;
-  cursor:pointer!important;background:#f3eadc!important;
-  border:1px solid #d7c5aa!important;border-radius:12px 12px 0 0!important;
-  box-shadow:none!important;
-}
-body.luxia-store-home .product-title-above-text{
-  display:block!important;width:100%!important;text-align:center!important;
-  font-family:var(--font-display)!important;font-size:14px!important;line-height:1.3!important;
-  font-weight:500!important;color:#292622!important;
-  overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;
-}
-body.luxia-store-home .product-price-only{
-  display:block!important;width:100%!important;margin:0!important;padding:5px 8px 7px!important;
-  text-align:center!important;background:#f3eadc!important;
-  border-left:1px solid #d7c5aa!important;border-right:1px solid #d7c5aa!important;
-  border-bottom:1px solid #d7c5aa!important;border-radius:0 0 12px 12px!important;
-  color:#967644!important;font-family:var(--font-display)!important;
-  font-size:17px!important;font-weight:600!important;line-height:1.1!important;
-}
-body.luxia-store-home .product-visual{margin-top:8px!important;}
-@media(max-width:520px){
-  body.luxia-store-home .product-title-above{min-height:32px!important;padding:6px 6px 5px!important;}
-  body.luxia-store-home .product-title-above-text{font-size:13px!important;}
-  body.luxia-store-home .product-price-only{font-size:16px!important;padding:5px 6px 6px!important;}
-}
-
-/* Landing page: title gets a clearly visible creamy frame; price sits immediately underneath. */
-.lp-product-title-price-frame.lp-product-head-top{
-  margin:10px 0 0!important;padding:9px 12px!important;
-  border:1px solid #d7c5aa!important;border-bottom:0!important;border-radius:12px 12px 0 0!important;
-  box-shadow:none!important;background:#f3eadc!important;
-  display:flex!important;align-items:center!important;justify-content:center!important;
-}
-.lp-product-title-price-frame.lp-product-head-top::before{display:none!important;}
-.lp-product-title-price-frame.lp-product-head-top b{
-  font-size:15px!important;font-weight:500!important;line-height:1.3!important;color:#292622!important;
-  text-align:center!important;
-}
-.lp-product-price-below{
-  margin:0 0 12px!important;padding:4px 12px 8px!important;
-  border:1px solid #d7c5aa!important;border-top:0!important;border-radius:0 0 12px 12px!important;
-  background:#f3eadc!important;box-shadow:none!important;
-  text-align:center!important;font-family:var(--font-display)!important;
-  font-size:17px!important;font-weight:600!important;line-height:1.15!important;color:#967644!important;
-}
-</style>
 
 
-<style id="luxia-v17-strong-title-final">
-/* V17: make product titles visibly stronger while preserving the existing layout. */
-body.luxia-store-home .product-title-above{
-  background:#eadcc7!important;
-  border-color:#cdb997!important;
-  min-height:36px!important;
-  padding:7px 8px 6px!important;
-}
-body.luxia-store-home .product-title-above-text{
-  font-size:16px!important;
-  font-weight:600!important;
-  line-height:1.25!important;
-  color:#292622!important;
-  letter-spacing:.01em!important;
-}
-@media(max-width:520px){
-  body.luxia-store-home .product-title-above{min-height:36px!important;padding:7px 6px 6px!important;}
-  body.luxia-store-home .product-title-above-text{font-size:15px!important;font-weight:600!important;}
-}
-.lp-product-title-price-frame.lp-product-head-top{
-  background:#eadcc7!important;
-  border-color:#cdb997!important;
-}
-.lp-product-title-price-frame.lp-product-head-top b{
-  font-size:21px!important;
-  font-weight:600!important;
-  line-height:1.25!important;
-  color:#292622!important;
-  letter-spacing:.01em!important;
-}
-</style>
 
 
-<style id="luxia-v6-title-price-pill">
-/* V6: title uses the creamy price-bar tone; price gets a small frame around the numbers only. */
-body.luxia-store-home .product-title-above{
-  background:#f3eadc!important;
-  border:1px solid #d7c5aa!important;
-  border-bottom:0!important;
-  border-radius:12px 12px 0 0!important;
-  min-height:36px!important;
-  padding:8px 8px 5px!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-}
-body.luxia-store-home .product-title-above-text{
-  font-family:var(--font-display)!important;
-  font-size:calc(18px * var(--font-scale))!important;
-  font-weight:600!important;
-  line-height:1.25!important;
-  color:#292622!important;
-  text-align:center!important;
-  white-space:nowrap!important;
-  overflow:hidden!important;
-  text-overflow:ellipsis!important;
-}
-body.luxia-store-home .product-price-only{
-  width:fit-content!important;
-  min-width:0!important;
-  margin:0 auto 7px!important;
-  padding:3px 13px 4px!important;
-  background:#f3eadc!important;
-  border:1px solid #b69257!important;
-  border-radius:999px!important;
-  color:#967644!important;
-  font-family:var(--font-display)!important;
-  font-size:calc(16px * var(--font-scale))!important;
-  font-weight:600!important;
-  line-height:1.1!important;
-  text-align:center!important;
-  box-sizing:border-box!important;
-}
-@media(max-width:520px){
-  body.luxia-store-home .product-title-above{min-height:36px!important;padding:8px 6px 5px!important;}
-  body.luxia-store-home .product-title-above-text{font-size:17px!important;font-weight:600!important;}
-  body.luxia-store-home .product-price-only{font-size:16px!important;padding:3px 12px 4px!important;margin-bottom:7px!important;}
-}
 
-/* Landing page: same visual language — creamy title area + compact price pill. */
-.lp-product-title-price-frame.lp-product-head-top{
-  margin:10px 0 0!important;
-  padding:10px 12px 6px!important;
-  border:1px solid #d7c5aa!important;
-  border-bottom:0!important;
-  border-radius:12px 12px 0 0!important;
-  background:#f3eadc!important;
-  box-shadow:none!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-}
-.lp-product-title-price-frame.lp-product-head-top b{
-  font-family:var(--font-display)!important;
-  font-size:calc(20px * var(--font-scale))!important;
-  font-weight:600!important;
-  line-height:1.25!important;
-  color:#292622!important;
-  text-align:center!important;
-}
-.lp-product-price-below{
-  width:fit-content!important;
-  min-width:0!important;
-  margin:0 auto 12px!important;
-  padding:3px 13px 4px!important;
-  background:#f3eadc!important;
-  border:1px solid #b69257!important;
-  border-radius:999px!important;
-  color:#967644!important;
-  font-family:var(--font-display)!important;
-  font-size:calc(16px * var(--font-scale))!important;
-  font-weight:600!important;
-  line-height:1.1!important;
-  text-align:center!important;
-  box-sizing:border-box!important;
-}
-</style>
 
-<style id="luxia-v9-verified-title-price">
-/* V9 verified: target the actual homepage product header DOM. Only title size/frame and price pill. */
-body.luxia-store-home .product-title-price-head{
-  background:#f3e6d3 !important;
-  border:1px solid #cdb997 !important;
-  border-radius:18px 18px 0 0 !important;
-  padding:9px 8px 8px !important;
-  display:flex !important;
-  flex-direction:column !important;
-  align-items:center !important;
-  justify-content:center !important;
-  gap:6px !important;
-  box-sizing:border-box !important;
-}
-body.luxia-store-home .product-title-price-head .product-title-above{
-  min-height:0 !important; padding:0 3px !important; margin:0 !important;
-  background:transparent !important; border:0 !important;
-  display:flex !important; align-items:center !important; justify-content:center !important;
-}
-body.luxia-store-home .product-title-price-head .product-title-above-text{
-  display:block !important; width:100% !important;
-  font-family:var(--font-display) !important;
-  font-size:calc(16px * var(--font-scale)) !important;
-  font-weight:600 !important; line-height:1.22 !important;
-  color:#2d2924 !important; text-align:center !important;
-  white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important;
-}
-body.luxia-store-home .product-title-price-head .product-price-only{
-  display:inline-flex !important; align-items:center !important; justify-content:center !important;
-  width:max-content !important; max-width:100% !important;
-  margin:0 auto !important; padding:4px 12px !important;
-  background:#fff !important;
-  border:1px solid #b69257 !important; border-radius:999px !important;
-  box-sizing:border-box !important;
-  color:#967644 !important; font-family:var(--font-display) !important;
-  font-size:calc(15px * var(--font-scale)) !important;
-  font-weight:600 !important; line-height:1 !important;
-  text-align:center !important; white-space:nowrap !important;
-}
-/* Landing page: same title/price visual language, with the title kept readable and compact. */
-.lp-product-title-price-frame.lp-product-head-top{
-  background:#f3e6d3 !important; border-color:#cdb997 !important;
-}
-.lp-product-title-price-frame.lp-product-head-top b{
-  font-size:calc(16px * var(--font-scale)) !important; font-weight:600 !important;
-  line-height:1.22 !important; color:#2d2924 !important;
-}
-.lp-product-title-price-frame.lp-product-head-top .lp-price,
-.lp-product-price-below{
-  background:#fff !important; border-color:#b69257 !important;
-}
-</style>
 
-<style id="luxia-final-exact-title-price-correction">
-/* FINAL: only the agreed title size + white price pill. */
-body.luxia-store-home .product-title-price-head .product-title-above-text{
-  font-size:calc(14px * var(--font-scale)) !important;
-  font-weight:600 !important;
-  line-height:1.25 !important;
-  white-space:nowrap !important;
-  overflow:hidden !important;
-  text-overflow:ellipsis !important;
-}
-body.luxia-store-home .product-title-price-head .product-price-only{
-  background:#fff !important;
-  color:#967644 !important;
-}
-.lp-product-title-price-frame.lp-product-head-top b{
-  font-size:calc(16px * var(--font-scale)) !important;
-  font-weight:600 !important;
-  line-height:1.25 !important;
-}
-.lp-product-title-price-frame.lp-product-head-top .lp-price,
-.lp-product-price-below{
-  background:#fff !important;
-  color:#967644 !important;
-}
-</style>
+
+
+
+
 
 <script id="luxia-remove-public-admin-runtime">
 (function(){
@@ -7423,1938 +9323,84 @@ body.luxia-store-home .product-title-price-head .product-price-only{
 </script>
 
 
-<style id="luxia-global-fixed-4x5-images">
-/*
-  LUXIA — GLOBAL IMAGE RATIO
-  Customer-facing product images on the main site + landing pages all use
-  a fixed 4:5 frame. The frame dimensions never depend on the source file.
-  object-fit:contain keeps the complete uploaded image visible.
-*/
 
-/* ===== MAIN SITE / COLLECTION PRODUCT CARDS ===== */
-body.luxia-store-home .product-card .product-visual,
-body.luxia-store-home .product-visual {
-  position: relative !important;
-  width: 100% !important;
-  height: auto !important;
-  min-height: 0 !important;
-  max-height: none !important;
-  aspect-ratio: 4 / 5 !important;
-  overflow: hidden !important;
-  flex: 0 0 auto !important;
-  box-sizing: border-box !important;
-}
 
-body.luxia-store-home .product-card .product-visual > .product-photo,
-body.luxia-store-home .product-visual > .product-photo {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  min-width: 0 !important;
-  min-height: 0 !important;
-  max-width: none !important;
-  max-height: none !important;
-  object-fit: contain !important;
-  object-position: center center !important;
-  transform: none !important;
-  margin: 0 !important;
-  display: block !important;
-}
 
-/* Main-site product detail opened after clicking a product */
-body.luxia-store-home .product-detail-gallery,
-.product-detail-gallery {
-  width: 100% !important;
-  margin: 0 0 20px !important;
-}
-
-body.luxia-store-home .product-detail-main-image,
-.product-detail-main-image {
-  position: relative !important;
-  width: 100% !important;
-  height: auto !important;
-  min-height: 0 !important;
-  max-height: none !important;
-  aspect-ratio: 4 / 5 !important;
-  overflow: hidden !important;
-  display: block !important;
-  box-sizing: border-box !important;
-  background: #eee9e1 !important;
-  border-radius: 14px !important;
-}
-
-body.luxia-store-home .product-detail-main-image img,
-.product-detail-main-image img,
-#productDetailMainImage {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  min-width: 0 !important;
-  min-height: 0 !important;
-  max-width: none !important;
-  max-height: none !important;
-  object-fit: contain !important;
-  object-position: center center !important;
-  display: block !important;
-  margin: 0 !important;
-}
-
-/* ===== LANDING PAGES ===== */
-/* Main product image and optional second product image */
-.lp-main-gallery-wrap .lp-product-card-img,
-.lp-p2-gallery-wrap .lp-product-card-img,
-.lp-product-card-img {
-  position: relative !important;
-  width: 100% !important;
-  height: auto !important;
-  min-height: 0 !important;
-  max-height: none !important;
-  aspect-ratio: 4 / 5 !important;
-  object-fit: contain !important;
-  object-position: center center !important;
-  display: block !important;
-  box-sizing: border-box !important;
-  background: #eee9e1 !important;
-  overflow: hidden !important;
-}
-
-/* Landing-page gallery thumbnails: same 4:5 geometry */
-.lp-landing-thumbs .lp-landing-thumb,
-.lp-landing-thumb {
-  aspect-ratio: 4 / 5 !important;
-  height: auto !important;
-  min-height: 0 !important;
-  max-height: none !important;
-  overflow: hidden !important;
-}
-
-.lp-landing-thumbs .lp-landing-thumb img,
-.lp-landing-thumb img {
-  width: 100% !important;
-  height: 100% !important;
-  min-width: 0 !important;
-  min-height: 0 !important;
-  max-width: none !important;
-  max-height: none !important;
-  object-fit: contain !important;
-  object-position: center center !important;
-  display: block !important;
-}
-
-/* Other landing gallery images */
-.lp-gallery img {
-  aspect-ratio: 4 / 5 !important;
-  height: auto !important;
-  min-height: 0 !important;
-  max-height: none !important;
-  object-fit: contain !important;
-  object-position: center center !important;
-}
-
-/* Prevent image loading from changing any parent geometry */
-.lp-main-gallery-wrap,
-.lp-p2-gallery-wrap,
-.lp-landing-gallery,
-.lp-gallery,
-.product-detail-gallery {
-  min-height: 0 !important;
-}
-</style>
-
-<style id="luxia-store-card-price-final-fix">
-/* Store cards: title frame -> main image directly; price -> immediately before CTA. */
-body.luxia-store-home .product-title-price-head{
-  margin:0!important;
-  padding:0!important;
-}
-body.luxia-store-home .product-title-price-head .product-title-above{
-  min-height:0!important;
-  margin:0!important;
-}
-body.luxia-store-home .product-title-price-head + .product-visual{
-  margin-top:0!important;
-}
-body.luxia-store-home .product-info .product-price-bottom{
-  display:block!important;
-  width:max-content!important;
-  max-width:100%!important;
-  margin:0 auto 10px!important;
-  padding:5px 12px!important;
-  background:#fff!important;
-  border:1px solid #b69257!important;
-  border-radius:999px!important;
-  box-sizing:border-box!important;
-  color:#967644!important;
-  font-family:var(--font-display)!important;
-  font-size:16px!important;
-  font-weight:600!important;
-  line-height:1!important;
-  text-align:center!important;
-  white-space:nowrap!important;
-}
-body.luxia-store-home .product-info .btn-order{
-  margin-top:0!important;
-}
-</style>
 
 <!-- LUXIA-3D-PRODUCT-FRAME -->
-<style id="luxia-3d-product-frame">
-/* =========================================================
-   LUXIA — ELEGANT 3D PRODUCT FRAME
-   Only visual card-frame styling. No product functionality touched.
-   ========================================================= */
-body.luxia-store-home .product-grid .product-card,
-body.luxia-store-home .product-grid > .product-card {
-  /* Fixed, unified frame geometry */
-  border: 1px solid rgba(174, 151, 112, 0.92) !important;
-  outline: 0 !important;
-  border-radius: 22px !important;
-  overflow: hidden !important;
-  background: #faf8f3 !important;
 
-  /* Layered depth: soft outer shadow + subtle lower lift */
-  box-shadow:
-    0 1px 0 rgba(255,255,255,.95) inset,
-    0 0 0 1px rgba(255,255,255,.55) inset,
-    0 2px 0 rgba(151,128,91,.22),
-    0 7px 14px rgba(91,72,48,.10),
-    0 14px 24px rgba(91,72,48,.07) !important;
-
-  /* Keeps the frame itself independent from image dimensions */
-  box-sizing: border-box !important;
-  position: relative !important;
-}
-
-/* Fine inner highlight gives the border a restrained 3D edge. */
-body.luxia-store-home .product-grid .product-card::before,
-body.luxia-store-home .product-grid > .product-card::before {
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 !important;
-  border-radius: inherit !important;
-  pointer-events: none !important;
-  z-index: 20 !important;
-  border: 1px solid rgba(255,255,255,.62) !important;
-  box-shadow:
-    inset 1px 1px 0 rgba(255,255,255,.42),
-    inset -1px -1px 0 rgba(137,111,72,.16) !important;
-}
-
-/* Slightly deeper lower/right edge: the requested 3D side feeling. */
-body.luxia-store-home .product-grid .product-card::after,
-body.luxia-store-home .product-grid > .product-card::after {
-  content: "" !important;
-  position: absolute !important;
-  inset: 1px !important;
-  border-radius: 21px !important;
-  pointer-events: none !important;
-  z-index: 19 !important;
-  box-shadow:
-    inset -2px -2px 0 rgba(120,94,57,.08),
-    inset 2px 2px 0 rgba(255,255,255,.18) !important;
-}
-
-/* Preserve the existing unified image dimensions and behavior. */
-body.luxia-store-home .product-card .product-visual {
-  box-sizing: border-box !important;
-}
-</style>
 </body>
 
-<style id="luxia-v7-exact-title-price-layout">
-/* Exact visual treatment requested: unified creamy title area, centered title,
-   compact framed price directly underneath. Presentation only. */
-body.luxia-store-home .product-title-price-head{
-  width:100%!important;
-  margin:0!important;
-  padding:10px 8px 9px!important;
-  background:#f3e6d3!important;
-  border:1px solid #cdb997!important;
-  border-radius:18px 18px 0 0!important;
-  box-sizing:border-box!important;
-  text-align:center!important;
-}
-body.luxia-store-home .product-title-price-head .product-title-above{
-  min-height:0!important;
-  padding:0 4px 7px!important;
-  margin:0!important;
-  background:transparent!important;
-  border:0!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-}
-body.luxia-store-home .product-title-price-head .product-title-above-text{
-  width:100%!important;
-  font-family:var(--font-display)!important;
-  font-size:calc(19px * var(--font-scale))!important;
-  line-height:1.25!important;
-  font-weight:600!important;
-  color:#2d2924!important;
-  text-align:center!important;
-  white-space:nowrap!important;
-  overflow:hidden!important;
-  text-overflow:ellipsis!important;
-}
-body.luxia-store-home .product-title-price-head .product-price-only{
-  display:block!important;
-  width:max-content!important;
-  min-width:0!important;
-  margin:0 auto!important;
-  padding:4px 13px 5px!important;
-  background:#f3e6d3!important;
-  border:1px solid #b69257!important;
-  border-radius:999px!important;
-  box-sizing:border-box!important;
-  color:#967644!important;
-  font-family:var(--font-display)!important;
-  font-size:calc(16px * var(--font-scale))!important;
-  line-height:1.05!important;
-  font-weight:600!important;
-  text-align:center!important;
-  white-space:nowrap!important;
-}
-@media(max-width:520px){
-  body.luxia-store-home .product-title-price-head{
-    padding:9px 6px 8px!important;
-    border-radius:18px 18px 0 0!important;
-  }
-  body.luxia-store-home .product-title-price-head .product-title-above-text{
-    font-size:calc(18px * var(--font-scale))!important;
-  }
-  body.luxia-store-home .product-title-price-head .product-price-only{
-    font-size:16px!important;
-    padding:4px 12px 5px!important;
-  }
-}
 
-/* Landing page: same visual hierarchy — title first, compact price pill directly below. */
-.lp-product-title-price-frame.lp-product-head-top{
-  margin:10px 0 0!important;
-  padding:10px 12px 8px!important;
-  background:#f3e6d3!important;
-  border:1px solid #cdb997!important;
-  border-bottom:0!important;
-  border-radius:18px 18px 0 0!important;
-  box-shadow:none!important;
-  display:flex!important;
-  flex-direction:column!important;
-  align-items:center!important;
-  justify-content:center!important;
-  gap:7px!important;
-}
-.lp-product-title-price-frame.lp-product-head-top b{
-  display:block!important;
-  width:100%!important;
-  font-family:var(--font-display)!important;
-  font-size:calc(20px * var(--font-scale))!important;
-  font-weight:600!important;
-  line-height:1.25!important;
-  color:#2d2924!important;
-  text-align:center!important;
-}
-.lp-product-title-price-frame.lp-product-head-top .lp-price{
-  display:inline-flex!important;
-  width:max-content!important;
-  margin:0 auto!important;
-  padding:4px 13px 5px!important;
-  background:#f3e6d3!important;
-  border:1px solid #b69257!important;
-  border-radius:999px!important;
-  box-sizing:border-box!important;
-  color:#967644!important;
-  font-family:var(--font-display)!important;
-  font-size:calc(16px * var(--font-scale))!important;
-  font-weight:600!important;
-  line-height:1.05!important;
-  text-align:center!important;
-}
-</style>
 </html>
 
-<style>
-.product-card::after{content:"";position:absolute;inset:6px;border:1px solid rgba(224,198,144,.20);border-radius:calc(var(--radius-l) - 5px);pointer-events:none;z-index:3}
-.product-card > *{position:relative;z-index:2}
-</style>
-
-<style id="luxia-v9-full-main-image">
-/* SITE: show the complete main product image, like the landing page; never crop it. */
-.product-visual > .product-photo{
-  width:100% !important;
-  height:auto !important;
-  aspect-ratio:auto !important;
-  object-fit:contain !important;
-  object-position:center center !important;
-}
-</style>
-
-
-<style id="luxia-v4-product-card-alignment">
-/* V4 — product cards: framed CTA + perfectly aligned bottoms */
-body.luxia-store-home .product-grid{
-  align-items:stretch!important;
-}
-
-body.luxia-store-home .product-card{
-  height:100%!important;
-  display:flex!important;
-  flex-direction:column!important;
-  align-self:stretch!important;
-  border:1px solid #d9d1c6!important;
-  border-radius:14px!important;
-  background:#faf8f3!important;
-  overflow:hidden!important;
-  box-shadow:0 6px 22px -18px rgba(42,36,30,.28)!important;
-  padding:0 0 12px!important;
-}
-
-body.luxia-store-home .product-visual{
-  flex:0 0 auto!important;
-  margin:0!important;
-  padding:0!important;
-  border-radius:13px 13px 0 0!important;
-  overflow:hidden!important;
-}
-
-body.luxia-store-home .product-visual::after{
-  display:none!important;
-}
-
-body.luxia-store-home .product-info{
-  flex:1 1 auto!important;
-  display:flex!important;
-  flex-direction:column!important;
-  padding:14px 14px 0!important;
-  min-width:0!important;
-}
-
-body.luxia-store-home .product-desc{
-  flex:0 0 auto!important;
-  margin-bottom:10px!important;
-}
-
-body.luxia-store-home .swatch-row{
-  flex:0 0 auto!important;
-  margin-bottom:12px!important;
-}
-
-/* Keep the CTA visually strong and make it sit at the same baseline
-   in both cards of every grid row. */
-body.luxia-store-home .product-info .btn-order{
-  width:100%!important;
-  margin-top:auto!important;
-  min-height:46px!important;
-  padding:11px 12px!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  border:1px solid #292622!important;
-  border-radius:999px!important;
-  background:#292622!important;
-  color:#fffdf8!important;
-  text-align:center!important;
-  font-size:10.5px!important;
-  font-weight:500!important;
-  letter-spacing:.11em!important;
-  line-height:1.2!important;
-  text-decoration:none!important;
-  box-shadow:0 7px 18px -14px rgba(41,38,34,.8)!important;
-  transition:background .2s ease,border-color .2s ease,transform .2s ease!important;
-}
-
-body.luxia-store-home .product-info .btn-order:hover{
-  background:#403a34!important;
-  border-color:#403a34!important;
-  color:#fffdf8!important;
-  transform:translateY(-1px)!important;
-}
-
-/* If the price element is present, give it the same editorial hierarchy. */
-body.luxia-store-home .product-price{
-  flex:0 0 auto!important;
-  margin:0 0 10px!important;
-  color:#967644!important;
-  font-size:15px!important;
-  font-weight:600!important;
-}
-
-/* Mobile: keep the two cards balanced without making them excessively tall. */
-@media(max-width:520px){
-  body.luxia-store-home .product-grid{
-    align-items:stretch!important;
-    gap:18px 14px!important;
-  }
-  body.luxia-store-home .product-card{
-    min-height:100%!important;
-    padding-bottom:10px!important;
-  }
-  body.luxia-store-home .product-info{
-    padding:13px 11px 0!important;
-  }
-  body.luxia-store-home .product-info .btn-order{
-    min-height:43px!important;
-    font-size:9.5px!important;
-    padding:10px 7px!important;
-    letter-spacing:.08em!important;
-  }
-}
-
-/* Desktop keeps the same baseline logic. */
-@media(min-width:521px){
-  body.luxia-store-home .product-card{
-    padding-bottom:14px!important;
-  }
-  body.luxia-store-home .product-info{
-    padding:16px 16px 0!important;
-  }
-}
-</style>
-
-
-<style id="luxia-v6-product-detail">
-/* V6 — compact product card + gallery + full detail view */
-body.luxia-store-home .product-card{display:flex!important;flex-direction:column!important;height:100%!important;background:#faf8f3!important;border:1px solid #ddd5ca!important;border-radius:14px!important;overflow:hidden!important;box-shadow:0 7px 24px -20px rgba(42,36,30,.30)!important;}
-body.luxia-store-home .product-visual{aspect-ratio:1/1.22!important;position:relative!important;margin:0!important;overflow:hidden!important;border-radius:0!important;}
-body.luxia-store-home .product-visual > .product-photo{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important;background:#eee9e1!important;border-radius:0!important;transform:none!important;}
-body.luxia-store-home .product-visual:hover > .product-photo{transform:none!important;}
-body.luxia-store-home .product-visual::after{display:none!important;}
-body.luxia-store-home .product-gallery-strip{display:flex!important;gap:7px!important;overflow-x:auto!important;padding:8px 10px 2px!important;scrollbar-width:none!important;background:#faf8f3!important;}
-body.luxia-store-home .product-gallery-strip::-webkit-scrollbar{display:none!important;}
-body.luxia-store-home .product-gallery-thumb{flex:0 0 50px!important;width:50px!important;height:50px!important;padding:0!important;border:1px solid #dcd3c8!important;border-radius:8px!important;overflow:hidden!important;background:#f2eee7!important;cursor:pointer!important;}
-body.luxia-store-home .product-gallery-thumb.active{border-color:#b99a62!important;box-shadow:0 0 0 1px #b99a62!important;}
-body.luxia-store-home .product-gallery-thumb img{width:100%!important;height:100%!important;object-fit:contain!important;display:block!important;}
-body.luxia-store-home .product-info{display:flex!important;flex-direction:column!important;flex:1!important;padding:10px 11px 11px!important;}
-body.luxia-store-home .product-title-button{display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:8px!important;width:100%!important;padding:0!important;margin:0 0 10px!important;border:0!important;background:none!important;text-align:start!important;cursor:pointer!important;}
-body.luxia-store-home .product-title{font-family:'Cormorant Garamond','Amiri',serif!important;font-size:20px!important;line-height:1.05!important;font-weight:600!important;color:#302b27!important;}
-body.luxia-store-home .product-title-button:hover .product-title{text-decoration:underline!important;text-decoration-color:#b99a62!important;text-underline-offset:4px!important;}
-body.luxia-store-home .product-title-button .product-price{margin:0!important;white-space:nowrap!important;color:#967644!important;font-size:14px!important;font-weight:700!important;}
-body.luxia-store-home .product-sizes-row{display:flex!important;align-items:center!important;gap:5px!important;flex-wrap:wrap!important;margin:0 0 11px!important;}
-/* Homepage cards: keep variant details hidden to save vertical space. */
-body.luxia-store-home .product-card .swatch-row,
-body.luxia-store-home .product-card .product-sizes-row{display:none!important;}
-body.luxia-store-home .product-variants-label{font-size:10px!important;color:#827970!important;margin-inline-end:2px!important;}
-body.luxia-store-home .product-size-chip{font-size:9px!important;line-height:1!important;padding:5px 7px!important;border:1px solid #d8cfc3!important;border-radius:999px!important;color:#625a52!important;background:#fffdf9!important;}
-body.luxia-store-home .swatch-row{display:flex!important;align-items:center!important;gap:6px!important;flex-wrap:wrap!important;margin:0 0 12px!important;}
-body.luxia-store-home .swatch-label{font-size:10px!important;color:#827970!important;order:-1!important;}
-body.luxia-store-home .swatch{width:16px!important;height:16px!important;border-radius:50%!important;border:1px solid #cfc5b9!important;box-shadow:inset 0 0 0 2px #faf8f3!important;}
-body.luxia-store-home .product-info .btn-order{margin-top:auto!important;width:100%!important;min-height:43px!important;border:1px solid #292622!important;border-radius:999px!important;background:#292622!important;color:#fffdf8!important;padding:10px 8px!important;text-align:center!important;font-size:9.5px!important;letter-spacing:.08em!important;}
-body.luxia-store-home .product-info .btn-order:hover{background:#403a34!important;border-color:#403a34!important;}
-
-/* Detail modal */
-.product-detail-overlay .product-detail-modal .modal-head{
-  margin-bottom:0!important;
-  padding-bottom:0!important;
-}
-.product-detail-overlay .product-detail-modal #productDetailBody{
-  margin-top:0!important;
-}
-.product-detail-overlay .product-detail-modal .product-detail-gallery{
-  margin-top:0!important;
-}
-.product-detail-overlay{z-index:10050!important;}
-.product-detail-modal{max-width:760px!important;max-height:92svh!important;overflow-y:auto!important;background:#faf8f3!important;color:#302b27!important;border:1px solid #ddd5ca!important;}
-.product-detail-gallery{margin:2px 0 20px!important;}
-.product-detail-main-image{width:100%!important;height:min(58svh,520px)!important;background:#eee9e1!important;border-radius:14px!important;overflow:hidden!important;display:flex!important;align-items:center!important;justify-content:center!important;}
-.product-detail-main-image img{width:100%!important;height:100%!important;object-fit:contain!important;display:block!important;}
-.product-detail-thumbs{display:flex!important;gap:8px!important;overflow-x:auto!important;padding:10px 2px 2px!important;scrollbar-width:none!important;}
-.product-detail-thumbs::-webkit-scrollbar{display:none!important;}
-.product-detail-thumb{flex:0 0 72px!important;width:72px!important;height:72px!important;border:1px solid #d8cfc3!important;border-radius:10px!important;padding:0!important;overflow:hidden!important;background:#f2eee7!important;cursor:pointer!important;}
-.product-detail-thumb.active{border-color:#b99a62!important;box-shadow:0 0 0 1px #b99a62!important;}
-.product-detail-thumb img{width:100%!important;height:100%!important;object-fit:contain!important;display:block!important;}
-.product-detail-content{padding:0 2px 4px!important;}
-.product-detail-price{font-family:'Cormorant Garamond','Amiri',serif!important;font-size:25px!important;font-weight:600!important;color:#967644!important;margin-bottom:14px!important;}
-.product-detail-section{padding:14px 0;border-top:1px solid #e2dbd2!important;}
-.product-detail-section h4{margin:0 0 7px!important;font-family:'Cormorant Garamond','Amiri',serif!important;font-size:21px!important;font-weight:600!important;color:#302b27!important;}
-.product-detail-section p{margin:0!important;color:#6f6860!important;line-height:1.7!important;font-size:14px!important;}
-.product-detail-section ul{margin:0!important;padding-inline-start:20px!important;color:#6f6860!important;line-height:1.75!important;font-size:14px!important;}
-.product-detail-colors{display:flex!important;flex-wrap:wrap!important;gap:8px!important;}
-.product-detail-color{display:inline-flex!important;align-items:center!important;gap:6px!important;padding:7px 10px!important;border:1px solid #ddd5ca!important;border-radius:999px!important;background:#fffdf9!important;color:#625a52!important;font-size:11px!important;}
-.product-detail-color i{width:15px!important;height:15px!important;border-radius:50%!important;border:1px solid #cfc5b9!important;display:block!important;}
-.product-detail-sizes{display:flex!important;flex-wrap:wrap!important;gap:7px!important;}
-.product-detail-sizes span{min-width:38px!important;text-align:center!important;padding:8px 10px!important;border:1px solid #d8cfc3!important;border-radius:999px!important;background:#fffdf9!important;color:#5e574f!important;font-size:11px!important;}
-.product-detail-add{margin-top:12px!important;}
-@media(max-width:520px){
- .product-detail-modal{max-height:94svh!important;padding:18px 15px 24px!important;}
- .product-detail-main-image{height:56svh!important;}
- .product-detail-thumb{flex-basis:62px!important;width:62px!important;height:62px!important;}
- .product-title{font-size:18px!important;}
-}
-
-/* Add-to-cart modal: color choices stay as compact circles. */
-#variantOverlay .pill.color-pill{width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important;padding:4px!important;border-radius:50%!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;background:#faf8f3!important;border:1px solid #d8cfc3!important;}
-#variantOverlay .pill.color-pill.selected{background:#faf8f3!important;border-color:#967644!important;box-shadow:0 0 0 2px #967644!important;}
-#variantOverlay .variant-color-circle{display:block!important;width:22px!important;height:22px!important;border-radius:50%!important;border:1px solid rgba(80,70,60,.22)!important;box-shadow:inset 0 0 0 2px #faf8f3!important;}
-</style>
-
-
-<style id="luxia-v7-black-product-frame">
-body.luxia-store-home .product-card{
-  border:1.5px solid #292622!important;
-  box-shadow:none!important;
-}
-body.luxia-store-home .product-visual{
-  border-bottom:1px solid #ded6ca!important;
-}
-body.luxia-store-home .product-info .btn-order{
-  border:1px solid #292622!important;
-}
-</style>
-
-
-<style id="luxia-v7-admin-category-ui">
-.admin-catalog-type{
-  display:flex;gap:8px;flex-wrap:wrap;
-}
-.admin-help{
-  display:block;margin-top:6px;font-size:11px;color:#8a8178;
-}
-</style>
-
-
-<style id="luxia-v8-black-frame-final">
-/* Final override: the whole product card gets a clearly visible thin black frame. */
-body.luxia-store-home .product-grid .product-card,
-body.luxia-store-home .product-grid > .product-card{
-  border:1.5px solid #292622!important;
-  outline:1px solid rgba(41,38,34,.12)!important;
-  box-shadow:none!important;
-}
-
-/* Keep the image and content inside the black frame; no inner cream border. */
-body.luxia-store-home .product-card .product-visual{
-  border-bottom:1px solid #292622!important;
-}
-body.luxia-store-home .product-card .product-info{
-  border:0!important;
-}
-</style>
-
-<style id="luxia-v14-only-remove-separator">
-/* ONLY correction: remove the internal line below the main product image. */
-body.luxia-store-home .product-card .product-visual{
-  border-bottom:0!important;
-}
-</style>
-
-<style id="luxia-v15-title-width-refinement">
-/* V15: wider mobile cards + light standalone product title above the main image. */
-body.luxia-store-home .product-title-above{
-  display:flex!important;align-items:center!important;justify-content:center!important;
-  min-height:34px!important;padding:7px 8px 6px!important;margin:0!important;
-  cursor:pointer!important;background:transparent!important;border:0!important;
-}
-body.luxia-store-home .product-title-above-text{
-  display:block!important;width:100%!important;text-align:center!important;
-  font-family:var(--font-display)!important;font-size:14px!important;line-height:1.3!important;
-  font-weight:500!important;color:#292622!important;
-  overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;
-}
-body.luxia-store-home .product-price-only{
-  flex:0 0 auto!important;margin:0 0 10px!important;text-align:center!important;
-  color:#967644!important;font-size:15px!important;font-weight:600!important;
-}
-@media(max-width:520px){
-  body.luxia-store-home .container{padding-left:10px!important;padding-right:10px!important;}
-  body.luxia-store-home .product-grid{gap:16px 8px!important;}
-  body.luxia-store-home .product-info{padding-left:9px!important;padding-right:9px!important;}
-  body.luxia-store-home .product-title-above{min-height:32px!important;padding:6px 6px 5px!important;}
-  body.luxia-store-home .product-title-above-text{font-size:13px!important;}
-}
-
-/* Landing page: keep the title clearly separated from the hero image, light and comfortable. */
-.lp-product-title-price-frame.lp-product-head-top{
-  margin:10px 0 12px!important;padding:9px 12px!important;
-  border:1px solid rgba(224,198,144,.48)!important;border-radius:12px!important;
-  box-shadow:none!important;background:#f3eadc!important;
-}
-.lp-product-title-price-frame.lp-product-head-top::before{display:none!important;}
-.lp-product-title-price-frame.lp-product-head-top b{
-  font-size:15px!important;font-weight:500!important;line-height:1.3!important;
-}
-.lp-product-title-price-frame.lp-product-head-top .lp-price{
-  font-size:15px!important;font-weight:500!important;
-}
-</style>
-<style id="luxia-title-attractive-final">
-/* Final title treatment: more visible, elegant, and consistent across store + landing page */
-.product-title-price-frame-top,
-.lp-product-title-price-frame{
-  background:#f3e6d3 !important;
-  border-color:rgba(178,145,91,.62) !important;
-}
-.product-title-price-frame-top h3{
-  font-size:calc(22px * var(--font-scale)) !important;
-  font-weight:600 !important;
-  letter-spacing:.01em !important;
-  color:#2d2924 !important;
-  line-height:1.25 !important;
-}
-.lp-product-title-price-frame b{
-  font-size:calc(22px * var(--font-scale)) !important;
-  font-weight:600 !important;
-  letter-spacing:.01em !important;
-  color:#2d2924 !important;
-  line-height:1.25 !important;
-}
-.product-title-price-frame-top .product-price,
-.lp-product-title-price-frame .lp-price{
-  color:#967644 !important;
-  font-weight:600 !important;
-}
-</style>
-
-<style id="luxia-title-price-final-adjustment">
-/* Only final title/price positioning and readability adjustment */
-.product-title-price-frame-top,
-.lp-product-title-price-frame{
-  flex-direction:column !important;
-  align-items:center !important;
-  justify-content:center !important;
-  text-align:center !important;
-}
-.product-title-price-frame-top h3,
-.lp-product-title-price-frame b{
-  font-size:calc(18px * var(--font-scale)) !important;
-  font-weight:600 !important;
-  line-height:1.28 !important;
-  text-align:center !important;
-  width:100% !important;
-}
-.product-title-price-frame-top .product-price,
-.lp-product-title-price-frame .lp-price{
-  display:inline-flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  width:max-content !important;
-  max-width:100% !important;
-  margin:3px auto 0 !important;
-  padding:5px 11px !important;
-  background:#fff !important;
-  border:1px solid rgba(178,145,91,.48) !important;
-  border-radius:10px !important;
-  box-sizing:border-box !important;
-  text-align:center !important;
-}
-</style>
-
-<style id="luxia-title-price-exact-v11">
-/* V11 — exact title/price presentation: no colored title background; border only around title text. */
-.product-title-price-frame-top,
-.lp-product-title-price-frame.lp-product-head-top,
-.lp-product-title-price-frame{
-  margin:0 0 10px !important;
-  padding:7px 4px 5px !important;
-  background:transparent !important;
-  border:0 !important;
-  border-radius:0 !important;
-  box-shadow:none !important;
-  display:flex !important;
-  flex-direction:column !important;
-  align-items:center !important;
-  justify-content:center !important;
-  gap:4px !important;
-  flex-wrap:nowrap !important;
-  width:100% !important;
-  box-sizing:border-box !important;
-}
-.product-title-price-frame-top::before,
-.lp-product-title-price-frame::before{
-  display:none !important;
-}
-.product-title-price-frame-top h3,
-.lp-product-title-price-frame.lp-product-head-top b,
-.lp-product-title-price-frame b{
-  display:inline-block !important;
-  width:auto !important;
-  max-width:100% !important;
-  box-sizing:border-box !important;
-  margin:0 !important;
-  padding:4px 10px !important;
-  border:1px solid rgba(178,145,91,.68) !important;
-  border-radius:11px !important;
-  background:transparent !important;
-  color:#302b27 !important;
-  font-family:var(--font-display) !important;
-  font-size:15px !important;
-  font-weight:600 !important;
-  line-height:1.18 !important;
-  letter-spacing:.01em !important;
-  text-align:center !important;
-  white-space:normal !important;
-  overflow:visible !important;
-  text-overflow:clip !important;
-}
-.product-title-price-frame-top .product-price,
-.lp-product-title-price-frame .lp-price{
-  display:inline-flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  width:max-content !important;
-  max-width:100% !important;
-  box-sizing:border-box !important;
-  margin:0 auto !important;
-  padding:3px 10px !important;
-  border:1px solid rgba(178,145,91,.52) !important;
-  border-radius:10px !important;
-  background:#fff !important;
-  color:#967644 !important;
-  font-family:var(--font-display) !important;
-  font-size:14px !important;
-  font-weight:600 !important;
-  line-height:1.15 !important;
-  white-space:nowrap !important;
-  text-align:center !important;
-}
-@media(max-width:520px){
-  .product-title-price-frame-top,
-  .lp-product-title-price-frame.lp-product-head-top,
-  .lp-product-title-price-frame{
-    margin-bottom:8px !important;
-    padding:6px 3px 4px !important;
-    gap:3px !important;
-  }
-  .product-title-price-frame-top h3,
-  .lp-product-title-price-frame.lp-product-head-top b,
-  .lp-product-title-price-frame b{
-    font-size:14px !important;
-    line-height:1.18 !important;
-    padding:4px 9px !important;
-  }
-  .product-title-price-frame-top .product-price,
-  .lp-product-title-price-frame .lp-price{
-    font-size:13px !important;
-    padding:3px 9px !important;
-  }
-}
-</style>
-
-
-<style id="luxia-exact-clean-title-price-v12">
-/* V12 — only the agreed visual correction:
-   transparent title area, compact title frame, centered white price pill. */
-body.luxia-store-home .product-title-price-head{
-  width:100% !important;
-  margin:0 !important;
-  padding:7px 6px 8px !important;
-  background:transparent !important;
-  border:0 !important;
-  border-radius:0 !important;
-  box-shadow:none !important;
-  display:flex !important;
-  flex-direction:column !important;
-  align-items:center !important;
-  justify-content:center !important;
-  gap:5px !important;
-  box-sizing:border-box !important;
-  text-align:center !important;
-}
-body.luxia-store-home .product-title-price-head .product-title-above{
-  min-height:0 !important;
-  width:100% !important;
-  margin:0 !important;
-  padding:0 !important;
-  background:transparent !important;
-  border:0 !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  box-sizing:border-box !important;
-}
-body.luxia-store-home .product-title-price-head .product-title-above-text{
-  display:inline-block !important;
-  width:auto !important;
-  max-width:calc(100% - 8px) !important;
-  margin:0 !important;
-  padding:3px 9px !important;
-  background:transparent !important;
-  border:1px solid rgba(178,145,91,.68) !important;
-  border-radius:10px !important;
-  box-sizing:border-box !important;
-  color:#2d2924 !important;
-  font-family:var(--font-display) !important;
-  font-size:15px !important;
-  font-weight:600 !important;
-  line-height:1.18 !important;
-  letter-spacing:.01em !important;
-  text-align:center !important;
-  white-space:normal !important;
-  overflow-wrap:anywhere !important;
-  overflow:visible !important;
-  text-overflow:clip !important;
-}
-body.luxia-store-home .product-title-price-head .product-price-only{
-  display:inline-flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  width:max-content !important;
-  max-width:100% !important;
-  min-width:0 !important;
-  margin:0 auto !important;
-  padding:3px 9px !important;
-  background:#fff !important;
-  border:1px solid rgba(178,145,91,.60) !important;
-  border-radius:999px !important;
-  box-sizing:border-box !important;
-  color:#967644 !important;
-  font-family:var(--font-display) !important;
-  font-size:13px !important;
-  font-weight:600 !important;
-  line-height:1.1 !important;
-  text-align:center !important;
-  white-space:nowrap !important;
-}
-
-/* Landing page: same hierarchy and proportions. */
-.lp-product-title-price-frame.lp-product-head-top{
-  margin:0 !important;
-  padding:7px 6px 8px !important;
-  background:transparent !important;
-  border:0 !important;
-  border-radius:0 !important;
-  box-shadow:none !important;
-  display:flex !important;
-  flex-direction:column !important;
-  align-items:center !important;
-  justify-content:center !important;
-  gap:5px !important;
-  box-sizing:border-box !important;
-}
-.lp-product-title-price-frame.lp-product-head-top b{
-  display:inline-block !important;
-  width:auto !important;
-  max-width:calc(100% - 8px) !important;
-  margin:0 !important;
-  padding:3px 9px !important;
-  background:transparent !important;
-  border:1px solid rgba(178,145,91,.68) !important;
-  border-radius:10px !important;
-  box-sizing:border-box !important;
-  color:#2d2924 !important;
-  font-family:var(--font-display) !important;
-  font-size:15px !important;
-  font-weight:600 !important;
-  line-height:1.18 !important;
-  text-align:center !important;
-  white-space:normal !important;
-  overflow-wrap:anywhere !important;
-}
-.lp-product-title-price-frame.lp-product-head-top .lp-price,
-.lp-product-price-below{
-  display:inline-flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  width:max-content !important;
-  max-width:100% !important;
-  margin:0 auto !important;
-  padding:3px 9px !important;
-  background:#fff !important;
-  border:1px solid rgba(178,145,91,.60) !important;
-  border-radius:999px !important;
-  box-sizing:border-box !important;
-  color:#967644 !important;
-  font-family:var(--font-display) !important;
-  font-size:13px !important;
-  font-weight:600 !important;
-  line-height:1.1 !important;
-  white-space:nowrap !important;
-}
-@media(max-width:520px){
-  body.luxia-store-home .product-title-price-head,
-  .lp-product-title-price-frame.lp-product-head-top{
-    padding:6px 4px 7px !important;
-    gap:4px !important;
-  }
-  body.luxia-store-home .product-title-price-head .product-title-above-text,
-  .lp-product-title-price-frame.lp-product-head-top b{
-    font-size:14px !important;
-    line-height:1.18 !important;
-    padding:3px 8px !important;
-  }
-  body.luxia-store-home .product-title-price-head .product-price-only,
-  .lp-product-title-price-frame.lp-product-head-top .lp-price,
-  .lp-product-price-below{
-    font-size:13px !important;
-    padding:3px 8px !important;
-  }
-}
-</style>
-
-<style id="luxia-v13-unified-title-header">
-/* V13: unified full-width cream title header; compact white price pill. */
-body.luxia-store-home .product-title-price-head,
-.lp-product-title-price-frame.lp-product-head-top{
-  width:100% !important;
-  min-height:82px !important;
-  height:82px !important;
-  margin:0 !important;
-  padding:8px 10px !important;
-  background:#f3e6d3 !important;
-  border:0 !important;
-  border-radius:0 !important;
-  box-shadow:none !important;
-  display:flex !important;
-  flex-direction:column !important;
-  align-items:center !important;
-  justify-content:center !important;
-  gap:5px !important;
-  box-sizing:border-box !important;
-  overflow:hidden !important;
-}
-
-body.luxia-store-home .product-title-price-head .product-title-above,
-.lp-product-title-price-frame.lp-product-head-top b{
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  width:100% !important;
-  max-width:100% !important;
-  min-height:0 !important;
-  margin:0 !important;
-  padding:0 !important;
-  background:transparent !important;
-  border:0 !important;
-  box-sizing:border-box !important;
-  color:#2d2924 !important;
-  font-family:var(--font-display) !important;
-  font-size:15px !important;
-  font-weight:600 !important;
-  line-height:1.15 !important;
-  letter-spacing:.01em !important;
-  text-align:center !important;
-  white-space:normal !important;
-  overflow-wrap:normal !important;
-  overflow:hidden !important;
-  text-overflow:clip !important;
-}
-body.luxia-store-home .product-title-price-head .product-title-above-text{
-  display:block !important;
-  width:100% !important;
-  max-width:100% !important;
-  margin:0 !important;
-  padding:0 2px !important;
-  color:#2d2924 !important;
-  font-family:var(--font-display) !important;
-  font-size:15px !important;
-  font-weight:600 !important;
-  line-height:1.15 !important;
-  text-align:center !important;
-  white-space:normal !important;
-  overflow-wrap:break-word !important;
-  overflow:visible !important;
-  text-overflow:clip !important;
-}
-
-body.luxia-store-home .product-title-price-head .product-price-only,
-.lp-product-title-price-frame.lp-product-head-top .lp-price,
-.lp-product-price-below{
-  display:inline-flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  width:max-content !important;
-  max-width:100% !important;
-  min-width:0 !important;
-  margin:0 auto !important;
-  padding:3px 9px !important;
-  background:#fff !important;
-  border:1px solid #b69257 !important;
-  border-radius:999px !important;
-  box-sizing:border-box !important;
-  color:#967644 !important;
-  font-family:var(--font-display) !important;
-  font-size:13px !important;
-  font-weight:600 !important;
-  line-height:1.1 !important;
-  text-align:center !important;
-  white-space:nowrap !important;
-}
-@media(max-width:520px){
-  body.luxia-store-home .product-title-price-head,
-  .lp-product-title-price-frame.lp-product-head-top{
-    min-height:78px !important;
-    height:78px !important;
-    padding:7px 8px !important;
-    gap:4px !important;
-  }
-  body.luxia-store-home .product-title-price-head .product-title-above-text,
-  .lp-product-title-price-frame.lp-product-head-top b{
-    font-size:14px !important;
-    line-height:1.16 !important;
-  }
-  body.luxia-store-home .product-title-price-head .product-price-only,
-  .lp-product-title-price-frame.lp-product-head-top .lp-price,
-  .lp-product-price-below{
-    font-size:13px !important;
-    padding:3px 8px !important;
-  }
-}
-</style>
-
-<style id="luxia-final-title-price-refinement">
-/* Final refinement: preserve the site's original background around title/price */
-.product-card .product-info,
-.product-card .product-meta,
-.product-card .product-header,
-.product-card .title-price-area {
-  background: transparent !important;
-}
-
-/* Keep the title header unified in size, with cream treatment only on its frame */
-.product-card .product-title,
-.product-card .title,
-.product-card h3 {
-  background: transparent !important;
-  border: 1.5px solid #d8c4a6 !important;
-  box-sizing: border-box !important;
-}
-
-/* Price: white interior, compact frame, slightly more visible border */
-.product-card .product-price,
-.product-card .price,
-.product-card .price-pill {
-  background: #ffffff !important;
-  border: 1.5px solid #b99a6b !important;
-  box-sizing: border-box !important;
-}
-</style>
-
-<style id="luxia-background-final-fix">
-/* Remove cream from the whole title/price area; keep only the title frame cream. */
-.product-card .product-info,
-.product-card .product-meta,
-.product-card .product-header,
-.product-card .title-price-area,
-.product-card .title-price,
-.product-card .product-top {
-  background: var(--site-bg, transparent) !important;
-  background-color: var(--site-bg, transparent) !important;
-}
-
-/* Title: cream is only the frame itself, not the surrounding area. */
-.product-card .product-title,
-.product-card .title,
-.product-card h3 {
-  background: transparent !important;
-  background-color: transparent !important;
-  border: 1.5px solid #d8c4a6 !important;
-}
-
-/* Price: white only inside the compact price frame. */
-.product-card .product-price,
-.product-card .price,
-.product-card .price-pill {
-  background: #fff !important;
-  background-color: #fff !important;
-  border: 1.5px solid #b99a6b !important;
-}
-</style>
-
-<style id="luxia-v15-background-only-fix">
-/* ONLY fix the real title/price wrapper background on the store and landing page. */
-body.luxia-store-home .product-title-price-head,
-.lp-product-title-price-frame.lp-product-head-top {
-  background: transparent !important;
-  background-color: transparent !important;
-}
-
-/* Keep the title frame itself cream-toned, without filling the surrounding area. */
-body.luxia-store-home .product-title-price-head .product-title-above-text,
-.lp-product-title-price-frame.lp-product-head-top b {
-  background: transparent !important;
-}
-
-/* Keep the compact price pill white. */
-body.luxia-store-home .product-title-price-head .product-price-only,
-.lp-product-title-price-frame.lp-product-head-top .lp-price,
-.lp-product-price-below {
-  background: #fff !important;
-  background-color: #fff !important;
-}
-</style>
-
-<style id="luxia-final-title-border-price-white">
-/* ONLY: make the unified title frame more visible, while keeping its surrounding area transparent. */
-body.luxia-store-home .product-title-price-head,
-.lp-product-title-price-frame.lp-product-head-top {
-  background: transparent !important;
-  background-color: transparent !important;
-  border: 2px solid #d8c4a6 !important;
-  border-radius: 12px !important;
-  box-sizing: border-box !important;
-}
-
-/* Keep title text itself clean; the cream is the frame, not a fill. */
-body.luxia-store-home .product-title-price-head .product-title-above,
-body.luxia-store-home .product-title-price-head .product-title-above-text,
-.lp-product-title-price-frame.lp-product-head-top b {
-  background: transparent !important;
-  background-color: transparent !important;
-}
-
-/* Price: pure white interior with a slightly stronger visible frame. */
-body.luxia-store-home .product-title-price-head .product-price-only,
-.lp-product-title-price-frame.lp-product-head-top .lp-price,
-.lp-product-price-below {
-  background: #ffffff !important;
-  background-color: #ffffff !important;
-  border: 1.5px solid #b99a6b !important;
-  box-sizing: border-box !important;
-}
-</style>
-
-<style id="luxia-v16-exact-title-price">
-/* TITLE: one independent full-width cream frame; never wraps the price. */
-body.luxia-store-home .product-title-price-head,
-.lp-product-title-price-frame.lp-product-head-top {
-  background: transparent !important;
-  background-color: transparent !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  margin: 0 0 10px !important;
-  padding: 0 !important;
-}
-
-/* The title itself is the cream frame. Same footprint for every product. */
-body.luxia-store-home .product-title-price-head .product-title-above-text,
-.lp-product-title-price-frame.lp-product-head-top b {
-  display: block !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-  margin: 0 !important;
-  padding: 7px 8px !important;
-  background: #d9c2a0 !important;
-  background-color: #d9c2a0 !important;
-  border: 0 !important;
-  border-radius: 10px !important;
-  color: #2d2924 !important;
-  text-align: center !important;
-  font-weight: 600 !important;
-  line-height: 1.18 !important;
-  white-space: normal !important;
-  overflow-wrap: anywhere !important;
-  overflow: visible !important;
-  text-overflow: clip !important;
-}
-
-/* FINAL: title frame flush with the top and sides, with no corner gap. */
-body.luxia-store-home .product-title-price-head .product-title-above-text,
-.lp-product-title-price-frame.lp-product-head-top b {
-  border-radius: 0 !important;
-  margin-top: 0 !important;
-}
-
-/* FINAL: make the title frame flush with the product card top edge. */
-body.luxia-store-home .product-title-price-head .product-title-above-text {
-  margin-top: -1px !important;
-  margin-inline: -1px !important;
-  width: calc(100% + 2px) !important;
-  max-width: none !important;
-}
-
-/* FINAL HOME PRODUCTS FIX: remove the remaining top gap above the title frame. */
-body.luxia-store-home .product-title-price-head {
-  min-height:0 !important;
-  height:auto !important;
-  margin:0 !important;
-  padding:0 !important;
-  justify-content:flex-start !important;
-  gap:0 !important;
-  overflow:visible !important;
-}
-
-/* PRICE: independent frame around the price only, white. */
-body.luxia-store-home .product-title-price-head .product-price-only,
-.lp-product-title-price-frame.lp-product-head-top .lp-price,
-.lp-product-price-below {
-  display: inline-flex !important;
-  width: auto !important;
-  max-width: max-content !important;
-  margin: 4px auto 0 !important;
-  padding: 7px 9px !important;
-  background: #292622 !important;
-  background-color: #292622 !important;
-  border: 1.5px solid #ffffff !important;
-  border-radius: 10px !important;
-  box-sizing: border-box !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-align: center !important;
-  color: #ffffff !important;
-  white-space: nowrap !important;
-}
-</style>
-
-<style id="luxia-pyjama-products-title-top-flush">
-/* Landing page product cards: remove only the top gap above the title frame. */
-.lp-product-card:not(.lp-order-success) .lp-product-title-price-frame.lp-product-head-top {
-  margin-top: -18px !important;
-  margin-inline: -18px !important;
-  width: calc(100% + 36px) !important;
-  max-width: none !important;
-}
-</style>
-<style>
-/* LANDING PAGE: product card width matches the homepage product cards */
-.lp-product-card:not(.lp-order-success){
-  width:100% !important;
-  max-width:321px !important;
-  margin-left:auto !important;
-  margin-right:auto !important;
-}
-@media(max-width:639px){
-  .lp-product-card:not(.lp-order-success){
-    max-width:100% !important;
-  }
-}
-</style>
-<style id="luxia-pourquoi-gold-final">
-/* Titre « Pourquoi LUXIA » en doré */
-.why .section-head h2{
-  color:var(--gold-soft) !important;
-  text-shadow:0 1px 10px rgba(199,161,92,.12);
-}
-</style>
-
-<style id="luxia-final-detail-layout-fix">
-/* فقط ترتيب نافذة تفاصيل المنتج */
-#productDetailOverlay .product-detail-modal .modal-head{
-  margin-bottom:0!important;
-  padding-bottom:0!important;
-}
-#productDetailOverlay .product-detail-modal #productDetailBody{
-  margin-top:0!important;
-}
-#productDetailOverlay .product-detail-modal .product-detail-gallery{
-  margin:0!important;
-}
-#productDetailOverlay .product-detail-modal .product-detail-price{
-  margin-top:0!important;
-  margin-bottom:12px!important;
-}
-#productDetailOverlay .product-detail-modal .product-detail-add{
-  margin-top:0!important;
-}
-</style>
-
-<style id="luxia-final-main-image-flush-fix">
-/* الصورة الرئيسية تملأ الإطار مباشرة تحت إطار العنوان بلا مساحة بيضاء */
-body.luxia-store-home .product-card .product-title-price-head + .product-visual > .product-photo{
-  width:100%!important;
-  height:100%!important;
-  object-fit:cover!important;
-  object-position:center center!important;
-  display:block!important;
-  margin:0!important;
-  padding:0!important;
-}
-body.luxia-store-home .product-card .product-title-price-head + .product-visual{
-  margin-top:0!important;
-  padding:0!important;
-}
-</style>
-
-<style id="luxia-natural-product-photo-final">
-/* Cadre produit à taille unique, quelle que soit la photo : chaque vignette
-   garde exactement le même format 4:5 sur toute la grille (plus de cartes
-   qui rétrécissent/s'agrandissent selon la taille de l'image = plus d'effet
-   de "tremblement" visuel). L'image reste entière dans ce cadre fixe, SANS
-   zoom ni recadrage — une petite photo garde sa taille réelle, centrée. */
-body.luxia-store-home .product-card .product-visual,
-body.luxia-store-home .product-card .product-title-price-head + .product-visual{
-  position:relative!important;
-  width:100%!important;
-  height:auto!important;
-  aspect-ratio:4/5!important;
-  min-height:0!important;
-  max-height:none!important;
-  overflow:hidden!important;
-  padding:0!important;
-  margin:0!important;
-  background:#faf8f3!important;
-}
-
-body.luxia-store-home .product-card .product-visual > .product-photo,
-body.luxia-store-home .product-card .product-title-price-head + .product-visual > .product-photo{
-  position:absolute!important;
-  inset:0!important;
-  display:block!important;
-  width:100%!important;
-  height:100%!important;
-  min-width:0!important;
-  min-height:0!important;
-  max-width:none!important;
-  max-height:none!important;
-  aspect-ratio:auto!important;
-  object-fit:contain!important;
-  object-position:center top!important;
-  transform:none!important;
-  margin:0!important;
-  padding:0!important;
-  border:0!important;
-  border-radius:0!important;
-}
-
-/* حتى hover ما يدير حتى zoom. */
-body.luxia-store-home .product-card:hover .product-photo,
-body.luxia-store-home .product-card .product-visual:hover > .product-photo{
-  transform:none!important;
-}
-
-/* Detail view: حتى ملي كتفتح المنتوج، الصورة كتبقى بنفس النسبة الأصلية. */
-body.luxia-store-home .product-detail-main-image{
-  width:100%!important;
-  height:auto!important;
-  aspect-ratio:auto!important;
-  min-height:0!important;
-  max-height:none!important;
-  overflow:hidden!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  background:#eee9e1!important;
-}
-
-body.luxia-store-home .product-detail-main-image img,
-body.luxia-store-home #productDetailMainImage{
-  position:relative!important;
-  inset:auto!important;
-  width:100%!important;
-  height:auto!important;
-  min-width:0!important;
-  min-height:0!important;
-  max-width:none!important;
-  max-height:none!important;
-  aspect-ratio:auto!important;
-  object-fit:contain!important;
-  object-position:center center!important;
-  transform:none!important;
-  display:block!important;
-  margin:0!important;
-}
-</style>
-
-<style id="luxia-landing-collection-menu">
-/* Landing page collection menu — same collection source/order as the main store. */
-.lp-collection-header{position:fixed;top:0;left:0;right:0;z-index:980;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;background:rgba(250,248,243,.97);border-bottom:1px solid #e2dcd3;box-shadow:0 4px 18px rgba(42,36,30,.06);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.lp-collection-menu-btn{width:42px;height:42px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:0;background:transparent;color:#514c47;cursor:pointer;flex:none}
-.lp-collection-menu-btn span{display:block;width:24px;height:1.5px;background:currentColor;transition:.2s ease}
-.lp-collection-logo{position:absolute;left:50%;transform:translateX(-50%);font-family:'Cormorant Garamond','Amiri',serif;font-size:25px;font-weight:600;letter-spacing:.04em;color:#292622;white-space:nowrap}
-.lp-collection-logo-heart{color:#b99a62;font-size:.65em;margin-inline-start:3px}
-.lp-collection-header .lp-cart-fab{position:relative;top:auto;right:auto;width:42px;height:42px;border:0;border-radius:0;background:transparent;color:#514c47;box-shadow:none;font-size:22px;flex:none}
-.lp-collection-header .lp-cart-fab:hover{transform:none;box-shadow:none;color:#292622}
-.lp-collection-header .lp-cart-count{top:-1px;right:-1px;min-width:17px;height:17px;font-size:10px;background:#b99a62;color:#fff;border:1px solid #f7f4ee;box-shadow:none}
-/* Landing header actions (lang switch + cart) — same visual language as the main store header. */
-.lp-collection-actions{display:flex;align-items:center;gap:6px;flex:none}
-.lp-collection-header .lang-switch{display:flex;align-items:center;gap:2px;padding:2px;border:1px solid #d8d0c5;border-radius:999px;background:#faf8f3;flex:none}
-.lp-collection-header .lang-switch button{min-width:34px;height:30px;padding:4px 8px;border-radius:999px;color:#70685f;background:transparent;font-size:10px;letter-spacing:.08em;line-height:1;white-space:nowrap}
-.lp-collection-header .lang-switch button.active{background:#292622;color:#fffdf8;font-weight:600}
-@media(max-width:639px){
-  .lp-collection-actions{gap:5px}
-  .lp-collection-header .lang-switch{padding:2px}
-  .lp-collection-header .lang-switch button{min-width:31px;height:28px;padding:4px 7px;font-size:9px}
-}
-.lp-collection-drawer{position:fixed;inset:0;z-index:1100;background:rgba(42,36,30,.28);display:none}
-.lp-collection-drawer.open{display:block}
-.lp-collection-panel{position:absolute;top:0;bottom:0;inset-inline-start:0;width:min(330px,88vw);background:#f7f4ee;border-inline-end:1px solid #ddd6cc;box-shadow:16px 0 40px rgba(42,36,30,.16);padding:76px 20px 24px;overflow:auto}
-.lp-collection-panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:15px;border-bottom:1px solid #ddd6cc;margin-bottom:8px;color:#292622}
-.lp-collection-panel-title{font-family:'Cormorant Garamond','Amiri',serif;font-size:25px;font-weight:600}
-.lp-collection-panel-close{width:36px;height:36px;border:1px solid #d9d0c3;border-radius:50%;background:#fffdf9;color:#514c47;font-size:22px;line-height:1;cursor:pointer}
-.lp-collection-list{display:flex;flex-direction:column}
-.lp-collection-list button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 4px;border:0;border-bottom:1px solid #e5dfd6;background:transparent;color:#4f4943;font-family:'Amiri','Jost',sans-serif;font-size:17px;text-align:start;cursor:pointer}
-.lp-collection-list button:hover{color:#9f8059;background:#fffdf9}
-.lp-collection-list button span:last-child{font-family:Arial,sans-serif;color:#b99a62;font-size:20px}
-.lp-theme-pyjama,.lp-theme-pyjama .lp-hero-pyjama{padding-top:0}
-.lp-theme-pyjama .lp-hero-pyjama{padding-top:58px}
-@media(min-width:900px){.lp-collection-header{height:64px;padding:0 28px}.lp-collection-panel{width:360px}.lp-collection-list button{font-size:18px}}
-</style>
-<style id="luxia-landing-current-site-theme">
-/* ============================================================
-   LUXIA LANDING PAGE — align completely with current store theme
-   Palette: warm ivory / espresso / muted camel-gold.
-   No landing-page functionality is changed.
-   ============================================================ */
-
-html.lp-pyjama-active,
-body.lp-pyjama-active{
-  background:#f7f4ee!important;
-  color:#292622!important;
-}
-
-.lp-theme-pyjama{
-  --bg-deep:#f7f4ee;
-  --bg-plum:#f1ede5;
-  --bg-plum-2:#ebe5da;
-  --ivory:#292622;
-  --ivory-dim:#6f6962;
-  --rose:#b99a72;
-  --rose-deep:#9f8059;
-  --gold:#b99a62;
-  --gold-soft:#c9ad79;
-  --line:#ddd6cc;
-  --shadow:0 14px 38px -24px rgba(42,36,30,.28);
-  background:#f7f4ee!important;
-  color:#292622!important;
-}
-
-.lp-theme-pyjama,
-.lp-theme-pyjama *{
-  --lp-current-bg:#f7f4ee;
-  --lp-current-card:#fffdf9;
-  --lp-current-text:#292622;
-  --lp-current-muted:#6f6962;
-  --lp-current-gold:#b99a62;
-  --lp-current-gold-soft:#c9ad79;
-  --lp-current-line:#ddd6cc;
-}
-
-/* Header */
-.lp-pyjama-header{
-  background:rgba(250,248,243,.97)!important;
-  border-bottom:1px solid #e2dcd3!important;
-  box-shadow:none!important;
-  color:#292622!important;
-}
-.lp-pyjama-logo{
-  color:#292622!important;
-  font-family:'Cormorant Garamond','Amiri',serif!important;
-}
-.lp-logo-heart{color:#b99a62!important;}
-.lp-pyjama-menu{color:#59534d!important;}
-
-/* Hero */
-.lp-hero-pyjama,
-.lp-theme-pyjama .lp-hero{
-  background:#f7f4ee!important;
-}
-.lp-theme-pyjama .lp-hero::before{
-  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(247,244,238,.96) 78%)!important;
-}
-.lp-hero-photo{
-  box-shadow:0 14px 30px -14px rgba(42,36,30,.25)!important;
-}
-.lp-hero-scribble{
-  color:#292622!important;
-  background:#fffdf9e8!important;
-  box-shadow:0 8px 18px rgba(42,36,30,.12)!important;
-}
-.lp-scribble-heart{color:#b99a62!important;}
-
-.lp-theme-pyjama .lp-kicker,
-.lp-hero-body .lp-kicker{
-  background:#fffdf9!important;
-  color:#9f8059!important;
-  border-color:#ddd6cc!important;
-}
-.lp-theme-pyjama .lp-title,
-.lp-hero-body .lp-title{
-  color:#292622!important;
-}
-.lp-theme-pyjama .lp-price{
-  background:#fffdf9!important;
-  border-color:#d9d0c3!important;
-  color:#9f8059!important;
-  box-shadow:0 14px 38px -24px rgba(42,36,30,.28)!important;
-}
-.lp-theme-pyjama .lp-old-price{color:#6f6962!important;}
-.lp-theme-pyjama .lp-discount-badge{
-  background:#b99a62!important;
-  color:#fff!important;
-}
-
-/* Main CTA / buttons */
-.lp-theme-pyjama .lp-cta,
-.lp-theme-pyjama .lp-choose-btn,
-.lp-theme-pyjama .lp-submit{
-  background:#292622!important;
-  color:#fff!important;
-  box-shadow:0 12px 26px -16px rgba(42,36,30,.45)!important;
-}
-.lp-theme-pyjama .lp-cta:hover,
-.lp-theme-pyjama .lp-choose-btn:hover,
-.lp-theme-pyjama .lp-submit:hover{
-  background:#3a3530!important;
-}
-
-/* Cards / sections */
-.lp-theme-pyjama .lp-card,
-.lp-theme-pyjama .lp-review,
-.lp-theme-pyjama .lp-pack-banner{
-  background:#fffdf9!important;
-  border-color:#ddd6cc!important;
-  box-shadow:0 14px 38px -24px rgba(42,36,30,.28)!important;
-}
-.lp-theme-pyjama .lp-pack-banner{
-  background:linear-gradient(135deg,#fffdf9,#f1ede5)!important;
-}
-.lp-pack-badge{
-  background:#b99a62!important;
-  color:#fff!important;
-}
-.lp-pack-label,
-.lp-pack-price{
-  color:#292622!important;
-}
-.lp-pack-price{color:#9f8059!important;}
-.lp-pack-oldprice{color:#6f6962!important;}
-
-/* Feature icons / swatches / sizes */
-.lp-theme-pyjama .lp-feature-chip,
-.lp-theme-pyjama .lp-review-city,
-.lp-theme-pyjama .lp-review-text{
-  color:#6f6962!important;
-}
-.lp-theme-pyjama .lp-feature-chip .ico{
-  background:#fffdf9!important;
-  border-color:#ddd6cc!important;
-  color:#b99a62!important;
-}
-.lp-theme-pyjama .pill{
-  background:#fffdf9!important;
-  border-color:#d9d0c3!important;
-  color:#292622!important;
-}
-.lp-theme-pyjama .pill.selected{
-  background:#b99a62!important;
-  border-color:#b99a62!important;
-  color:#fff!important;
-}
-.lp-theme-pyjama .lp-size-chip{
-  background:#fffdf9!important;
-  border-color:#d9d0c3!important;
-  color:#292622!important;
-}
-.lp-theme-pyjama .lp-review-avatar{
-  background:linear-gradient(135deg,#d8c3a1,#b99a62)!important;
-}
-
-/* Product/gallery elements inside the landing page */
-.lp-theme-pyjama .lp-product-card,
-.lp-theme-pyjama .lp-product-card-inner{
-  background:#fffdf9!important;
-  border-color:#ddd6cc!important;
-  color:#292622!important;
-}
-.lp-theme-pyjama .lp-product-card-img{
-  background:#f1ede5!important;
-}
-.lp-theme-pyjama .lp-landing-thumb{
-  background:#f1ede5!important;
-  border-color:#c9ad79!important;
-}
-
-/* Cart — this is the part that was still using the old maroon/pink skin */
-body.lp-pyjama-active .lp-cart-fab{
-  background:#fffdf9e8!important;
-  border:1px solid #d9d0c3!important;
-  color:#514b45!important;
-  box-shadow:0 8px 20px -8px rgba(42,36,30,.28)!important;
-}
-body.lp-pyjama-active .lp-cart-count{
-  background:#b99a62!important;
-  color:#fff!important;
-  border-color:#fffdf9!important;
-  box-shadow:none!important;
-}
-body.lp-pyjama-active .lp-cart-panel,
-body.lp-pyjama-active .lp-cart-drawer{
-  background:#fffdf9!important;
-  border-color:#ddd6cc!important;
-  color:#292622!important;
-}
-body.lp-pyjama-active .lp-cart-head,
-body.lp-pyjama-active .lp-cart-head > div,
-body.lp-pyjama-active .lp-cart-item-name,
-body.lp-pyjama-active .lp-cart-item-meta,
-body.lp-pyjama-active .lp-cart-live,
-body.lp-pyjama-active .lp-cart-live > div,
-body.lp-pyjama-active .lp-cart-live .lp-cart-item > div{
-  color:#292622!important;
-  opacity:1!important;
-}
-body.lp-pyjama-active .lp-cart-item-meta{
-  color:#6f6962!important;
-}
-body.lp-pyjama-active .lp-cart-total{
-  border-top-color:#ddd6cc!important;
-  color:#292622!important;
-}
-body.lp-pyjama-active .lp-cart-total strong{
-  color:#9f8059!important;
-}
-body.lp-pyjama-active .lp-cart-item{
-  border-color:#ddd6cc!important;
-}
-body.lp-pyjama-active .lp-cart-close{
-  color:#514b45!important;
-}
-body.lp-pyjama-active .lp-cart-remove{
-  color:#9f8059!important;
-}
-body.lp-pyjama-active #lp-cart-checkout{
-  background:#292622!important;
-  color:#fff!important;
-}
-
-/* Order success */
-body.lp-pyjama-active .lp-order-success{
-  background:#fffdf9!important;
-  border-color:#c9ad79!important;
-  box-shadow:0 14px 38px -24px rgba(42,36,30,.28)!important;
-}
-body.lp-pyjama-active .lp-success-icon{
-  background:#b99a62!important;
-  box-shadow:0 8px 20px rgba(42,36,30,.18)!important;
-}
-body.lp-pyjama-active .lp-success-title{
-  color:#292622!important;
-}
-body.lp-pyjama-active .lp-success-text{
-  color:#6f6962!important;
-}
-
-/* Lightbox */
-body.lp-pyjama-active .lp-lightbox{
-  background:rgba(41,38,34,.90)!important;
-}
-body.lp-pyjama-active .lp-lightbox-close{
-  background:#fffdf9e8!important;
-  color:#292622!important;
-}
-
-/* Sticky CTA */
-.lp-theme-pyjama .lp-sticky-pyjama{
-  background:#fffdf9f2!important;
-  border-top-color:#ddd6cc!important;
-  box-shadow:0 -10px 24px rgba(42,36,30,.10)!important;
-}
-
-/* Keep WhatsApp recognizable; only remove old theme shadow */
-.lp-theme-pyjama .lp-wa-float{
-  box-shadow:0 10px 22px rgba(42,36,30,.20)!important;
-}
-
-/* Remove the old pink decorative pulse colors */
-body.lp-pyjama-active .lp-attention-signal{
-  box-shadow:0 0 0 5px rgba(185,154,98,.16),0 0 28px rgba(185,154,98,.26)!important;
-}
-body.lp-pyjama-active .lp-attention-signal::after{
-  /* only the visual pointer remains */
-}
-</style>
-
-<style id="luxia-landing-cart-theme-fix">
-/* The landing-page cart drawer (#lp-cart-drawer / .lp-cart-panel) is appended as a
-   SIBLING of <main class="lp-preview">, not a descendant — so the ".lp-preview …"
-   rules meant to give the whole landing page the current cream store look never
-   actually reached it, and it kept rendering in the old dark plum theme. Restyle
-   it directly here so it always matches the rest of the page. */
-.lp-cart-drawer{background:rgba(42,36,30,.38)!important;}
-.lp-cart-panel{background:#faf8f3!important;border:1px solid #ddd5ca!important;color:#302b27!important;box-shadow:0 -20px 55px rgba(37,31,26,.18)!important;}
-.lp-cart-head{border-bottom:1px solid #e4ded5!important;padding-bottom:12px!important;}
-.lp-cart-head > div{color:#292622!important;}
-.lp-cart-close{color:#665f58!important;}
-.lp-cart-close:hover{color:#292622!important;}
-.lp-cart-item{border-bottom:1px solid #e4ded5!important;}
-.lp-cart-item-name{color:#292622!important;}
-.lp-cart-item-meta{color:#7b736b!important;}
-.lp-cart-remove{color:#a64f48!important;text-decoration:none!important;font-weight:600!important;}
-.lp-cart-empty{color:#7b736b!important;}
-.lp-cart-total{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding-top:12px;border-top:1px solid #e4ded5;color:#292622;font-family:var(--font-display);font-size:calc(19px * var(--font-scale));font-weight:700;}
-.lp-cart-total strong{color:#9f8059;}
-</style>
-
-<style id="luxia-shipping-info">
-.luxia-shipping-info,
-.lp-shipping-info{
-  margin-top:10px!important;
-  padding:10px 12px!important;
-  border:1px solid #ddd6cc!important;
-  border-radius:10px!important;
-  background:#f7f4ee!important;
-  color:#514b45!important;
-  font-size:12px!important;
-  line-height:1.5!important;
-}
-.luxia-shipping-info > div,
-.lp-shipping-info > div{
-  display:flex!important;
-  align-items:center!important;
-  justify-content:space-between!important;
-  gap:12px!important;
-  padding:3px 0!important;
-}
-.luxia-shipping-info strong,
-.lp-shipping-info strong{
-  color:#9f8059!important;
-  font-weight:700!important;
-  white-space:nowrap!important;
-}
-.luxia-shipping-info p,
-.lp-shipping-info p{
-  margin:7px 0 0!important;
-  padding-top:7px!important;
-  border-top:1px solid #e4ded5!important;
-  color:#7a736b!important;
-  font-size:10.5px!important;
-  line-height:1.45!important;
-}
-</style>
-
-<style id="luxia-shipping-transparency-v8">
-.luxia-shipping-info,
-.lp-shipping-info{
-  margin-top:10px!important;
-  padding:11px 12px!important;
-  border:1px solid #ddd6cc!important;
-  border-radius:10px!important;
-  background:#f7f4ee!important;
-  color:#514b45!important;
-  font-size:12px!important;
-  line-height:1.5!important;
-}
-.luxia-shipping-info > div,
-.lp-shipping-info > div{
-  display:flex!important;
-  align-items:center!important;
-  justify-content:space-between!important;
-  gap:10px!important;
-  padding:4px 0!important;
-}
-.luxia-shipping-info strong,
-.lp-shipping-info strong{
-  color:#9f8059!important;
-  font-weight:700!important;
-  white-space:nowrap!important;
-  text-align:right!important;
-}
-.luxia-shipping-info p,
-.lp-shipping-info p{
-  margin:7px 0 0!important;
-  padding-top:7px!important;
-  border-top:1px solid #e4ded5!important;
-  color:#7a736b!important;
-  font-size:10.5px!important;
-  line-height:1.45!important;
-}
-@media(max-width:520px){
-  .luxia-shipping-info,
-  .lp-shipping-info{font-size:11px!important;padding:10px!important;}
-  .luxia-shipping-info > div,
-  .lp-shipping-info > div{gap:7px!important;}
-  .luxia-shipping-info strong,
-  .lp-shipping-info strong{font-size:10.5px!important;}
-}
-</style>
-<style id="luxia-delivery-checkout-v9">
-#fCityType,#fCityOther,#lp-city-type,#lp-city-other{width:100%;box-sizing:border-box;border:1px solid #d9d0c3;background:#fffdf9;color:#292622;border-radius:10px;padding:11px 12px;font:inherit;}
-#fCityType.invalid,#fCityOther.invalid,#lp-city-type.invalid,#lp-city-other.invalid{border-color:#c58f87!important;}
-</style>
-
-<style id="luxia-detail-gallery-no-clip-fix">
-/* Detail modal: the gallery wrapper must contain BOTH the main photo and thumbnails.
-   Do not force a 4:5 ratio on the wrapper itself, otherwise the thumbnails get clipped
-   and the Description section appears to cover the gallery. */
-#productDetailOverlay .product-detail-modal .product-detail-gallery{
-  width:100%!important;
-  height:auto!important;
-  min-height:0!important;
-  max-height:none!important;
-  aspect-ratio:auto!important;
-  overflow:visible!important;
-  margin:0 0 20px!important;
-}
-#productDetailOverlay .product-detail-modal .product-detail-thumbs{
-  position:relative!important;
-  width:100%!important;
-  height:auto!important;
-  min-height:72px!important;
-  max-height:none!important;
-  overflow-x:auto!important;
-  overflow-y:hidden!important;
-  box-sizing:border-box!important;
-  display:flex!important;
-  flex-wrap:nowrap!important;
-  flex-shrink:0!important;
-  padding:10px 2px 2px!important;
-}
-@media(max-width:520px){
-  #productDetailOverlay .product-detail-modal .product-detail-thumbs{
-    min-height:62px!important;
-  }
-}
-</style>
-<style id="luxia-checkout-required-blink-v12">
-@keyframes luxiaRequiredBlink{0%,100%{border-color:#d9d0c3;box-shadow:0 0 0 0 rgba(166,79,72,0)}35%,70%{border-color:#c9635f;box-shadow:0 0 0 4px rgba(166,79,72,.13)}}
-#stepCheckoutForm input.invalid,#stepCheckoutForm textarea.invalid,#stepCheckoutForm select.invalid{animation:luxiaRequiredBlink .85s ease-in-out 0s 3!important;border-color:#c9635f!important}
-#stepCheckoutForm .field-error.show{display:block!important}
-</style>
-<style id="luxia-checkout-product-name-v13">
-.checkout-products-name{align-items:flex-start!important;}
-.checkout-products-name span:first-child{line-height:1.55;text-align:left;}
-[dir="rtl"] .checkout-products-name span:first-child{text-align:right;}
-</style>
-
-
-
-<style id="luxia-3d-product-frame-final">
-/* FINAL OVERRIDE — Luxia product cards: elegant unified 3D frame */
-body.luxia-store-home .product-grid .product-card,
-body.luxia-store-home .product-grid > .product-card {
-  position:relative!important;
-  box-sizing:border-box!important;
-  overflow:hidden!important;
-  border:1px solid #bda77e!important;
-  border-radius:22px!important;
-  outline:none!important;
-  background:#faf8f3!important;
-  /* top/left highlight + lower/right depth */
-  box-shadow:
-    inset 1px 1px 0 rgba(255,255,255,.96),
-    inset -1px -1px 0 rgba(156,126,78,.20),
-    0 1px 0 rgba(255,255,255,.90),
-    2px 2px 0 rgba(186,158,112,.38),
-    4px 4px 0 rgba(153,124,78,.18),
-    0 9px 18px rgba(74,58,39,.10)!important;
-  transform:none!important;
-  transition:none!important;
-}
-
-/* A very subtle inner bevel: no black line and no effect on layout. */
-body.luxia-store-home .product-grid .product-card::before,
-body.luxia-store-home .product-grid > .product-card::before {
-  content:""!important;
-  position:absolute!important;
-  inset:0!important;
-  z-index:30!important;
-  pointer-events:none!important;
-  border-radius:inherit!important;
-  border:1px solid rgba(255,255,255,.68)!important;
-  box-shadow:
-    inset 2px 2px 0 rgba(255,255,255,.28),
-    inset -2px -2px 0 rgba(139,108,62,.10)!important;
-}
-
-/* Gives the lower/right side a little more 3D presence, matching the reference. */
-body.luxia-store-home .product-grid .product-card::after,
-body.luxia-store-home .product-grid > .product-card::after {
-  content:""!important;
-  position:absolute!important;
-  inset:2px!important;
-  z-index:29!important;
-  pointer-events:none!important;
-  border-radius:20px!important;
-  border-right:1px solid rgba(143,111,66,.16)!important;
-  border-bottom:1px solid rgba(143,111,66,.18)!important;
-  box-shadow:
-    inset -1px -1px 0 rgba(127,97,54,.08),
-    inset 1px 1px 0 rgba(255,255,255,.16)!important;
-}
-
-/* Keep the unified image frame exactly as it is. */
-body.luxia-store-home .product-card .product-visual {
-  box-sizing:border-box!important;
-}
-</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
