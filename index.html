@@ -379,17 +379,19 @@ body.has-lunea-custom-bg{background-image:linear-gradient(rgba(20,10,15,.72),rgb
 .lp-gallery img{flex:0 0 calc((100% - 16px)/3);width:calc((100% - 16px)/3);aspect-ratio:1/1;object-fit:cover;border-radius:14px;border:1px solid rgba(0,0,0,.08);box-shadow:0 4px 14px rgba(0,0,0,.07);scroll-snap-align:start;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}.lp-gallery img:active{transform:scale(.98);box-shadow:0 2px 8px rgba(0,0,0,.06)}.lp-gallery img:first-child{border-color:var(--gold-soft);box-shadow:0 5px 16px rgba(199,161,92,.18)}
 .lp-benefits{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}.lp-product-details{margin:14px 0 4px;padding:4px 0 0;border:0;border-radius:0;background:transparent}.lp-product-details-title{font-family:var(--font-display);font-size:calc(14px * var(--font-scale));color:var(--gold-soft);margin-bottom:7px}.lp-product-desc p{margin:0;color:var(--ivory-dim);font-size:calc(13px * var(--font-scale));line-height:1.65}.lp-product-benefits{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}.lp-product-benefits ul{margin:0;padding:0 18px 0 0;color:var(--ivory-dim);font-size:calc(13px * var(--font-scale));line-height:1.7}.lp-product-benefits li{margin:3px 0}html[dir="ltr"] .lp-product-benefits ul{padding:0 0 0 18px}
 .lp-card{background:#ffffff08;border:1px solid var(--line);border-radius:18px;padding:22px;text-align:center}
-.lp-choose-btn{width:100%;margin-top:12px;padding:12px;border-radius:12px;border:1px solid var(--gold-soft);background:transparent;color:var(--gold-soft);font-size:calc(13.5px * var(--font-scale));font-weight:500;cursor:pointer;}
+.lp-choose-btn{width:100%;margin-top:12px;padding:13px 16px;border-radius:999px;border:1px solid rgba(224,198,144,.78);background:linear-gradient(135deg,#3a1e2b,#4a2436);color:#f4dfb0;font-size:calc(13.5px * var(--font-scale));font-weight:700;letter-spacing:.02em;cursor:pointer;box-shadow:0 7px 18px rgba(58,30,43,.12);transition:transform .18s ease,box-shadow .18s ease,background .18s ease,color .18s ease;}
+.lp-choose-btn:hover{background:linear-gradient(135deg,#452332,#5a2b40);color:#fff3cf;box-shadow:0 9px 22px rgba(58,30,43,.18);transform:translateY(-1px)}
+.lp-choose-btn:active{transform:translateY(0);box-shadow:0 5px 14px rgba(58,30,43,.12)}
 .lp-product-order-label{margin-top:12px;margin-bottom:8px;font-size:calc(12px * var(--font-scale));color:var(--ivory-dim)}.lp-product-label{font-size:calc(11px * var(--font-scale));letter-spacing:.08em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:8px}.lp-product-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.lp-product-head .lp-price{margin-bottom:0}.lp-added-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}.lp-added-actions{display:flex;align-items:center;gap:12px}.lp-added{color:var(--gold-soft);font-size:calc(13.5px * var(--font-scale))}.lp-edit-btn,.lp-remove-btn{background:none;border:none;color:var(--ivory-dim);text-decoration:underline;font-size:calc(12.5px * var(--font-scale));cursor:pointer}.lp-remove-btn{color:#c9a877}.lp-main-required{margin:0;text-align:center;font-size:calc(13px * var(--font-scale));color:var(--ivory-dim)}.lp-picker{margin-top:12px}
 @keyframes luneaProductHighlightPulse{0%,100%{box-shadow:0 0 0 0 rgba(199,161,92,0)}45%{box-shadow:0 0 0 6px rgba(199,161,92,.45)}}
 .lunea-product-highlight{animation:luneaProductHighlightPulse 1.3s ease-in-out 2;border-radius:14px;}
-.lp-site-link{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:12px 10px;text-align:center;font-size:calc(12.5px * var(--font-scale));letter-spacing:.03em;color:var(--gold-soft);border-top:1px solid var(--line);text-decoration:underline;text-underline-offset:3px;transition:color .2s ease,opacity .2s ease;opacity:.92}
-.lp-site-link:hover{color:var(--ivory);opacity:1}
-.lp-site-link-arrow{font-size:calc(13px * var(--font-scale));transition:transform .2s ease}
+.lp-site-link{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:14px;padding:13px 16px;text-align:center;font-size:calc(12.5px * var(--font-scale));letter-spacing:.02em;color:#6b4a35;background:linear-gradient(180deg,rgba(255,252,244,.94),rgba(246,238,220,.96));border:1px solid rgba(185,151,88,.58);border-radius:999px;text-decoration:none;box-shadow:0 5px 16px rgba(96,72,38,.07);transition:color .2s ease,background .2s ease,border-color .2s ease,box-shadow .2s ease,transform .2s ease;font-weight:600;}
+.lp-site-link:hover{color:#3a1e2b;background:#fffaf0;border-color:rgba(185,151,88,.9);box-shadow:0 8px 20px rgba(96,72,38,.12);transform:translateY(-1px)}
+.lp-site-link-arrow{font-size:calc(14px * var(--font-scale));font-weight:700;color:#b89555;transition:transform .2s ease}
 .lp-site-link:hover .lp-site-link-arrow{transform:translateX(3px)}
 [dir="rtl"] .lp-site-link:hover .lp-site-link-arrow{transform:translateX(-3px)}
-body.lp-pyjama-active .lp-site-link{border-top-color:#f0dfe0;color:#a8734f}
-body.lp-pyjama-active .lp-site-link:hover{color:#7a5136}
+body.lp-pyjama-active .lp-site-link{border-color:rgba(185,151,88,.58);color:#6b4a35;background:linear-gradient(180deg,#fffaf1,#f5ead5)}
+body.lp-pyjama-active .lp-site-link:hover{color:#3a1e2b;border-color:rgba(185,151,88,.9)}
 
 /* PRODUCT TITLE + PRICE FRAME — shared by landing page and homepage */
 .product-title-price-frame,
@@ -7902,7 +7904,7 @@ function renderLandingPublic(p, isPreview){
        admin enables it, admin can override text/URL. */
     const siteLinkAutoHref = (typeof location!=='undefined' ? (location.origin+'/') : '/') + (mainSourceProduct ? ('?product='+encodeURIComponent(mainSourceProduct.id)) : '');
     const siteLinkHref = (p.siteLinkUrl||'').trim() || siteLinkAutoHref;
-    const siteLinkLabel = (p.siteLinkText||'').trim() || (lang==='ar' ? 'اكتشفي التشكيلة الكاملة على موقعنا الرسمي' : 'Découvrez toute la collection sur notre site officiel.');
+    const siteLinkLabel = (p.siteLinkText||'').trim() || (lang==='ar' ? '✨ اكتشفي التشكيلة الكاملة على موقعنا الرسمي' : '✨ Découvrez toute la collection sur notre site officiel');
     const siteLinkHTML = (p.showSiteLink!==false) ? `<a href="${escAttr(siteLinkHref)}" target="_blank" rel="noopener" class="lp-site-link">${escHtml(siteLinkLabel)}<span class="lp-site-link-arrow">${dir==='rtl'?'←':'→'}</span></a>` : '';
     const mainCardHTML = orderPlaced ? `<div id="lp-main-product" class="lp-card lp-product-card lp-order-success" style="text-align:center;padding:34px 20px;margin:20px 0;">
       <div class="lp-success-icon">✓</div>
