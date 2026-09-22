@@ -8181,7 +8181,7 @@ ${sizesSectionHTML}
       if(p2Added)items.push(`<div class="lp-cart-item"><div><div class="lp-cart-item-name">${escHtml(product2Name)}</div><div class="lp-cart-item-meta">${p2price}dh${p2HasVariants?` · ${escHtml(summaryText(p2Variants,p2HasColors,p2Pack,p2HasSizes,p2State))}`:''}</div></div><button type="button" class="lp-cart-remove" id="lp-cart-remove-p2">🗑️ ${lang==='ar'?'حذف':'Supprimer'}</button></div>`);
       const cartTotalNow=mainCartItems.reduce((s,i)=>s+i.price*i.qty,0)+(p2Added?p2price:0);
       if(live)live.innerHTML=items.join('')||`<div class="lp-cart-empty">${lang==='ar'?'السلة فارغة':'Votre panier est vide'}</div>`;
-      if(live&&items.length)live.innerHTML+=`<div class="lp-cart-total"><span>${lang==='ar'?'المجموع':'Total'}</span><strong>${cartTotalNow} DH</strong></div>
+      if(live&&items.length)live.innerHTML+=`<div class="lp-cart-total"><span>${lang==='ar'?'المجموع الفرعي':'Sous-total'}</span><strong>${cartTotalNow} DH</strong></div>
         <div class="lp-shipping-info">
   <div><span>🚚 ${lang==='ar'?'التوصيل إلى الدار البيضاء':'Livraison à Casablanca'}</span><strong>20 ${t("unit.dh")} · ${lang==='ar'?'خلال 24 ساعة':'dans 24h'}</strong></div>
   <div><span>🚚 ${lang==='ar'?'التوصيل خارج الدار البيضاء':'Livraison hors Casablanca'}</span><strong>35 ${t("unit.dh")} · ${lang==='ar'?'خلال 24–48 ساعة':'24–48h'}</strong></div>
@@ -8299,9 +8299,20 @@ document.getElementById('lp-cart-fab')?.addEventListener('click',()=>{const d=do
       if(same) same.qty+=1; else mainCartItems.push(item);
       mainState.color=null; mainState.colors=Array(mainPack).fill(null); mainState.size=null; mainState.purchaseMode='piece';
       mainOpen=false; showForm=false; paint();
-      setTimeout(()=>{ window.scrollTo({top:0,behavior:'smooth'}); showCartSuccessToast(lang==='ar'?'ar':'fr'); },80);
+      setTimeout(()=>{
+        window.scrollTo({top:0,behavior:'smooth'});
+        showCartSuccessToast(lang==='ar'?'ar':'fr');
+        /* Landing-page checkout follows the same cart-first flow as the main store:
+           after adding a variant, open the cart immediately for review/checkout. */
+        const d=document.getElementById('lp-cart-drawer');
+        if(d){
+          d.classList.add('open');
+          d.setAttribute('aria-hidden','false');
+          refreshCartUI();
+        }
+      },80);
     });
-    document.getElementById('lp-p2-add')?.addEventListener('click',()=>{ if(!isReady(p2HasColors,p2Pack,p2HasSizes,p2State)){ const picker=document.getElementById('lp-p2-picker'); picker?.classList.add('luxia-variant-attention'); setTimeout(()=>picker?.classList.remove('luxia-variant-attention'),1600); picker?.scrollIntoView({behavior:'smooth',block:'center'}); showToast(lang==='ar'?'اختاري اللون والمقاس أولاً':'Choisissez la couleur et la taille'); return; } p2Added=true; p2Open=false; showForm=false; paint(); setTimeout(()=>{ window.scrollTo({top:0,behavior:'smooth'}); showCartSuccessToast(lang==='ar'?'ar':'fr'); },80); });
+    document.getElementById('lp-p2-add')?.addEventListener('click',()=>{ if(!isReady(p2HasColors,p2Pack,p2HasSizes,p2State)){ const picker=document.getElementById('lp-p2-picker'); picker?.classList.add('luxia-variant-attention'); setTimeout(()=>picker?.classList.remove('luxia-variant-attention'),1600); picker?.scrollIntoView({behavior:'smooth',block:'center'}); showToast(lang==='ar'?'اختاري اللون والمقاس أولاً':'Choisissez la couleur et la taille'); return; } p2Added=true; p2Open=false; showForm=false; paint(); setTimeout(()=>{ window.scrollTo({top:0,behavior:'smooth'}); showCartSuccessToast(lang==='ar'?'ar':'fr'); const d=document.getElementById('lp-cart-drawer'); if(d){ d.classList.add('open'); d.setAttribute('aria-hidden','false'); refreshCartUI(); } },80); });
     document.getElementById('lp-p2-edit')?.addEventListener('click',()=>{ p2Added=false; p2Open=true; paint(); });
     document.getElementById('lp-p2-remove')?.addEventListener('click',()=>{ p2Added=false; paint(); });
     bindLandingPickerButtons();
