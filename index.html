@@ -534,7 +534,7 @@ body.lp-pyjama-active .lp-site-link:hover{color:#3a1e2b;border-color:rgba(185,15
 .lp-order{max-width:620px;margin:0 auto;background:#ffffff08;border:1px solid var(--line);border-radius:22px;padding:24px}
 .lp-order input,.lp-order textarea,.lp-order select,.lp-admin input,.lp-admin textarea,.lp-admin select{width:100%;padding:12px 14px;border-radius:12px;background:#ffffff0d;border:1px solid var(--line);color:var(--ivory);font:inherit}
 .lp-order label,.lp-admin label{display:block;margin:0 0 7px;color:var(--gold-soft);font-size:calc(12px * var(--font-scale))}
-.lp-field{margin-bottom:14px}.lp-submit{width:100%;padding:14px;border-radius:999px;background:var(--gold);color:var(--bg-deep);font-weight:700}
+.lp-field{margin-bottom:16px}.lp-preview .lp-order .lp-field label{display:block;margin-bottom:8px;color:#5b5147 !important;font-size:calc(13px * var(--font-scale));font-weight:600;line-height:1.4}.lp-preview .lp-order input,.lp-preview .lp-order select,.lp-preview .lp-order textarea{width:100%;box-sizing:border-box;background:#fffdf8 !important;color:#2d2824 !important;border:1px solid rgba(185,151,88,.42) !important;border-radius:14px;padding:13px 14px;font:inherit;line-height:1.45;outline:none;box-shadow:inset 0 1px 2px rgba(60,45,30,.035),0 2px 8px rgba(60,45,30,.025);transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}.lp-preview .lp-order input:focus,.lp-preview .lp-order select:focus,.lp-preview .lp-order textarea:focus{border-color:rgba(185,151,88,.78) !important;background:#fff !important;box-shadow:0 0 0 3px rgba(185,151,88,.12)}.lp-preview .lp-order input::placeholder,.lp-preview .lp-order textarea::placeholder{color:#8a8075;opacity:1}.lp-submit{width:100%;padding:14px;border-radius:999px;background:var(--gold);color:var(--bg-deep);font-weight:700}
 .lp-experience-section{text-align:center;padding-top:34px}
 .lp-experience-kicker{font-size:calc(11px * var(--font-scale));letter-spacing:.18em;color:var(--gold-soft);margin-bottom:7px}
 .lp-experience-section h2{margin:0 0 20px;font-family:var(--font-display);font-size:calc(28px * var(--font-scale));font-weight:500}
@@ -7677,7 +7677,10 @@ function renderLandingPublic(p, isPreview){
   /* `lang` is the currently displayed language. It starts at the admin's chosen
      default (p.language) but the customer can flip it with the FR/AR switch;
      `paint()` re-renders the whole page whenever it changes. */
-  let lang = p.language==='ar' ? 'ar' : 'fr';
+  /* Landing pages always open in French for a fresh visit. The visitor can
+     switch to Arabic with the visible FR/AR control; the main site's language
+     preference is intentionally not used here. */
+  let lang = 'fr';
   const pick=(base)=>{ const key=base+(lang==='ar'?'Ar':'Fr'); return (p[key]!=null && p[key]!=='') ? p[key] : (p[base]||''); };
   const pickArr=(base)=>{ const key=base+(lang==='ar'?'Ar':'Fr'); return (p[key]&&p[key].length) ? p[key] : (p[base]||[]); };
 
