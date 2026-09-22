@@ -4750,7 +4750,7 @@ body.luxia-store-home .product-card .product-visual {
 </head>
 <body class="luxia-store-home">
 
-<div class="promo-bar"><span data-i18n="promo.text">🚚 Livraison gratuite à Casablanca · Livraison partout au Maroc</span></div>
+<div class="promo-bar"><span data-i18n="promo.text">🚚 Livraison partout au Maroc</span></div>
 
 <header>
   <div class="container header-inner">
@@ -5129,7 +5129,7 @@ function colorLabel(id, colorId){
 const I18N = {
   fr: {
     "brand.tagline":"Luxury Collection",
-    "promo.text":"🚚 Livraison gratuite à Casablanca · Livraison partout au Maroc",
+    "promo.text":"🚚 Livraison partout au Maroc",
     "nav.home":"Accueil","nav.collection":"Collection","nav.offers":"Offres","nav.cart":"Panier","nav.order":"Commander",
     "collection.storeTitle":"La boutique","collection.storeSubtitle":"Toute la collection — pyjamas, lingerie et nuit.",
     "hero.eyebrow":"Nouvelle Collection",
@@ -5220,7 +5220,7 @@ const I18N = {
   },
   ar: {
     "brand.tagline":"مجموعة فاخرة",
-    "promo.text":"🚚 التوصيل بالمجان داخل الدار البيضاء · التوصيل متوفر في جميع أنحاء المغرب",
+    "promo.text":"🚚 التوصيل إلى جميع أنحاء المغرب",
     "nav.home":"الرئيسية","nav.collection":"المجموعة","nav.offers":"العروض","nav.cart":"السلة","nav.order":"اطلب الآن",
     "collection.storeTitle":"البوتيك","collection.storeSubtitle":"المجموعة كاملة — بيجامات، لانجري وملابس النوم.",
     "hero.eyebrow":"مجموعة جديدة",
@@ -7833,7 +7833,14 @@ function renderLandingPublic(p, isPreview){
       <button type="button" class="lang-btn ${lang==='fr'?'active':''}" data-lp-lang="fr">🇫🇷 FR</button>
       <button type="button" class="lang-btn ${lang==='ar'?'active':''}" data-lp-lang="ar">🇲🇦 AR</button>
     </div>`;
-    const collectionHeaderHTML = `<div class="lp-collection-header">
+    /* Delivery promo bar — same message/behavior as the main site's top bar
+       (see I18N['promo.text']), shown fixed above the landing header so the
+       "Livraison partout au Maroc" promise is visible on every landing page,
+       exactly like on the store. Header + page content are pushed down by
+       its height (LP_PROMO_H) via inline styles below. */
+    const LP_PROMO_H = 30;
+    const lpPromoBarHTML = `<div class="lp-promo-bar" style="position:fixed;top:0;left:0;right:0;z-index:981;height:${LP_PROMO_H}px;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,#3a1e2b,#4a2436,#3a1e2b);color:#e0c690;font-size:11px;letter-spacing:.03em;font-weight:500;padding:0 12px;text-align:center;">${escHtml((I18N[lang]&&I18N[lang]['promo.text'])||'🚚 Livraison partout au Maroc')}</div>`;
+    const collectionHeaderHTML = `<div class="lp-collection-header" style="top:${LP_PROMO_H}px;">
       <button type="button" id="lp-collection-menu-btn" class="lp-collection-menu-btn" aria-label="Menu" aria-controls="lp-collection-drawer" aria-expanded="false"><span></span><span></span><span></span></button>
       <span class="lp-collection-logo">LUXIA<span class="lp-collection-logo-heart">✦</span></span>
       <div class="lp-collection-actions">
@@ -7970,7 +7977,7 @@ function renderLandingPublic(p, isPreview){
     const lsIdleColor = isPyjama ? '#8a6870' : '#f8f1e8';
     const lsActiveColor = isPyjama ? '#ffffff' : '#1c0f16';
     const lsActiveBg = isPyjama ? '#d6536b' : '#c7a15c';
-    const lsTop = 66;
+    const lsTop = 66 + LP_PROMO_H;
     /* The FR/AR switch now lives inline in the landing header (lp-collection-actions),
        matching the main store header exactly — no more floating pill over the content. */
     const langSwitchHTML='';
@@ -7994,7 +8001,7 @@ function renderLandingPublic(p, isPreview){
         ${p.price?`<div class="lp-price">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div>`:''}
       </div>
     </section>` : `<section class="lp-hero" style="background-image:url('${escAttr(p.heroImage||'')}')"><div class="lp-hero-content"><div class="lp-kicker">${escHtml(p.kicker)}</div><h1 class="lp-title">${escHtml(title)}</h1><p class="lp-subtitle">${escHtml(subtitle)}</p>${pyFeatureRowHTML}${p.price?`<div class="lp-price">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div>`:''}${description?`<p style="max-width:640px;margin:14px auto 0;text-align:center;color:var(--ivory-dim);font-size:calc(16px * var(--font-scale))">${escHtml(description)}</p>`:''}${pySizeRowHTML}<a class="lp-cta" href="#lp-main-product">${lang==='ar'?'إكتشفي':'Découvrir'}</a></div></section>`;
-    document.body.innerHTML=`${collectionHeaderHTML}${collectionDrawerHTML}${cartFabHTML}${closeBtnHTML}${langSwitchHTML}${lightboxHTML}${p2LightboxHTML}<main class="lp-preview ${isPyjama?'lp-theme-pyjama':''}">${heroHTML}${colorShowcaseHTML}${packBannerHTML}<div class="lp-wrap">${p.video2?`<section class="lp-section lp-video-section lp-video2-section"><div class="lunea-video-wrap"><video class="lp-video lp-video2" src="${escAttr(p.video2)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}${p.showOrderForm?`<section class="lp-section" id="order">${mainCardHTML.replace('__LP_FORM_HERE__',formHTML)}${p2CardHTML}</section>`:''}${p.showBenefits&&benefits?`<section class="lp-section"><h2>${lang==='ar'?'المميزات':'Les avantages'}</h2><div class="lp-benefits">${benefits}</div></section>`:''}${p.showReviews&&reviews?`<section class="lp-section"><h2>${lang==='ar'?'آراء الزبناء':'Avis clientes'}</h2><div class="lp-reviews-grid">${reviews}</div></section>`:''}${p.showFaq&&faqs?`<section class="lp-section lp-faq"><h2>FAQ</h2>${faqs}</section>`:''}${p.video?`<section class="lp-section"><div class="lunea-video-wrap"><video class="lp-video" src="${escAttr(p.video)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}
+    document.body.innerHTML=`${lpPromoBarHTML}${collectionHeaderHTML}${collectionDrawerHTML}${cartFabHTML}${closeBtnHTML}${langSwitchHTML}${lightboxHTML}${p2LightboxHTML}<main class="lp-preview ${isPyjama?'lp-theme-pyjama':''}" style="padding-top:${LP_PROMO_H}px;">${heroHTML}${colorShowcaseHTML}${packBannerHTML}<div class="lp-wrap">${p.video2?`<section class="lp-section lp-video-section lp-video2-section"><div class="lunea-video-wrap"><video class="lp-video lp-video2" src="${escAttr(p.video2)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}${p.showOrderForm?`<section class="lp-section" id="order">${mainCardHTML.replace('__LP_FORM_HERE__',formHTML)}${p2CardHTML}</section>`:''}${p.showBenefits&&benefits?`<section class="lp-section"><h2>${lang==='ar'?'المميزات':'Les avantages'}</h2><div class="lp-benefits">${benefits}</div></section>`:''}${p.showReviews&&reviews?`<section class="lp-section"><h2>${lang==='ar'?'آراء الزبناء':'Avis clientes'}</h2><div class="lp-reviews-grid">${reviews}</div></section>`:''}${p.showFaq&&faqs?`<section class="lp-section lp-faq"><h2>FAQ</h2>${faqs}</section>`:''}${p.video?`<section class="lp-section"><div class="lunea-video-wrap"><video class="lp-video" src="${escAttr(p.video)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}
 <section class="lp-section lp-experience-section">
   <div class="lp-experience-kicker">${lang==='ar'?'التجربة':'L’EXPÉRIENCE'}</div>
   <h2>${lang==='ar'?'لماذا LUXIA':'Pourquoi LUXIA'}</h2>
