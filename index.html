@@ -5290,6 +5290,39 @@ body.lp-pyjama-active .lp-preview .lp-product-card:not(.lp-order-success) .lp-pi
   .lp-preview .lp-hero-clean .lp-title{font-size:clamp(22px,6vw,34px) !important;}
 }
 </style>
+
+<style id="luxia-hero-visible-and-product-title-frame-v12">
+/* V12 — keep the hero fully below the fixed site header and make the product title frame dark brown. */
+.lp-preview .lp-hero-clean{
+  margin-top:72px !important;
+  padding-top:14px !important;
+  padding-bottom:20px !important;
+}
+.lp-preview .lp-hero-clean .lp-hero-content{
+  padding-top:0 !important;
+}
+.lp-preview .lp-hero-clean .lp-hero-info-card{
+  padding-top:16px !important;
+  padding-bottom:14px !important;
+}
+.lp-preview .lp-product-card .lp-product-title-price-frame,
+.lp-preview .lp-product-card .lp-product-title-price-frame.lp-product-head-top{
+  background:#f7f4ee !important;
+  background-color:#f7f4ee !important;
+  border:2px solid #4a3022 !important;
+  color:#292622 !important;
+  box-shadow:none !important;
+}
+.lp-preview .lp-product-card .lp-product-title-price-frame b,
+.lp-preview .lp-product-card .lp-product-title-price-frame.lp-product-head-top b{
+  color:#000 !important;
+  text-shadow:none !important;
+}
+@media(max-width:520px){
+  .lp-preview .lp-hero-clean{margin-top:72px !important;padding-top:10px !important;padding-bottom:18px !important;}
+  .lp-preview .lp-hero-clean .lp-hero-info-card{padding-top:14px !important;padding-bottom:13px !important;}
+}
+</style>
 </head>
 <body class="luxia-store-home">
 
