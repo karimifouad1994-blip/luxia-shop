@@ -5194,6 +5194,22 @@ body.lp-pyjama-active .lp-preview .lp-product-card:not(.lp-order-success) .lp-pi
   text-shadow:none !important;
   margin-bottom:16px !important;
 }
+.lp-preview .lp-hero-clean .lp-hero-lux-title{
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:calc(clamp(52px,15vw,92px) * var(--font-scale)) !important;
+  letter-spacing:.06em;
+  line-height:1;
+  margin-bottom:6px;
+  color:var(--ivory);
+  background:linear-gradient(180deg,var(--ivory) 40%,var(--rose) 130%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.lp-preview .lp-hero-clean .lp-hero-lux-tagline{
+  margin-bottom:20px !important;
+}
 .lp-preview .lp-hero-clean .lp-price{
   color:#967644 !important;
   font-size:calc(30px * var(--font-scale)) !important;
@@ -5207,6 +5223,12 @@ body.lp-pyjama-active .lp-preview .lp-product-card:not(.lp-order-success) .lp-pi
   color:#5b554f !important;
   font-size:calc(16px * var(--font-scale)) !important;
   line-height:1.7 !important;
+  font-family:'Cormorant Garamond','Amiri',serif !important;
+  font-weight:500 !important;
+}
+html[dir="rtl"] .lp-preview .lp-hero-clean .lp-hero-description{
+  font-family:'Amiri',serif !important;
+  font-weight:400 !important;
 }
 .lp-preview .lp-hero-clean .lp-cta{
   background:#292622 !important;
@@ -8506,7 +8528,7 @@ function renderLandingPublic(p, isPreview){
         ${pyFeatureRowHTML}
         ${p.price?`<div class="lp-price">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div>`:''}
       </div>
-    </section>` : `<section class="lp-hero lp-hero-clean"><div class="lp-hero-content">${description?`<p class="lp-hero-description">${escHtml(description)}</p>`:''}<a class="lp-cta" href="#lp-main-product">${lang==='ar'?'إكتشفي':'Découvrir'}</a></div></section>`;
+    </section>` : `<section class="lp-hero lp-hero-clean"><div class="lp-hero-content"><h1 class="lp-hero-lux-title">LUXIA</h1><p class="hero-tagline lp-hero-lux-tagline">${lang==='ar'?'مجموعة فاخرة':'Luxury Collection'}</p>${description?`<p class="lp-hero-description">${escHtml(description)}</p>`:''}<a class="lp-cta" href="#lp-main-product">${lang==='ar'?'إكتشفي':'Découvrir'}</a></div></section>`;
     document.body.innerHTML=`${lpPromoBarHTML}${collectionHeaderHTML}${collectionDrawerHTML}${cartFabHTML}${closeBtnHTML}${langSwitchHTML}${lightboxHTML}${p2LightboxHTML}<main class="lp-preview ${isPyjama?'lp-theme-pyjama':''}" style="padding-top:${LP_PROMO_H}px;">${heroHTML}${colorShowcaseHTML}${packBannerHTML}<div class="lp-wrap">${p.video2?`<section class="lp-section lp-video-section lp-video2-section"><div class="lunea-video-wrap"><video class="lp-video lp-video2" src="${escAttr(p.video2)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}${p.showOrderForm?`<section class="lp-section" id="order">${mainCardHTML.replace('__LP_FORM_HERE__',formHTML)}${p2CardHTML}</section>`:''}${p.showBenefits&&benefits?`<section class="lp-section"><h2>${lang==='ar'?'المميزات':'Les avantages'}</h2><div class="lp-benefits">${benefits}</div></section>`:''}${p.showReviews&&reviews?`<section class="lp-section"><h2>${lang==='ar'?'آراء الزبناء':'Avis clientes'}</h2><div class="lp-reviews-grid">${reviews}</div></section>`:''}${p.showFaq&&faqs?`<section class="lp-section lp-faq"><h2>FAQ</h2>${faqs}</section>`:''}${p.video?`<section class="lp-section"><div class="lunea-video-wrap"><video class="lp-video" src="${escAttr(p.video)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}
 <section class="lp-section lp-experience-section">
   <div class="lp-experience-kicker">${lang==='ar'?'التجربة':'L’EXPÉRIENCE'}</div>
