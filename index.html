@@ -5124,40 +5124,32 @@ body,
 }
 </style>
 
-<style id="luxia-landing-final-verified-buttons">
-/* Verified final pass: landing product card beige + site-matching add-to-cart buttons. */
-.lp-preview .lp-product-card:not(.lp-order-success),
-.lp-preview .lp-product-card:not(.lp-order-success) .lp-product-card-inner{
+<style id="luxia-landing-final-card-discover-v7">
+/* V7 — force the landing product card to use the exact current site beige. */
+body:not(.lp-pyjama-active) .lp-preview .lp-product-card:not(.lp-order-success),
+body:not(.lp-pyjama-active) .lp-preview .lp-product-card:not(.lp-order-success) .lp-product-card-inner,
+body.lp-pyjama-active .lp-preview .lp-product-card:not(.lp-order-success),
+body.lp-pyjama-active .lp-preview .lp-product-card:not(.lp-order-success) .lp-product-card-inner{
   background:#f7f4ee !important;
   background-color:#f7f4ee !important;
+  color:#292622 !important;
+  border-color:#ddd6cc !important;
+  box-shadow:0 14px 38px -24px rgba(42,36,30,.28) !important;
 }
-/* Match the current store's final Ajouter au panier button. */
-.lp-preview .lp-choose-btn,
-.lp-preview #lp-main-add,
-.lp-preview #lp-p2-add{
-  width:100% !important;
-  min-height:43px !important;
-  margin-top:12px !important;
-  border:1px solid #292622 !important;
-  border-radius:999px !important;
-  background:#292622 !important;
-  color:#fffdf8 !important;
-  padding:10px 8px !important;
-  text-align:center !important;
-  font-size:9.5px !important;
-  letter-spacing:.08em !important;
-  font-weight:600 !important;
-  box-shadow:none !important;
+body:not(.lp-pyjama-active) .lp-preview .lp-product-card:not(.lp-order-success) .lp-product-title-price-frame,
+body:not(.lp-pyjama-active) .lp-preview .lp-product-card:not(.lp-order-success) .lp-product-details,
+body:not(.lp-pyjama-active) .lp-preview .lp-product-card:not(.lp-order-success) .lp-picker,
+body.lp-pyjama-active .lp-preview .lp-product-card:not(.lp-order-success) .lp-product-title-price-frame,
+body.lp-pyjama-active .lp-preview .lp-product-card:not(.lp-order-success) .lp-product-details,
+body.lp-pyjama-active .lp-preview .lp-product-card:not(.lp-order-success) .lp-picker{
+  background:transparent !important;
+  background-color:transparent !important;
+  color:#292622 !important;
+}
+
+/* The hero "Découvrir" button goes directly to the main product card. */
+.lp-preview .lp-hero .lp-cta{
   cursor:pointer !important;
-}
-.lp-preview .lp-choose-btn:hover,
-.lp-preview #lp-main-add:hover,
-.lp-preview #lp-p2-add:hover{
-  background:#403a34 !important;
-  border-color:#403a34 !important;
-  color:#fffdf8 !important;
-  transform:none !important;
-  box-shadow:none !important;
 }
 </style>
 </head>
@@ -8727,13 +8719,15 @@ document.getElementById('lp-cart-drawer')?.addEventListener('click',e=>{if(e.tar
     });
     document.querySelector('.lp-hero .lp-cta')?.addEventListener('click',(e)=>{
       e.preventDefault();
-      lpTriggerOrderCta();
+      const target=document.getElementById('lp-main-product') || document.getElementById('order');
+      target?.scrollIntoView({behavior:'smooth',block:'start'});
     });
     document.addEventListener('click',(e)=>{
       const btn=e.target.closest?.('.lp-hero .lp-cta');
       if(!btn) return;
       e.preventDefault();
-      lpTriggerOrderCta();
+      const target=document.getElementById('lp-main-product') || document.getElementById('order');
+      target?.scrollIntoView({behavior:'smooth',block:'start'});
     });
     document.getElementById('lp-preview-close')?.addEventListener('click',()=>{
       window.close();
