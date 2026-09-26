@@ -5564,6 +5564,81 @@ body.luxia-store-home .lp-collection-header .lp-collection-langswitch{
   pointer-events:auto !important;
 }
 </style>
+
+<style id="luxia-v22-title-language-image-final">
+/* V22 — only the three requested landing visual fixes. */
+
+/* 1) Product title: full dark-cream frame, French title styling, no inner rectangle. */
+body:not(.lp-pyjama-active) .lp-preview .lp-product-card:not(.lp-order-success) .lp-product-title-price-frame.lp-product-head-top{
+  display:flex !important;
+  width:100% !important;
+  margin:0 0 10px !important;
+  padding:0 !important;
+  background:#c9b99d !important;
+  background-color:#c9b99d !important;
+  border:1px solid #a99473 !important;
+  border-radius:10px !important;
+  box-shadow:none !important;
+  color:#292622 !important;
+  box-sizing:border-box !important;
+}
+body:not(.lp-pyjama-active) .lp-preview .lp-product-card:not(.lp-order-success) .lp-product-title-price-frame.lp-product-head-top b{
+  display:block !important;
+  width:100% !important;
+  margin:0 !important;
+  padding:8px 10px !important;
+  background:transparent !important;
+  background-color:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  color:#292622 !important;
+  font-family:var(--font-display) !important;
+  font-weight:600 !important;
+  line-height:1.2 !important;
+  text-align:center !important;
+  box-sizing:border-box !important;
+}
+
+/* 2) Language selector: only the chosen language is visually active. */
+.lp-collection-header .lp-collection-langswitch .lang-btn:not(.active){
+  background:transparent !important;
+  color:#70685f !important;
+  font-weight:500 !important;
+  box-shadow:none !important;
+}
+.lp-collection-header .lp-collection-langswitch .lang-btn.active{
+  background:#292622 !important;
+  color:#fffdf8 !important;
+  font-weight:700 !important;
+  box-shadow:none !important;
+}
+
+/* 3) Product image: fill the complete image frame, without the beige/grey empty strip. */
+.lp-preview .lp-product-card .lp-main-gallery-wrap,
+.lp-preview .lp-product-card .lp-p2-gallery-wrap{
+  width:100% !important;
+  aspect-ratio:4 / 5 !important;
+  min-height:0 !important;
+  height:auto !important;
+  overflow:hidden !important;
+  border-radius:12px !important;
+  background:#eee9e1 !important;
+}
+.lp-preview .lp-product-card .lp-main-gallery-wrap .lp-product-card-img,
+.lp-preview .lp-product-card .lp-p2-gallery-wrap .lp-product-card-img{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  max-height:none !important;
+  aspect-ratio:auto !important;
+  object-fit:cover !important;
+  object-position:center center !important;
+  margin:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+}
+</style>
 </head>
 <body class="luxia-store-home">
 
@@ -8592,7 +8667,14 @@ function renderLandingPublic(p, isPreview){
       : (lang==='ar'
           ? (isArabicText(p.titleAr) ? p.titleAr : 'المنتج الرئيسي')
           : (p.titleFr || 'Produit principal'));
+    /* Landing product title display stays French, independently of the customer's UI language. */
+    const mainProductTitleFr = mainSourceProduct
+      ? (p.titleFr || I18N.fr[mainSourceProduct.nameKey] || 'Produit principal')
+      : (p.titleFr || 'Produit principal');
     const product2SourceProduct = p.product2Id ? PRODUCTS.find(x=>String(x.id)===String(p.product2Id)) : null;
+    const product2TitleFr = product2SourceProduct
+      ? (p.product2NameFr || I18N.fr[product2SourceProduct.nameKey] || 'Produit complémentaire')
+      : (p.product2NameFr || '');
     const product2Name = product2SourceProduct
       ? (lang==='ar'
           ? ((isArabicText(p.product2NameAr) ? p.product2NameAr : '') ||
@@ -8748,7 +8830,7 @@ function renderLandingPublic(p, isPreview){
       <div class="lp-success-title">${lang==='ar'?'تم تسجيل طلبك بنجاح ❤️':'Votre commande a été enregistrée avec succès ❤️'}</div>
       <p class="lp-success-text">${lang==='ar'?'شكراً لك! غادي نتاصلو بيك قريباً باش نأكدو معاك الطلب.':'Merci ! Nous vous contacterons bientôt pour confirmer votre commande.'}</p>
     </div>` : `<div id="lp-main-product" class="lp-card lp-product-card" style="text-align:${dir==='rtl'?'right':'left'};padding:18px;margin-bottom:14px;">
-      <div class="lp-product-title-price-frame lp-product-head-top"><b>${escHtml(mainProductName)}</b></div>
+      <div class="lp-product-title-price-frame lp-product-head-top"><b>${escHtml(mainProductTitleFr)}</b></div>
       <div class="lp-product-price-below">${mainPrice}dh</div>
       ${mainImageURL?`<div class="lp-main-gallery-wrap">
         <img id="lp-main-gallery-img" src="${escAttr(mainImageURL)}" alt="${escAttr(mainProductName)}" class="lp-product-card-img">
@@ -8781,7 +8863,7 @@ function renderLandingPublic(p, isPreview){
     }
     const p2RequiredNotice = (p2Added && !mainAdded) ? `<p class="lp-main-required">${lang==='ar'?'أضيفي المنتج الرئيسي إلى السلة لإكمال الطلب':'Ajoutez le produit principal au panier pour finaliser la commande'}</p>` : '';
     const p2CardHTML = orderPlaced ? '' : ((product2Name && p2price) ? `<div class="lp-card lp-product-card" style="text-align:${dir==='rtl'?'right':'left'};padding:18px;margin-bottom:14px;">
-      <div class="lp-product-title-price-frame lp-product-head-top"><b>${escHtml(product2Name)}</b></div>
+      <div class="lp-product-title-price-frame lp-product-head-top"><b>${escHtml(product2TitleFr)}</b></div>
       <div class="lp-product-price-below">${p2price}dh</div>
       ${p2ImageURL?`<div class="lp-p2-gallery-wrap"><img id="lp-p2-gallery-img" src="${escAttr(p2ImageURL)}" alt="${escAttr(product2Name)}" class="lp-product-card-img">
         ${p.showGallery && p2AdditionalImages.length ? `<div class="lp-landing-gallery" data-lp-gallery="p2">
