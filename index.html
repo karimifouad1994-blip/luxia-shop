@@ -5063,15 +5063,101 @@ body,
 }
 </style>
 
-<style id="luxia-landing-final-v3">
-.lp-preview .lp-product-card{background:#f7f4ee !important;}
-/* LUXIA logo/brand: luminous gold */
-.lp-preview .lp-brand, .lp-preview .lp-logo, .lp-preview .luxia-brand{
- color:#c6a15b !important; text-shadow:0 0 10px rgba(198,161,91,.34),0 0 22px rgba(198,161,91,.16) !important;
+<style id="luxia-landing-final-corrections-v4">
+/* FINAL V4 — landing card background, luminous LUXIA, hero title, and working Découvrir */
+.lp-preview .lp-product-card:not(.lp-order-success),
+.lp-preview .lp-product-card:not(.lp-order-success) .lp-product-card-inner {
+  background:#f7f4ee !important;
+  background-color:#f7f4ee !important;
+  color:#292622 !important;
+  border-color:#ddd6cc !important;
+  box-shadow:0 14px 38px -24px rgba(42,36,30,.28) !important;
 }
-/* Hero product title only: soft light white */
-.lp-preview .lp-hero h1, .lp-preview .lp-hero h2, .lp-preview .lp-hero .lp-product-title, .lp-preview .lp-hero .lp-title{
- color:rgba(255,253,248,.86) !important; text-shadow:0 1px 10px rgba(0,0,0,.12) !important;
+.lp-preview .lp-product-card:not(.lp-order-success) .lp-product-title-price-frame,
+.lp-preview .lp-product-card:not(.lp-order-success) .lp-product-details,
+.lp-preview .lp-product-card:not(.lp-order-success) .lp-picker {
+  background:transparent !important;
+  color:#292622 !important;
+}
+
+/* LUXIA on the landing header: luminous gold, close to the store logo treatment. */
+.lp-preview .lp-pyjama-logo,
+.lp-preview .lp-pyjama-logo * {
+  color:#b99a62 !important;
+  text-shadow:0 0 7px rgba(201,173,121,.45), 0 0 16px rgba(185,154,98,.22) !important;
+}
+.lp-preview .lp-logo-heart {
+  color:#d2b16f !important;
+  text-shadow:0 0 8px rgba(210,177,111,.72), 0 0 18px rgba(210,177,111,.28) !important;
+}
+
+/* Hero product title only: soft white, as requested. */
+.lp-preview .lp-hero .lp-title,
+.lp-preview .lp-hero-body .lp-title {
+  color:rgba(255,253,248,.92) !important;
+  text-shadow:0 2px 18px rgba(0,0,0,.22) !important;
+}
+
+/* Make the hero Découvrir action robust even after dynamic repaint. */
+.lp-preview .lp-hero .lp-cta {
+  cursor:pointer !important;
+}
+</style>
+
+<style id="luxia-landing-discover-final">
+/* Final: Landing Discover button matches the current site beige theme, with black text. */
+.lp-preview .lp-cta{
+  background:#f7f4ee !important;
+  color:#292622 !important;
+  border:1px solid #292622 !important;
+  box-shadow:none !important;
+}
+.lp-preview .lp-cta:hover{
+  background:#f7f4ee !important;
+  color:#292622 !important;
+  border-color:#292622 !important;
+  box-shadow:none !important;
+}
+.lp-preview .lp-cta:active{
+  background:#f7f4ee !important;
+  color:#292622 !important;
+}
+</style>
+
+<style id="luxia-landing-final-verified-buttons">
+/* Verified final pass: landing product card beige + site-matching add-to-cart buttons. */
+.lp-preview .lp-product-card:not(.lp-order-success),
+.lp-preview .lp-product-card:not(.lp-order-success) .lp-product-card-inner{
+  background:#f7f4ee !important;
+  background-color:#f7f4ee !important;
+}
+/* Match the current store's final Ajouter au panier button. */
+.lp-preview .lp-choose-btn,
+.lp-preview #lp-main-add,
+.lp-preview #lp-p2-add{
+  width:100% !important;
+  min-height:43px !important;
+  margin-top:12px !important;
+  border:1px solid #292622 !important;
+  border-radius:999px !important;
+  background:#292622 !important;
+  color:#fffdf8 !important;
+  padding:10px 8px !important;
+  text-align:center !important;
+  font-size:9.5px !important;
+  letter-spacing:.08em !important;
+  font-weight:600 !important;
+  box-shadow:none !important;
+  cursor:pointer !important;
+}
+.lp-preview .lp-choose-btn:hover,
+.lp-preview #lp-main-add:hover,
+.lp-preview #lp-p2-add:hover{
+  background:#403a34 !important;
+  border-color:#403a34 !important;
+  color:#fffdf8 !important;
+  transform:none !important;
+  box-shadow:none !important;
 }
 </style>
 </head>
@@ -8640,6 +8726,12 @@ document.getElementById('lp-cart-drawer')?.addEventListener('click',e=>{if(e.tar
       lpTriggerOrderCta();
     });
     document.querySelector('.lp-hero .lp-cta')?.addEventListener('click',(e)=>{
+      e.preventDefault();
+      lpTriggerOrderCta();
+    });
+    document.addEventListener('click',(e)=>{
+      const btn=e.target.closest?.('.lp-hero .lp-cta');
+      if(!btn) return;
       e.preventDefault();
       lpTriggerOrderCta();
     });
