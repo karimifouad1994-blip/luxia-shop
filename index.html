@@ -4933,10 +4933,10 @@ body:not(.lp-pyjama-active) .lp-product-card:not(.lp-order-success) .lp-product-
   display:block !important;
   width:100% !important;
   margin:0 !important;
-  padding:8px 10px !important;
-  background:transparent !important;
-  color:#c48b73 !important;
-  border:1px solid rgba(224,198,144,.58) !important;
+  padding:10px 14px !important;
+  background:#c48b73 !important;
+  color:#fffaf5 !important;
+  border:1px solid #c48b73 !important;
   border-radius:10px !important;
   text-align:center !important;
   font-family:var(--font-display) !important;
@@ -5035,16 +5035,17 @@ body,
 .lp-preview .lp-choose-btn,
 .lp-preview #lp-main-add,
 .lp-preview #lp-p2-add{
-  width:100% !important;
-  margin-top:12px !important;
-  padding:8px 0 !important;
-  border:0 !important;
-  border-bottom:1px solid #cfc5b9 !important;
-  border-radius:0 !important;
-  background:transparent !important;
-  color:#5d554e !important;
-  font-size:10px !important;
-  letter-spacing:.12em !important;
+  display:block !important;
+  width:auto !important;
+  min-width:220px !important;
+  margin:12px auto 0 !important;
+  padding:10px 24px !important;
+  border:1px solid #000000 !important;
+  border-radius:999px !important;
+  background:#000000 !important;
+  color:#ffffff !important;
+  font-size:calc(13.5px * var(--font-scale)) !important;
+  letter-spacing:.02em !important;
   font-weight:600 !important;
   box-shadow:none !important;
   cursor:pointer !important;
@@ -5052,9 +5053,9 @@ body,
 .lp-preview .lp-choose-btn:hover,
 .lp-preview #lp-main-add:hover,
 .lp-preview #lp-p2-add:hover{
-  background:transparent !important;
-  color:#292622 !important;
-  border-bottom-color:#292622 !important;
+  background:#1a1a1a !important;
+  color:#ffffff !important;
+  border-color:#1a1a1a !important;
   transform:none !important;
   box-shadow:none !important;
 }
@@ -5179,14 +5180,14 @@ body.lp-pyjama-active .lp-preview .lp-product-card:not(.lp-order-success) .lp-pi
 .lp-preview .lp-hero-clean{
   background-image:none !important;
   background-color:#f7f4ee !important;
-  min-height:58vh !important;
+  min-height:0 !important;
   border-radius:0 0 28px 28px !important;
   color:#292622 !important;
 }
 .lp-preview .lp-hero-clean::before{display:none !important;}
 .lp-preview .lp-hero-clean .lp-hero-content{
-  max-width:760px !important;
-  padding:70px 22px !important;
+  max-width:640px !important;
+  padding:34px 22px 30px !important;
 }
 .lp-preview .lp-hero-clean .lp-title{
   color:#292622 !important;
@@ -8328,8 +8329,8 @@ function renderLandingPublic(p, isPreview){
     const cartButtonHTML = `<button type="button" id="lp-cart-fab" class="lp-cart-fab${lpCartItemsCount>0?' lp-has-items':''}" aria-label="${lang==='ar'?'فتح السلة':'Ouvrir le panier'}">🛒<span id="lp-cart-count" class="lp-cart-count">${lpCartItemsCount}</span></button>`;
     const cartDrawerHTML = `<div id="lp-cart-drawer" class="lp-cart-drawer" aria-hidden="true"><div class="lp-cart-panel"><div class="lp-cart-head"><div style="font-family:var(--font-display);font-size:calc(22px * var(--font-scale))">${lang==='ar'?'سلتك':'Votre panier'}</div><button type="button" id="lp-cart-close" class="lp-cart-close">×</button></div><div id="lp-cart-live"></div></div></div>`;
     const lpHeaderLangSwitchHTML = `<div class="lang-switch lp-collection-langswitch" role="group" aria-label="${lang==='ar'?'اختيار اللغة':'Choix de la langue'}">
-      <button type="button" class="lang-btn ${lang==='fr'?'active':''}" data-lp-lang="fr">🇫🇷 FR</button>
-      <button type="button" class="lang-btn ${lang==='ar'?'active':''}" data-lp-lang="ar">🇲🇦 AR</button>
+      <button type="button" class="lp-lang-btn ${lang==='fr'?'active':''}" data-lp-lang="fr">🇫🇷 FR</button>
+      <button type="button" class="lp-lang-btn ${lang==='ar'?'active':''}" data-lp-lang="ar">🇲🇦 AR</button>
     </div>`;
     /* Delivery promo bar — same message/behavior as the main site's top bar
        (see I18N['promo.text']), shown fixed above the landing header so the
