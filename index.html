@@ -5291,36 +5291,55 @@ body.lp-pyjama-active .lp-preview .lp-product-card:not(.lp-order-success) .lp-pi
 }
 </style>
 
-<style id="luxia-hero-visible-and-product-title-frame-v12">
-/* V12 — keep the hero fully below the fixed site header and make the product title frame dark brown. */
+<style id="luxia-final-verified-v13">
+/* V13 FINAL VERIFIED: keep the landing hero fully below its fixed promo/header stack. */
+.lp-preview{
+  padding-top:96px !important;
+}
+
+/* Keep the hero compact and fully visible after the header. */
 .lp-preview .lp-hero-clean{
-  margin-top:72px !important;
-  padding-top:14px !important;
-  padding-bottom:20px !important;
+  margin-top:0 !important;
+  min-height:auto !important;
+  padding:20px 16px 24px !important;
 }
 .lp-preview .lp-hero-clean .lp-hero-content{
-  padding-top:0 !important;
+  padding:0 !important;
+  margin:0 auto !important;
 }
-.lp-preview .lp-hero-clean .lp-hero-info-card{
-  padding-top:16px !important;
-  padding-bottom:14px !important;
-}
-.lp-preview .lp-product-card .lp-product-title-price-frame,
-.lp-preview .lp-product-card .lp-product-title-price-frame.lp-product-head-top{
+
+/* Product title frame: dark-brown border, black text, beige inside. */
+.lp-preview .lp-product-card .lp-product-title-price-frame.lp-product-head-top b,
+.lp-preview .lp-product-card .lp-product-title-price-frame b{
   background:#f7f4ee !important;
   background-color:#f7f4ee !important;
   border:2px solid #4a3022 !important;
-  color:#292622 !important;
-  box-shadow:none !important;
-}
-.lp-preview .lp-product-card .lp-product-title-price-frame b,
-.lp-preview .lp-product-card .lp-product-title-price-frame.lp-product-head-top b{
-  color:#000 !important;
+  border-radius:10px !important;
+  color:#000000 !important;
   text-shadow:none !important;
+  box-sizing:border-box !important;
 }
-@media(max-width:520px){
-  .lp-preview .lp-hero-clean{margin-top:72px !important;padding-top:10px !important;padding-bottom:18px !important;}
-  .lp-preview .lp-hero-clean .lp-hero-info-card{padding-top:14px !important;padding-bottom:13px !important;}
+</style>
+
+
+<style id="luxia-hero-gold-card-v14">
+/* V14 — luxury gold background for the Hero information card only. */
+.lp-preview .lp-hero-clean .lp-hero-content{
+  background:linear-gradient(145deg,#b08a4a 0%,#d0ad6a 48%,#a57a3b 100%) !important;
+  border:1px solid rgba(74,48,34,.35) !important;
+  box-shadow:0 16px 34px rgba(55,40,24,.16) !important;
+}
+</style>
+
+<style id="luxia-product-title-gold-match-hero">
+/* Match the product-card title background to the Hero luxury-gold card. */
+.lp-preview .lp-product-card .lp-product-title-price-frame{
+  background:linear-gradient(135deg,#b08a4b 0%,#d1b06a 48%,#a77b3e 100%) !important;
+  background-color:#b08a4b !important;
+  border-color:#8f6a36 !important;
+}
+.lp-preview .lp-product-card .lp-product-title-price-frame b{
+  color:#000 !important;
 }
 </style>
 </head>
