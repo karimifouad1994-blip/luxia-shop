@@ -5547,6 +5547,23 @@ body:not(.lp-pyjama-active) .lp-preview .lp-product-card:not(.lp-order-success) 
   padding:7px 8px !important;
 }
 </style>
+
+<style id="luxia-v21-restore-landing-products-and-language">
+/* V21 — restore the landing product cards and customer language selector.
+   No product/order logic changed. */
+.lp-preview .lp-product-card:not(.lp-order-success){
+  display:block !important;
+}
+
+/* The base store CSS hides .lang-switch for body.luxia-store-home;
+   explicitly re-enable only the landing header selector. */
+body.luxia-store-home .lp-collection-header .lp-collection-langswitch{
+  display:flex !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  pointer-events:auto !important;
+}
+</style>
 </head>
 <body class="luxia-store-home">
 
