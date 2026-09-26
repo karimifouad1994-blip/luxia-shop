@@ -5179,7 +5179,7 @@ body.lp-pyjama-active .lp-preview .lp-product-card:not(.lp-order-success) .lp-pi
 /* Final landing hero: no background image; only luxury title, price, description and Découvrir. */
 .lp-preview .lp-hero-clean{
   background-image:none !important;
-  background-color:#f7f4ee !important;
+  background:linear-gradient(180deg,#6e4638 0%,#8a5c49 18%,#b98872 38%,#dcc3ae 60%,#f3e6d8 78%,#f7f4ee 100%) !important;
   min-height:0 !important;
   border-radius:0 0 28px 28px !important;
   color:#292622 !important;
@@ -5209,6 +5209,7 @@ body.lp-pyjama-active .lp-preview .lp-product-card:not(.lp-order-success) .lp-pi
 }
 .lp-preview .lp-hero-clean .lp-hero-lux-tagline{
   margin-bottom:20px !important;
+  color:#fff !important;
 }
 .lp-preview .lp-hero-clean .lp-price{
   color:#967644 !important;
@@ -5262,6 +5263,38 @@ body:not(.lp-pyjama-active) .lp-product-card:not(.lp-order-success) .lp-product-
   font-size:calc(19px * var(--font-scale)) !important;
   letter-spacing:.03em !important;
   line-height:1.25 !important;
+}
+</style>
+
+<style id="luxia-landing-product-card-3d-elegant">
+/* Carte produit landing — effet 3D élégant, cohérent avec les cartes de la collection du site. Visuel uniquement, aucune logique touchée. */
+body:not(.lp-pyjama-active) .lp-preview .lp-product-card:not(.lp-order-success){
+  border:1px solid rgba(174,151,112,.85) !important;
+  border-radius:22px !important;
+  overflow:hidden !important;
+  position:relative !important;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.9) inset,
+    0 0 0 1px rgba(255,255,255,.5) inset,
+    0 2px 0 rgba(151,128,91,.2),
+    0 10px 22px rgba(91,72,48,.14),
+    0 26px 42px -12px rgba(91,72,48,.22) !important;
+}
+body:not(.lp-pyjama-active) .lp-preview .lp-product-card:not(.lp-order-success)::before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  border-radius:inherit !important;
+  pointer-events:none !important;
+  z-index:5 !important;
+  border:1px solid rgba(255,255,255,.55) !important;
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,.4),
+    inset -1px -1px 0 rgba(137,111,72,.14) !important;
+}
+body:not(.lp-pyjama-active) .lp-preview .lp-product-card:not(.lp-order-success) .lp-product-card-img{
+  border-radius:16px !important;
+  box-shadow:0 10px 22px -12px rgba(40,28,20,.35) !important;
 }
 </style>
 </head>
