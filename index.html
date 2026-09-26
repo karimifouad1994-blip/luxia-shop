@@ -5152,6 +5152,51 @@ body.lp-pyjama-active .lp-preview .lp-product-card:not(.lp-order-success) .lp-pi
   cursor:pointer !important;
 }
 </style>
+
+<style id="luxia-landing-clean-hero-final">
+/* Final landing hero: no background image; only luxury title, price, description and Découvrir. */
+.lp-preview .lp-hero-clean{
+  background-image:none !important;
+  background-color:#f7f4ee !important;
+  min-height:58vh !important;
+  border-radius:0 0 28px 28px !important;
+  color:#292622 !important;
+}
+.lp-preview .lp-hero-clean::before{display:none !important;}
+.lp-preview .lp-hero-clean .lp-hero-content{
+  max-width:760px !important;
+  padding:70px 22px !important;
+}
+.lp-preview .lp-hero-clean .lp-title{
+  color:#292622 !important;
+  text-shadow:none !important;
+  margin-bottom:16px !important;
+}
+.lp-preview .lp-hero-clean .lp-price{
+  color:#967644 !important;
+  font-size:calc(30px * var(--font-scale)) !important;
+  font-weight:600 !important;
+  margin:0 auto 16px !important;
+}
+.lp-preview .lp-hero-clean .lp-hero-description{
+  max-width:640px !important;
+  margin:0 auto 26px !important;
+  text-align:center !important;
+  color:#5b554f !important;
+  font-size:calc(16px * var(--font-scale)) !important;
+  line-height:1.7 !important;
+}
+.lp-preview .lp-hero-clean .lp-cta{
+  background:#292622 !important;
+  color:#fffdf8 !important;
+  border:1px solid #292622 !important;
+  box-shadow:none !important;
+}
+.lp-preview .lp-hero-clean .lp-cta:hover{
+  background:#403a34 !important;
+  border-color:#403a34 !important;
+}
+</style>
 </head>
 <body class="luxia-store-home">
 
@@ -8439,7 +8484,7 @@ function renderLandingPublic(p, isPreview){
         ${pyFeatureRowHTML}
         ${p.price?`<div class="lp-price">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div>`:''}
       </div>
-    </section>` : `<section class="lp-hero" style="background-image:url('${escAttr(p.heroImage||'')}')"><div class="lp-hero-content"><div class="lp-kicker">${escHtml(p.kicker)}</div><h1 class="lp-title">${escHtml(title)}</h1><p class="lp-subtitle">${escHtml(subtitle)}</p>${pyFeatureRowHTML}${p.price?`<div class="lp-price">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div>`:''}${description?`<p style="max-width:640px;margin:14px auto 0;text-align:center;color:var(--ivory-dim);font-size:calc(16px * var(--font-scale))">${escHtml(description)}</p>`:''}${pySizeRowHTML}<a class="lp-cta" href="#lp-main-product">${lang==='ar'?'إكتشفي':'Découvrir'}</a></div></section>`;
+    </section>` : `<section class="lp-hero lp-hero-clean"><div class="lp-hero-content"><h1 class="lp-title">${escHtml(title)}</h1>${p.price?`<div class="lp-price">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div>`:''}${description?`<p class="lp-hero-description">${escHtml(description)}</p>`:''}<a class="lp-cta" href="#lp-main-product">${lang==='ar'?'إكتشفي':'Découvrir'}</a></div></section>`;
     document.body.innerHTML=`${lpPromoBarHTML}${collectionHeaderHTML}${collectionDrawerHTML}${cartFabHTML}${closeBtnHTML}${langSwitchHTML}${lightboxHTML}${p2LightboxHTML}<main class="lp-preview ${isPyjama?'lp-theme-pyjama':''}" style="padding-top:${LP_PROMO_H}px;">${heroHTML}${colorShowcaseHTML}${packBannerHTML}<div class="lp-wrap">${p.video2?`<section class="lp-section lp-video-section lp-video2-section"><div class="lunea-video-wrap"><video class="lp-video lp-video2" src="${escAttr(p.video2)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}${p.showOrderForm?`<section class="lp-section" id="order">${mainCardHTML.replace('__LP_FORM_HERE__',formHTML)}${p2CardHTML}</section>`:''}${p.showBenefits&&benefits?`<section class="lp-section"><h2>${lang==='ar'?'المميزات':'Les avantages'}</h2><div class="lp-benefits">${benefits}</div></section>`:''}${p.showReviews&&reviews?`<section class="lp-section"><h2>${lang==='ar'?'آراء الزبناء':'Avis clientes'}</h2><div class="lp-reviews-grid">${reviews}</div></section>`:''}${p.showFaq&&faqs?`<section class="lp-section lp-faq"><h2>FAQ</h2>${faqs}</section>`:''}${p.video?`<section class="lp-section"><div class="lunea-video-wrap"><video class="lp-video" src="${escAttr(p.video)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}
 <section class="lp-section lp-experience-section">
   <div class="lp-experience-kicker">${lang==='ar'?'التجربة':'L’EXPÉRIENCE'}</div>
