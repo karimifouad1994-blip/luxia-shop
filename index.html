@@ -4977,6 +4977,91 @@ body:not(.lp-pyjama-active) .lp-product-card:not(.lp-order-success) .lp-cta:hove
 }
 </style>
 
+
+<style id="luxia-landing-final-site-theme">
+/* Landing page: use the exact current store background. */
+html.landing-route-pending,
+body,
+.lp-preview{
+  background:#f7f4ee !important;
+}
+.lp-preview{
+  color:#2c2927 !important;
+}
+
+/* Landing "Découvrir" CTA: same visual treatment as the store's "Découvrir la collection" button. */
+.lp-preview .lp-cta{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:15px 30px !important;
+  border-radius:999px !important;
+  background:linear-gradient(135deg,#e0c690,#c7a15c) !important;
+  color:#1c0f16 !important;
+  font-weight:600 !important;
+  box-shadow:0 10px 30px -10px #c7a15c66 !important;
+  text-decoration:none !important;
+}
+.lp-preview .lp-cta:hover{
+  transform:translateY(-2px) !important;
+  box-shadow:0 16px 34px -10px #c7a15c88 !important;
+}
+.lp-preview .lp-cta:active{
+  transform:translateY(0) scale(.98) !important;
+}
+
+/* Landing "Ajouter au panier": same simple store button treatment. */
+.lp-preview .lp-choose-btn,
+.lp-preview #lp-main-add,
+.lp-preview #lp-p2-add{
+  width:100% !important;
+  margin-top:12px !important;
+  padding:8px 0 !important;
+  border:0 !important;
+  border-bottom:1px solid #cfc5b9 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  color:#5d554e !important;
+  font-size:10px !important;
+  letter-spacing:.12em !important;
+  font-weight:600 !important;
+  box-shadow:none !important;
+  cursor:pointer !important;
+}
+.lp-preview .lp-choose-btn:hover,
+.lp-preview #lp-main-add:hover,
+.lp-preview #lp-p2-add:hover{
+  background:transparent !important;
+  color:#292622 !important;
+  border-bottom-color:#292622 !important;
+  transform:none !important;
+  box-shadow:none !important;
+}
+</style>
+
+
+<style id="luxia-landing-price-elegant-final">
+/* Final landing-page price: prominent + elegant, without changing layout/logic. */
+.lp-preview .lp-product-title-price-frame .lp-price{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  margin:7px auto 0 !important;
+  padding:6px 15px !important;
+  min-width:82px !important;
+  font-family:inherit !important;
+  font-size:20px !important;
+  line-height:1.15 !important;
+  font-weight:700 !important;
+  letter-spacing:.02em !important;
+  color:#967644 !important;
+  background:transparent !important;
+  border:1px solid rgba(150,118,68,.38) !important;
+  border-radius:999px !important;
+  box-shadow:none !important;
+  text-align:center !important;
+}
+</style>
 </head>
 <body class="luxia-store-home">
 
