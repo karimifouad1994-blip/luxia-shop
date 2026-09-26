@@ -5222,6 +5222,74 @@ body.lp-pyjama-active .lp-preview .lp-product-card:not(.lp-order-success) .lp-pi
   background-color:#ebe7df !important;
 }
 </style>
+
+<style id="luxia-hero-compact-info-card-v11">
+/* V11 — compact luxury hero: info in a short rectangular card, CTA below. */
+.lp-preview .lp-hero-clean{
+  min-height:auto !important;
+  padding:24px 16px 28px !important;
+  background-color:#ebe7df !important;
+  border-radius:0 0 24px 24px !important;
+}
+.lp-preview .lp-hero-clean .lp-hero-content{
+  max-width:720px !important;
+  padding:8px 0 0 !important;
+  margin:0 auto !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  gap:16px !important;
+}
+.lp-preview .lp-hero-clean .lp-hero-info-card{
+  width:min(100%,680px) !important;
+  box-sizing:border-box !important;
+  padding:20px 18px 18px !important;
+  background:#f7f4ee !important;
+  border:1px solid rgba(178,141,91,.45) !important;
+  border-radius:18px !important;
+  box-shadow:0 10px 28px -22px rgba(42,36,30,.35) !important;
+  text-align:center !important;
+}
+.lp-preview .lp-hero-clean .lp-title{
+  margin:0 auto 9px !important;
+  max-width:100% !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  font-size:clamp(26px,6vw,48px) !important;
+  line-height:1.08 !important;
+  color:#292622 !important;
+}
+.lp-preview .lp-hero-clean .lp-price{
+  margin:0 auto 8px !important;
+  font-size:clamp(25px,5.5vw,34px) !important;
+}
+.lp-preview .lp-hero-clean .lp-hero-description{
+  max-width:620px !important;
+  margin:0 auto !important;
+  font-size:clamp(14px,3.7vw,17px) !important;
+  line-height:1.5 !important;
+}
+.lp-preview .lp-hero-clean .lp-cta{
+  margin:0 !important;
+}
+.lp-preview .lp-product-card .lp-product-title-price-frame{
+  background:#4a3022 !important;
+  background-color:#4a3022 !important;
+  border:1px solid #4a3022 !important;
+  color:#000 !important;
+  box-shadow:none !important;
+}
+.lp-preview .lp-product-card .lp-product-title-price-frame b{
+  color:#000 !important;
+  text-shadow:none !important;
+}
+@media(max-width:520px){
+  .lp-preview .lp-hero-clean{padding:18px 14px 24px !important;}
+  .lp-preview .lp-hero-clean .lp-hero-info-card{padding:17px 14px 15px !important;border-radius:16px !important;}
+  .lp-preview .lp-hero-clean .lp-title{font-size:clamp(22px,6vw,34px) !important;}
+}
+</style>
 </head>
 <body class="luxia-store-home">
 
@@ -8509,7 +8577,7 @@ function renderLandingPublic(p, isPreview){
         ${pyFeatureRowHTML}
         ${p.price?`<div class="lp-price">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div>`:''}
       </div>
-    </section>` : `<section class="lp-hero lp-hero-clean"><div class="lp-hero-content"><h1 class="lp-title">${escHtml(title)}</h1>${p.price?`<div class="lp-price">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div>`:''}${description?`<p class="lp-hero-description">${escHtml(description)}</p>`:''}<a class="lp-cta" href="#lp-main-product">${lang==='ar'?'إكتشفي':'Découvrir'}</a></div></section>`;
+    </section>` : `<section class="lp-hero lp-hero-clean"><div class="lp-hero-content"><div class="lp-hero-info-card"><h1 class="lp-title">${escHtml(title)}</h1>${p.price?`<div class="lp-price">${escHtml(p.price)}dh ${p.oldPrice?`<span class="lp-old-price">${escHtml(p.oldPrice)}</span>`:''}${pyDiscountBadgeHTML}</div>`:''}${description?`<p class="lp-hero-description">${escHtml(description)}</p>`:''}</div><a class="lp-cta" href="#lp-main-product">${lang==='ar'?'إكتشفي':'Découvrir'}</a></div></section>`;
     document.body.innerHTML=`${lpPromoBarHTML}${collectionHeaderHTML}${collectionDrawerHTML}${cartFabHTML}${closeBtnHTML}${langSwitchHTML}${lightboxHTML}${p2LightboxHTML}<main class="lp-preview ${isPyjama?'lp-theme-pyjama':''}" style="padding-top:${LP_PROMO_H}px;">${heroHTML}${colorShowcaseHTML}${packBannerHTML}<div class="lp-wrap">${p.video2?`<section class="lp-section lp-video-section lp-video2-section"><div class="lunea-video-wrap"><video class="lp-video lp-video2" src="${escAttr(p.video2)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}${p.showOrderForm?`<section class="lp-section" id="order">${mainCardHTML.replace('__LP_FORM_HERE__',formHTML)}${p2CardHTML}</section>`:''}${p.showBenefits&&benefits?`<section class="lp-section"><h2>${lang==='ar'?'المميزات':'Les avantages'}</h2><div class="lp-benefits">${benefits}</div></section>`:''}${p.showReviews&&reviews?`<section class="lp-section"><h2>${lang==='ar'?'آراء الزبناء':'Avis clientes'}</h2><div class="lp-reviews-grid">${reviews}</div></section>`:''}${p.showFaq&&faqs?`<section class="lp-section lp-faq"><h2>FAQ</h2>${faqs}</section>`:''}${p.video?`<section class="lp-section"><div class="lunea-video-wrap"><video class="lp-video" src="${escAttr(p.video)}" autoplay loop preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"></video><button type="button" class="lunea-sound-btn" aria-label="إيقاف الصوت" title="إيقاف الصوت">🔊</button></div></section>`:''}
 <section class="lp-section lp-experience-section">
   <div class="lp-experience-kicker">${lang==='ar'?'التجربة':'L’EXPÉRIENCE'}</div>
