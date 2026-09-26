@@ -5389,6 +5389,96 @@ body.lp-pyjama-active .lp-preview .lp-product-card:not(.lp-order-success) .lp-pi
   border-color:#403a34 !important;
 }
 </style>
+
+<style id="luxia-final-agreed-fix-v18">
+/* V18 — ONLY the three agreed landing-page visual fixes. */
+
+/* 1) Hero: remove the outer rectangle/background; keep only the inner Hero card in luxury gold. */
+.lp-preview .lp-hero-clean{
+  background:#f7f4ee !important;
+  background-image:none !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  padding:18px 14px 24px !important;
+  min-height:auto !important;
+}
+.lp-preview .lp-hero-clean::before{display:none !important;}
+.lp-preview .lp-hero-clean .lp-hero-content{
+  max-width:720px !important;
+  padding:0 !important;
+  margin:0 auto !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+.lp-preview .lp-hero-clean .lp-hero-info-card{
+  width:min(100%,680px) !important;
+  box-sizing:border-box !important;
+  padding:18px 16px 16px !important;
+  background:linear-gradient(145deg,#b08a4a 0%,#d0ad6a 48%,#a57a3b 100%) !important;
+  border:1px solid #8f6a36 !important;
+  border-radius:18px !important;
+  box-shadow:none !important;
+  text-align:center !important;
+}
+.lp-preview .lp-hero-clean .lp-hero-info-card .lp-title,
+.lp-preview .lp-hero-clean .lp-hero-info-card .lp-price,
+.lp-preview .lp-hero-clean .lp-hero-info-card .lp-hero-description{
+  background:transparent !important;
+}
+
+/* 2) Product-card title: the whole title frame is luxury gold; title text stays black. */
+.lp-preview .lp-product-card .lp-product-title-price-frame,
+.lp-preview .lp-product-card .lp-product-title-price-frame.lp-product-head-top{
+  background:linear-gradient(145deg,#b08a4a 0%,#d0ad6a 48%,#a57a3b 100%) !important;
+  background-color:#b08a4a !important;
+  border:1px solid #8f6a36 !important;
+  color:#000000 !important;
+  box-shadow:none !important;
+}
+.lp-preview .lp-product-card .lp-product-title-price-frame b,
+.lp-preview .lp-product-card .lp-product-title-price-frame.lp-product-head-top b{
+  background:transparent !important;
+  background-color:transparent !important;
+  border:0 !important;
+  color:#000000 !important;
+  text-shadow:none !important;
+}
+
+/* 3) Add-to-cart: compact, clearly visible black frame around the text; white text. */
+.lp-preview .lp-product-card .lp-choose-btn,
+.lp-preview .lp-product-card #lp-main-add,
+.lp-preview .lp-product-card #lp-p2-add{
+  display:inline-flex !important;
+  width:auto !important;
+  max-width:100% !important;
+  margin:12px auto 0 !important;
+  padding:9px 16px !important;
+  align-items:center !important;
+  justify-content:center !important;
+  border:1px solid #292622 !important;
+  border-radius:999px !important;
+  background:#292622 !important;
+  color:#fffdf8 !important;
+  font-size:13px !important;
+  line-height:1.2 !important;
+  letter-spacing:.01em !important;
+  font-weight:700 !important;
+  box-shadow:none !important;
+  cursor:pointer !important;
+  box-sizing:border-box !important;
+}
+.lp-preview .lp-product-card .lp-choose-btn:hover,
+.lp-preview .lp-product-card #lp-main-add:hover,
+.lp-preview .lp-product-card #lp-p2-add:hover{
+  background:#403a34 !important;
+  color:#fffdf8 !important;
+  border-color:#403a34 !important;
+  transform:none !important;
+  box-shadow:none !important;
+}
+</style>
 </head>
 <body class="luxia-store-home">
 
