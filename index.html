@@ -8695,10 +8695,17 @@ ${sizesSectionHTML}
             : (lang==='ar'?'التوصيل حسب المدينة':'Livraison selon la ville');
         const cartDeliveryValue = lpDeliveryFee ? `+${lpDeliveryFee} DH` : '—';
         const cartFinalTotal = cartTotalNow + lpDeliveryFee;
+        const cartDeliveryRowHTML = lpDeliveryType
+          ? `<div class="row" style="display:flex;justify-content:space-between;gap:12px;padding:8px 4px;"><span>${cartDeliveryLabel}</span><strong>${cartDeliveryValue}</strong></div>`
+          : `<div class="lp-shipping-info" style="margin:8px 4px 0;">
+              <div><span>🚚 ${lang==='ar'?'التوصيل إلى الدار البيضاء':'Livraison à Casablanca'}</span><strong>20 DH · ${lang==='ar'?'خلال 24 ساعة':'dans 24h'}</strong></div>
+              <div><span>🚚 ${lang==='ar'?'التوصيل خارج الدار البيضاء':'Livraison hors Casablanca'}</span><strong>35 DH · ${lang==='ar'?'خلال 24–48 ساعة':'24–48h'}</strong></div>
+              <p>${lang==='ar'?'مصاريف التوصيل كتتحسب حسب المدينة اللي تختاري فمرحلة الطلب، وكتزاد للـSous-total باش يبان ليك المجموع النهائي بوضوح.':'Les frais de livraison dépendent de la ville choisie et sont ajoutés au sous-total pour afficher clairement le total final.'}</p>
+            </div>`;
         live.innerHTML+=`<div class="lp-cart-total" style="border-top:1px solid #e4ded5;padding-top:12px;margin-top:14px;"><span>Total de la commande</span><strong>${cartTotalNow} DH</strong></div>
-          <div class="row" style="display:flex;justify-content:space-between;gap:12px;padding:8px 4px;"><span>${cartDeliveryLabel}</span><strong>${cartDeliveryValue}</strong></div>
+          ${cartDeliveryRowHTML}
           <div class="lp-cart-total" style="margin-top:4px;"><span>Sous-total</span><strong>${cartFinalTotal} DH</strong></div>
-          <p style="margin:8px 0 0;color:#7a736b;font-size:10.5px;line-height:1.45;">${lpDeliveryFee ? (lang==='ar'?'مصاريف التوصيل محسوبة حسب المدينة المختارة.':'Les frais de livraison sont calculés selon la ville choisie.') : (lang==='ar'?'اختاري المدينة باش يتحسب ثمن التوصيل.':'Choisissez votre ville pour calculer les frais de livraison.')}</p>
+          ${lpDeliveryType?`<p style="margin:8px 0 0;color:#7a736b;font-size:10.5px;line-height:1.45;">${lang==='ar'?'مصاريف التوصيل محسوبة حسب المدينة المختارة.':'Les frais de livraison sont calculés selon la ville choisie.'}</p>`:''}
           <button type="button" id="lp-cart-checkout" class="lp-cta" style="width:100%;text-align:center;border:none;cursor:pointer;margin-top:16px;">${lang==='ar'?'إتمام الطلب':'Commander'}</button>`;
       }
       const lpLiveCount=mainCartItems.length+(p2Added?1:0);
