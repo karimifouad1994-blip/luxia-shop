@@ -5639,6 +5639,44 @@ body:not(.lp-pyjama-active) .lp-preview .lp-product-card:not(.lp-order-success) 
   background:transparent !important;
 }
 </style>
+
+<style id="luxia-v23-only-requested-fixes">
+/* V23 — only the four requested landing-page fixes. */
+.lp-preview .lp-product-card:not(.lp-order-success) .lp-product-title-price-frame.lp-product-head-top{
+  border-width:0.5px !important;
+}
+.lp-preview .lp-product-card:not(.lp-order-success) .lp-choose-btn,
+.lp-preview .lp-product-card:not(.lp-order-success) #lp-main-add,
+.lp-preview .lp-product-card:not(.lp-order-success) #lp-p2-add{
+  width:max-content !important;
+  min-width:0 !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  padding-left:18px !important;
+  padding-right:18px !important;
+}
+.lp-preview .lp-product-card .lp-landing-gallery,
+.lp-preview .lp-product-card .lp-landing-thumbs{
+  display:flex !important;
+  visibility:visible !important;
+  opacity:1 !important;
+}
+<style id="luxia-v24-language-active-fix">
+/* V24 — landing header language selector: only the chosen language is visually active. */
+body.luxia-store-home .header-actions .lang-switch button:not(.active){
+  background:transparent !important;
+  color:#70685f !important;
+  font-weight:500 !important;
+  box-shadow:none !important;
+}
+body.luxia-store-home .header-actions .lang-switch button.active{
+  background:#292622 !important;
+  color:#fffdf8 !important;
+  font-weight:700 !important;
+  box-shadow:none !important;
+}
+</style>
+</style>
 </head>
 <body class="luxia-store-home">
 
@@ -8756,8 +8794,8 @@ function renderLandingPublic(p, isPreview){
     const cartButtonHTML = `<button type="button" id="lp-cart-fab" class="lp-cart-fab${lpCartItemsCount>0?' lp-has-items':''}" aria-label="${lang==='ar'?'فتح السلة':'Ouvrir le panier'}">🛒<span id="lp-cart-count" class="lp-cart-count">${lpCartItemsCount}</span></button>`;
     const cartDrawerHTML = `<div id="lp-cart-drawer" class="lp-cart-drawer" aria-hidden="true"><div class="lp-cart-panel"><div class="lp-cart-head"><div style="font-family:var(--font-display);font-size:calc(22px * var(--font-scale))">${lang==='ar'?'سلتك':'Votre panier'}</div><button type="button" id="lp-cart-close" class="lp-cart-close">×</button></div><div id="lp-cart-live"></div></div></div>`;
     const lpHeaderLangSwitchHTML = `<div class="lang-switch lp-collection-langswitch" role="group" aria-label="${lang==='ar'?'اختيار اللغة':'Choix de la langue'}">
-      <button type="button" class="lang-btn ${lang==='fr'?'active':''}" data-lp-lang="fr">🇫🇷 FR</button>
-      <button type="button" class="lang-btn ${lang==='ar'?'active':''}" data-lp-lang="ar">🇲🇦 AR</button>
+      <button type="button" class="lang-btn ${lang==='fr'?'active':''}" data-lang="fr" data-lp-lang="fr">🇫🇷 FR</button>
+      <button type="button" class="lang-btn ${lang==='ar'?'active':''}" data-lang="ar" data-lp-lang="ar">🇲🇦 AR</button>
     </div>`;
     /* Delivery promo bar — same message/behavior as the main site's top bar
        (see I18N['promo.text']), shown fixed above the landing header so the
@@ -8835,7 +8873,7 @@ function renderLandingPublic(p, isPreview){
       ${mainImageURL?`<div class="lp-main-gallery-wrap">
         <img id="lp-main-gallery-img" src="${escAttr(mainImageURL)}" alt="${escAttr(mainProductName)}" class="lp-product-card-img">
         ${mainGalleryImages.length>1 ? `<div class="lp-main-image-dots" id="lp-main-image-dots">${mainGalleryImages.map((u,i)=>`<button type="button" class="lp-main-image-dot ${i===0?'active':''}" data-lp-main-image="${i}" aria-label="${lang==='ar'?'الصورة':'Image'} ${i+1}"></button>`).join('')}</div>` : ''}
-        ${p.showGallery && mainAdditionalImages.length ? `<div class="lp-landing-gallery" data-lp-gallery="main">
+        ${mainAdditionalImages.length ? `<div class="lp-landing-gallery" data-lp-gallery="main">
           <div class="lp-landing-thumbs" id="lp-main-thumbs">
             ${mainAdditionalImages.map((u,i)=>`<button type="button" class="lp-landing-thumb" data-lp-thumb="main:${i+1}" aria-label="${lang==='ar'?'الصورة':'Image'} ${i+2}"><img src="${escAttr(u)}" alt=""></button>`).join('')}
           </div>
@@ -8866,7 +8904,7 @@ function renderLandingPublic(p, isPreview){
       <div class="lp-product-title-price-frame lp-product-head-top"><b>${escHtml(product2TitleFr)}</b></div>
       <div class="lp-product-price-below">${p2price}dh</div>
       ${p2ImageURL?`<div class="lp-p2-gallery-wrap"><img id="lp-p2-gallery-img" src="${escAttr(p2ImageURL)}" alt="${escAttr(product2Name)}" class="lp-product-card-img">
-        ${p.showGallery && p2AdditionalImages.length ? `<div class="lp-landing-gallery" data-lp-gallery="p2">
+        ${p2AdditionalImages.length ? `<div class="lp-landing-gallery" data-lp-gallery="p2">
           <div class="lp-landing-thumbs" id="lp-p2-thumbs">
             ${p2AdditionalImages.map((u,i)=>`<button type="button" class="lp-landing-thumb" data-lp-thumb="p2:${i+1}" aria-label="${lang==='ar'?'الصورة':'Image'} ${i+2}"><img src="${escAttr(u)}" alt=""></button>`).join('')}
           </div>
