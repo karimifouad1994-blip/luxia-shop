@@ -4874,49 +4874,109 @@ html[dir="rtl"] .hero .pitch{
 </style>
 
 <style id="luxia-landing-site-consistency-final">
-/* Landing page — align product cards with the main LUXIA store */
-.lp-preview .lp-product-card{
-  background:#f7f4ee !important;
-  border:1.5px solid #292622 !important;
-  box-shadow:none !important;
-  border-radius:22px !important;
+/*
+  LUXIA — LANDING PAGE CONSISTENCY FINAL
+  Visual-only changes:
+  1) Product cards use the same deep site background.
+  2) Product price is centered directly under the title.
+  3) Landing product action buttons follow the site's dark button language.
+  No HTML structure, JS, product data or order logic changed.
+*/
+
+/* 1 — Landing product card: same background as the main site */
+body:not(.lp-pyjama-active) .lp-product-card:not(.lp-order-success){
+  background: var(--bg-deep) !important;
+  background-color: var(--bg-deep) !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  box-shadow: var(--shadow) !important;
 }
-/* Product title first, price centered underneath */
-.lp-preview .lp-product-title-price-frame{
+
+/* Keep the content area visually continuous with the site background. */
+body:not(.lp-pyjama-active) .lp-product-card:not(.lp-order-success) .lp-product-title-price-frame,
+body:not(.lp-pyjama-active) .lp-product-card:not(.lp-order-success) .lp-product-details,
+body:not(.lp-pyjama-active) .lp-product-card:not(.lp-order-success) .lp-picker{
+  background-color: transparent !important;
+}
+
+/* 2 — Product title + price: title first, price centered immediately below */
+body:not(.lp-pyjama-active) .lp-product-card:not(.lp-order-success) .lp-product-title-price-frame.lp-product-head-top{
   display:flex !important;
   flex-direction:column !important;
   align-items:center !important;
   justify-content:center !important;
   gap:5px !important;
-  text-align:center !important;
-}
-.lp-preview .lp-product-title-price-frame b{
+  margin:0 0 10px !important;
+  padding:0 !important;
   width:100% !important;
-  text-align:center !important;
-}
-.lp-preview .lp-product-title-price-frame .lp-price{
-  width:100% !important;
-  margin:0 !important;
-  text-align:center !important;
-  color:#967644 !important;
-}
-/* Landing action buttons — same visual language as the main store */
-.lp-preview .lp-choose-btn,
-.lp-preview .lp-submit,
-.lp-preview .lp-sticky-pyjama .lp-cta{
-  background:#292622 !important;
-  border:1px solid #292622 !important;
-  color:#fffdf8 !important;
-  border-radius:999px !important;
+  background:transparent !important;
+  border:0 !important;
   box-shadow:none !important;
 }
-.lp-preview .lp-choose-btn:hover,
-.lp-preview .lp-submit:hover,
-.lp-preview .lp-sticky-pyjama .lp-cta:hover{
+
+body:not(.lp-pyjama-active) .lp-product-card:not(.lp-order-success) .lp-product-title-price-frame.lp-product-head-top b{
+  display:block !important;
+  width:100% !important;
+  margin:0 !important;
+  padding:8px 10px !important;
+  background:transparent !important;
+  color:var(--ivory) !important;
+  border:1px solid rgba(224,198,144,.58) !important;
+  border-radius:10px !important;
+  text-align:center !important;
+  font-family:var(--font-display) !important;
+  font-weight:600 !important;
+  line-height:1.2 !important;
+}
+
+body:not(.lp-pyjama-active) .lp-product-card:not(.lp-order-success) .lp-product-price-below{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:max-content !important;
+  max-width:100% !important;
+  margin:0 auto 4px !important;
+  padding:4px 11px !important;
+  background:#fff !important;
+  color:#967644 !important;
+  border:1px solid #b69257 !important;
+  border-radius:999px !important;
+  box-sizing:border-box !important;
+  font-family:var(--font-display) !important;
+  font-size:15px !important;
+  font-weight:600 !important;
+  line-height:1.1 !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+}
+
+/* 3 — Landing action buttons: same dark/gold visual language as the store */
+body:not(.lp-pyjama-active) .lp-product-card:not(.lp-order-success) .lp-choose-btn,
+body:not(.lp-pyjama-active) .lp-product-card:not(.lp-order-success) .lp-submit,
+body:not(.lp-pyjama-active) .lp-product-card:not(.lp-order-success) .lp-cta{
+  width:100% !important;
+  min-height:43px !important;
+  padding:10px 8px !important;
+  border:1px solid #292622 !important;
+  border-radius:999px !important;
+  background:#292622 !important;
+  color:#fffdf8 !important;
+  box-shadow:none !important;
+  font-family:var(--font-body) !important;
+  font-weight:600 !important;
+  text-align:center !important;
+}
+
+body:not(.lp-pyjama-active) .lp-product-card:not(.lp-order-success) .lp-choose-btn:hover,
+body:not(.lp-pyjama-active) .lp-product-card:not(.lp-order-success) .lp-submit:hover,
+body:not(.lp-pyjama-active) .lp-product-card:not(.lp-order-success) .lp-cta:hover{
   background:#403a34 !important;
   border-color:#403a34 !important;
+  color:#fffdf8 !important;
+  box-shadow:none !important;
+  transform:translateY(-1px);
 }
 </style>
+
 </head>
 <body class="luxia-store-home">
 
@@ -8164,7 +8224,7 @@ function renderLandingPublic(p, isPreview){
       <div class="row total lp-cart-total" style="margin-top:8px;"><span>Sous-total</span><strong id="lp-summary-final-total">${lpFinalTotal} DH</strong></div>
     </div>`;
 
-    const formHTML = showForm ? `${summaryBlock}<form class="lp-order" id="lp-order-form" style="margin-top:16px"><div class="lp-field"><label>${lang==='ar'?'الاسم':'Nom'}</label><input name="name" required></div><div class="lp-field"><label>${lang==='ar'?'الهاتف':'Téléphone'}</label><input name="phone" required></div><div class="lp-field">
+    const formHTML = showForm ? `<form class="lp-order" id="lp-order-form" style="margin-top:16px"><div class="lp-field"><label>${lang==='ar'?'الاسم':'Nom'}</label><input name="name" required></div><div class="lp-field"><label>${lang==='ar'?'الهاتف':'Téléphone'}</label><input name="phone" required></div><div class="lp-field">
   <label>${lang==='ar'?'المدينة':'Ville'}</label>
   <select name="cityType" id="lp-city-type" required>
     <option value="">${lang==='ar'?'اختاري المدينة':'Choisissez votre ville'}</option>
@@ -8172,7 +8232,7 @@ function renderLandingPublic(p, isPreview){
     <option value="other" ${lpDeliveryType==='other'?'selected':''}>${lang==='ar'?'مدينة أخرى':'Autre ville'}</option>
   </select>
   <input name="cityOther" id="lp-city-other" value="" placeholder="${lang==='ar'?'اكتبي اسم المدينة':'Écrivez votre ville'}" style="display:${lpDeliveryType==='other'?'block':'none'};margin-top:8px;">
-</div><div class="lp-field"><label>${lang==='ar'?'العنوان':'Adresse'}</label><textarea name="address" rows="3" required></textarea></div><button class="lp-submit" type="submit">${escHtml(cta)}</button><p id="lp-order-msg" style="margin-top:12px;text-align:center;color:var(--gold-soft)"></p></form>` : '';
+</div><div class="lp-field"><label>${lang==='ar'?'العنوان':'Adresse'}</label><textarea name="address" rows="3" required></textarea></div>${summaryBlock}<button class="lp-submit" type="submit">${escHtml(cta)}</button><p id="lp-order-msg" style="margin-top:12px;text-align:center;color:var(--gold-soft)"></p></form>` : '';
 
     const sideOpp = dir==='rtl' ? 'left' : 'right';
     const sideSame = dir==='rtl' ? 'right' : 'left';
